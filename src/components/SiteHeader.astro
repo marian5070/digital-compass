@@ -42,7 +42,37 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       <CompassMark size={30} />
       <span class="brand-name">Digital Compass</span>
     </a>
-    <nav aria-label={T('nav.aria')}>
+
+    {
+      langEntries.length > 1 && (
+        <details class="lang-menu">
+          <summary aria-label="Limba / Language">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+              <path d="M3.5 12h17M12 3.5c-2.5 2.5-2.5 14.5 0 17M12 3.5c2.5 2.5 2.5 14.5 0 17" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            {lang.toUpperCase()}
+            <span class="caret" aria-hidden="true">▾</span>
+          </summary>
+          <ul class="lang-list">
+            {langEntries.map(([l, p]) => (
+              <li>
+                <a
+                  href={p}
+                  lang={l}
+                  hreflang={l}
+                  aria-current={l === lang ? 'true' : undefined}
+                >
+                  {LANG_LABEL[l]}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )
+    }
+
+    <nav aria-label={T('nav.aria')} class="site-nav">
       <ul class="nav-list">
         {
           links.map((link) => {
@@ -56,36 +86,6 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
               </li>
             );
           })
-        }
-        {
-          langEntries.length > 1 && (
-            <li>
-              <details class="lang-menu">
-                <summary aria-label="Limba / Language">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
-                    <path d="M3.5 12h17M12 3.5c-2.5 2.5-2.5 14.5 0 17M12 3.5c2.5 2.5 2.5 14.5 0 17" stroke="currentColor" stroke-width="1.5" />
-                  </svg>
-                  {lang.toUpperCase()}
-                  <span class="caret" aria-hidden="true">▾</span>
-                </summary>
-                <ul class="lang-list">
-                  {langEntries.map(([l, p]) => (
-                    <li>
-                      <a
-                        href={p}
-                        lang={l}
-                        hreflang={l}
-                        aria-current={l === lang ? 'true' : undefined}
-                      >
-                        {LANG_LABEL[l]}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            </li>
-          )
         }
       </ul>
     </nav>
@@ -101,13 +101,14 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--color-border);
   }
+  /* Mobil: două rânduri controlate — brand + limbă sus, navigarea (scrollabilă)
+     dedesubt, pe un singur rând, fără frângerea etichetelor. */
   .header-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
-    min-height: 4rem;
     flex-wrap: wrap;
+    column-gap: var(--space-3);
+    padding-block: 0.6rem 0;
   }
   .brand {
     display: inline-flex;
@@ -117,22 +118,42 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     text-decoration: none;
     font-weight: var(--weight-bold);
     letter-spacing: -0.01em;
+    margin-right: auto;
   }
   .brand-name {
     font-size: var(--text-lg);
+    white-space: nowrap;
+  }
+  .site-nav {
+    flex: 1 0 100%;
+    min-width: 0;
+    /* fade la margine — indiciu că lista continuă */
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent);
+    mask-image: linear-gradient(to right, black calc(100% - 2rem), transparent);
   }
   .nav-list {
     display: flex;
     align-items: center;
-    gap: clamp(0.75rem, 0.4rem + 1.5vw, 1.75rem);
+    gap: clamp(0.9rem, 0.4rem + 1.5vw, 1.75rem);
     list-style: none;
     padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-right: 2rem; /* loc sub fade pentru ultimul item */
+  }
+  .nav-list::-webkit-scrollbar {
+    display: none;
   }
   .nav-list a {
     color: var(--color-text-muted);
     text-decoration: none;
     font-weight: var(--weight-medium);
-    padding: 0.35rem 0.1rem;
+    padding: 0.6rem 0.1rem;
+    display: inline-block;
+    white-space: nowrap;
   }
   .nav-list a:hover {
     color: var(--color-text);
@@ -141,8 +162,38 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     color: var(--color-accent-strong);
     box-shadow: inset 0 -0.14em 0 var(--color-accent);
   }
+
+  /* Desktop: totul pe un singur rând, ca înainte. */
+  @media (min-width: 48rem) {
+    .header-inner {
+      flex-wrap: nowrap;
+      min-height: 4rem;
+      padding-block: 0;
+    }
+    .brand {
+      margin-right: 0;
+    }
+    .site-nav {
+      flex: 0 1 auto;
+      margin-left: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .nav-list {
+      overflow-x: visible;
+      padding-right: 0;
+    }
+    .nav-list a {
+      padding: 0.35rem 0.1rem;
+    }
+    .lang-menu {
+      order: 3;
+    }
+  }
+
   .lang-menu {
     position: relative;
+    flex: none;
   }
   .lang-menu summary {
     display: inline-flex;
@@ -189,12 +240,16 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
   .lang-list a {
     display: block;
-    padding: 0.45rem 0.7rem !important;
+    padding: 0.45rem 0.7rem;
     border-radius: calc(var(--radius) - 4px);
     font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: var(--weight-medium);
   }
   .lang-list a:hover {
     background: var(--color-surface-2);
+    color: var(--color-text);
   }
   .lang-list a[aria-current='true'] {
     color: var(--color-accent-strong);
