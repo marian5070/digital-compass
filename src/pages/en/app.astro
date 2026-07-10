@@ -115,7 +115,11 @@ import { pageAlternates } from '../../i18n/routes';
           var urls = [];
           ['situatii', 'ghiduri'].forEach(function (k) {
             (data[k] || []).forEach(function (item) {
-              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+              if (item.lang === LANG) {
+                var p = new URL(item.url).pathname;
+                if (p.charAt(p.length - 1) !== '/') p += '/';
+                urls.push(p);
+              }
             });
           });
           urls.push(location.pathname);

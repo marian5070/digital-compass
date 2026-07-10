@@ -4,7 +4,7 @@
 // shell precache minim, network-first pe navigări cu fallback la cache,
 // stale-while-revalidate pe assets. Bump VERSION la schimbări incompatibile.
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const SHELL_CACHE = `dc-shell-${VERSION}`;
 const PAGES_CACHE = `dc-pages-${VERSION}`;
 const STATIC_CACHE = `dc-static-${VERSION}`;
@@ -77,7 +77,14 @@ self.addEventListener('fetch', (event) => {
           return res;
         })
         .catch(async () => {
-          const cached = await caches.match(request, { ignoreSearch: true });
+          let cached = await caches.match(request, { ignoreSearch: true });
+          if (!cached) {
+            // normalizează slash-ul final (cache-ul ține formele canonice cu /)
+            const alt = url.pathname.endsWith('/')
+              ? url.pathname.slice(0, -1)
+              : url.pathname + '/';
+            cached = await caches.match(alt, { ignoreSearch: true });
+          }
           return cached || caches.match('/');
         })
     );
