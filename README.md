@@ -1,7 +1,15 @@
 # Digital Compass
 
+[![Cod: MIT](https://img.shields.io/badge/Cod-MIT-3b82f6.svg)](LICENSE)
+[![Conținut: CC BY 4.0](https://img.shields.io/badge/Con%C8%9Binut-CC_BY_4.0-9ca3af.svg)](LICENSE-CONTENT.md)
+[![Astro](https://img.shields.io/badge/Astro-static-ff5d01.svg?logo=astro&logoColor=white)](https://astro.build)
+![Limba: Română](https://img.shields.io/badge/Limba-Rom%C3%A2n%C4%83-16a34a.svg)
+[![Contribuții: bine ai venit](https://img.shields.io/badge/Contribu%C8%9Bii-bine_ai_venit-22c55e.svg)](CONTRIBUTING.md)
+
 > Cunoaștere publică, practică, în română, pentru momentele de criză digitală.
 > **Nu diplome — claritate.**
+
+![Digital Compass — ghid public de siguranță digitală, în română](docs/screenshot.png)
 
 Un ghid public care ajută omul obișnuit când i se întâmplă ceva online: un link fals, un
 cont spart, o țeapă la cumpărare, un apel de înșelăciune. Fiecare situație are un
