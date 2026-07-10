@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'DNSC — Romania’s National Cybersecurity Directorate',
+    detail: 'The national cybersecurity authority. Phishing alerts, incident reporting, 1911 call centre.',
+    url: 'https://dnsc.ro',
+  },
+  {
+    label: 'ANPC — the National Consumer Protection Authority',
+    detail: 'Complaints about online shops and traders in Romania.',
+    url: 'https://anpc.ro',
+  },
+  {
+    label: 'Poliția Română (the Romanian Police)',
+    detail: 'Criminal complaints for online fraud and scams.',
+    url: 'https://www.politiaromana.ro',
+  },
+  {
+    label: 'Meta — Hacked account',
+    detail: 'Recovering Facebook and Instagram accounts.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — Account recovery',
+    detail: 'Recovery and security check-up for your Google/Gmail account.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Sources & how we verify"
+  description="Where our information comes from, how we verify it, and how you can contribute or correct it. Transparency is how we earn your trust."
+  alternates={{ ro: '/surse', en: '/en/sources' }}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparency</span>
+      <h1>Sources &amp; how we verify</h1>
+
+      <div class="content">
+        <p class="lead">
+          A new website has no right to just say "trust me". So we show you
+          where the information comes from and how we keep it up to date.
+        </p>
+
+        <h2>How we work</h2>
+        <ul>
+          <li>
+            We rely on <strong>official sources</strong> (authorities, banks,
+            the official platforms), not on rumours.
+          </li>
+          <li>
+            Every playbook shows <strong>the date it was last reviewed</strong>
+            and lists its sources at the end.
+          </li>
+          <li>
+            The information here is <strong>guidance</strong> — it helps you act
+            fast, but it does not replace official instructions from your bank,
+            the police or the authorities.
+          </li>
+          <li>
+            If you spot something wrong or outdated, <strong>tell us</strong> —
+            we will fix it.
+          </li>
+        </ul>
+
+        <h2>The sources we rely on</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Useful numbers, any time</h2>
+        <ul>
+          <li><strong>112</strong> — emergencies.</li>
+          <li>
+            <strong>1911</strong> — DNSC, cyber incidents and guidance.
+            You can also report online at
+            <a href="https://pnrisc.dnsc.ro" target="_blank" rel="noopener">pnrisc.dnsc.ro</a>.
+          </li>
+          <li>
+            <strong>Your bank</strong> — the official number is on the back of
+            your card.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

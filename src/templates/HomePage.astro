@@ -1,0 +1,255 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaybookCard from '../components/PlaybookCard.astro';
+import CompassMark from '../components/CompassMark.astro';
+import { entrySlug, type Lang } from '../lib/i18n-content';
+import { t } from '../i18n/ui';
+import { r } from '../i18n/routes';
+
+// Corpul homepage-ului, comun ambelor limbi; paginile ro/en sunt wrappere subțiri.
+interface Props {
+  lang: Lang;
+  playbooks: CollectionEntry<'playbooks'>[];
+}
+const { lang, playbooks } = Astro.props;
+const T = t(lang);
+const R = r(lang);
+
+// Structured data WebSite — identitatea site-ului în knowledge graph,
+// cu publisher consecvent cu restul proprietăților (mmatinca.eu).
+const webSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Digital Compass',
+  url: 'https://compass.madeinro.eu/',
+  description: T('home.desc'),
+  inLanguage: ['ro', 'en'],
+  license: 'https://creativecommons.org/licenses/by/4.0/',
+  publisher: {
+    '@type': 'Person',
+    name: 'Marian Matinca',
+    url: 'https://mmatinca.eu',
+    jobTitle: 'AI Adoption Lead',
+    sameAs: ['https://mmatinca.eu', 'https://github.com/marian5070'],
+  },
+};
+---
+
+<BaseLayout
+  title={T('home.title')}
+  description={T('home.desc')}
+  alternates={{ ro: '/', en: '/en' }}
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(webSite)}
+    is:inline
+  />
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow">{T('home.eyebrow')}</span>
+        <h1>{T('home.h1')}</h1>
+        <p class="lead">{T('home.lead')}</p>
+        <a href="#situatii" class="btn-primary">{T('home.cta')}</a>
+        <a href={R.start} class="hero-secondary">{T('home.cta.start')}</a>
+      </div>
+      <div class="hero-mark" aria-hidden="true">
+        <CompassMark size={220} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Situații -->
+  <section id="situatii" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>{T('home.situations.h2')}</h2>
+        <p class="lead">{T('home.situations.lead')}</p>
+      </div>
+      <div class="cards">
+        {
+          playbooks.map((pb) => (
+            <PlaybookCard
+              href={R.playbook(entrySlug(pb.id))}
+              title={pb.data.title}
+              situation={pb.data.situation}
+              icon={pb.data.icon}
+              severity={pb.data.severity}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Prevenție -->
+  <section class="section prevent">
+    <div class="container prevent-inner">
+      <div>
+        <span class="eyebrow">{T('home.prevent.eyebrow')}</span>
+        <h2>{T('home.prevent.h2')}</h2>
+        <p class="lead">{T('home.prevent.lead')}</p>
+      </div>
+      <a href={R.guidesIndex} class="btn-ghost">{T('home.prevent.cta')}</a>
+    </div>
+  </section>
+
+  <!-- De ce -->
+  <section class="section why">
+    <div class="container why-inner">
+      <div class="prose">
+        <span class="eyebrow">{T('home.why.eyebrow')}</span>
+        <h2>{T('home.why.h2')}</h2>
+        <p class="content">{T('home.why.p')}</p>
+        <a href={R.why} class="link-arrow">{T('home.why.cta')}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-5);
+    background:
+      radial-gradient(
+        60% 80% at 85% 10%,
+        var(--color-accent-soft),
+        transparent 70%
+      );
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  @media (min-width: 56rem) {
+    .hero-inner {
+      grid-template-columns: 1.5fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+  .hero-text h1 {
+    margin-top: var(--space-2);
+    max-width: 18ch;
+  }
+  .hero-text .lead {
+    margin-top: var(--space-3);
+    max-width: 52ch;
+  }
+  .hero-mark {
+    display: none;
+    color: var(--color-text-muted);
+    justify-self: center;
+  }
+  @media (min-width: 56rem) {
+    .hero-mark {
+      display: block;
+    }
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-4);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform var(--duration-fast) var(--ease-out-expo),
+      background var(--duration-fast) var(--ease-out-expo);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+    color: var(--color-on-accent);
+    transform: translateY(-2px);
+  }
+  .hero-secondary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    margin-left: var(--space-3);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+  .hero-secondary:hover {
+    color: var(--color-accent-strong);
+    text-decoration: underline;
+  }
+  .section-head {
+    max-width: 46ch;
+    margin-bottom: var(--space-5);
+  }
+  .section-head .lead {
+    margin-top: var(--space-2);
+  }
+  .cards {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .why {
+    background: var(--color-surface-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .why h2 {
+    margin-top: var(--space-2);
+    max-width: 20ch;
+  }
+  .why .content {
+    margin-top: var(--space-3);
+  }
+  .link-arrow {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+  }
+  .link-arrow:hover {
+    text-decoration: underline;
+  }
+  .prevent-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .prevent-inner > div {
+    max-width: 46ch;
+  }
+  .prevent h2 {
+    margin-top: var(--space-2);
+  }
+  .prevent .lead {
+    margin-top: var(--space-2);
+  }
+  .btn-ghost {
+    flex: none;
+    padding: 0.8rem 1.4rem;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius);
+    color: var(--color-accent-strong);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    transition:
+      background var(--duration-fast) var(--ease-out-expo),
+      color var(--duration-fast) var(--ease-out-expo);
+  }
+  .btn-ghost:hover {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+</style>

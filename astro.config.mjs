@@ -8,7 +8,20 @@ export default defineConfig({
   // Subdomeniu sub madeinro.eu (digital-compass.ro e luat). Ușor de schimbat.
   site: 'https://compass.madeinro.eu',
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  // RO rămâne la rădăcină (URL-urile istorice nu se schimbă); EN sub /en/.
+  i18n: {
+    defaultLocale: 'ro',
+    locales: ['ro', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'ro',
+        locales: { ro: 'ro', en: 'en' },
+      },
+    }),
+  ],
   build: {
     inlineStylesheets: 'auto',
   },

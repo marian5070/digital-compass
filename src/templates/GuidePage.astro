@@ -1,0 +1,177 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FlagList from '../components/FlagList.astro';
+import StepList from '../components/StepList.astro';
+import SourceList from '../components/SourceList.astro';
+import { entryLang, entrySlug, getPlaybook } from '../lib/i18n-content';
+import { t } from '../i18n/ui';
+import { routes, r } from '../i18n/routes';
+
+// Corpul unei pagini de ghid de prevenție, comun ambelor limbi.
+interface Props {
+  entry: CollectionEntry<'ghiduri'>;
+}
+const { entry } = Astro.props;
+const { data } = entry;
+const lang = entryLang(entry.id);
+const slug = entrySlug(entry.id);
+const T = t(lang);
+const R = r(lang);
+const { Content } = await render(entry);
+
+// Playbook-ul reactiv pereche (dacă ai pățit deja), în aceeași limbă.
+const related = data.relatedPlaybook
+  ? await getPlaybook(lang, data.relatedPlaybook)
+  : null;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  alternates={{ ro: routes.ro.guide(slug), en: routes.en.guide(slug) }}
+>
+  <article class="guide">
+    <div class="container">
+      <a href={R.guidesIndex} class="back">{T('guide.back')}</a>
+
+      <header class="guide-header">
+        <span class="eyebrow">{T('guide.eyebrow')}</span>
+        <h1>{data.title}</h1>
+        <p class="lead">{data.topic}</p>
+      </header>
+
+      <div class="guide-intro content">
+        <Content />
+      </div>
+
+      {
+        data.greenFlags.length > 0 && (
+          <section class="block" aria-labelledby="bune">
+            <h2 id="bune" class="h-good">{T('guide.good')}</h2>
+            <FlagList items={data.greenFlags} variant="good" />
+          </section>
+        )
+      }
+
+      {
+        data.redFlags.length > 0 && (
+          <section class="block" aria-labelledby="alarma">
+            <h2 id="alarma" class="h-bad">{T('guide.bad')}</h2>
+            <FlagList items={data.redFlags} variant="bad" />
+          </section>
+        )
+      }
+
+      {
+        data.rules.length > 0 && (
+          <section class="block" aria-labelledby="reguli">
+            <h2 id="reguli">{data.rulesTitle}</h2>
+            <StepList steps={data.rules} />
+          </section>
+        )
+      }
+
+      {
+        related && (
+          <a href={R.playbook(entrySlug(related.id))} class="related">
+            <span class="related-label">{T('guide.related.label')}</span>
+            <span class="related-title">{related.data.title}</span>
+            <span class="related-cta">{T('guide.related.cta')}</span>
+          </a>
+        )
+      }
+
+      <section class="block block-sources" aria-labelledby="surse">
+        <h2 id="surse" class="h-small">{T('pb.sources')}</h2>
+        <SourceList sources={data.sources} lastReviewed={data.lastReviewed} />
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .guide {
+    padding-top: var(--space-5);
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: var(--space-4);
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+    color: var(--color-text-muted);
+  }
+  .back:hover {
+    color: var(--color-accent-strong);
+  }
+  .guide-header {
+    margin-bottom: var(--space-4);
+  }
+  .guide-header h1 {
+    margin-top: var(--space-2);
+    font-size: var(--text-2xl);
+    max-width: 24ch;
+  }
+  .guide-header .lead {
+    margin-top: var(--space-2);
+  }
+  .guide-intro {
+    max-width: var(--container-prose);
+    margin-bottom: var(--space-5);
+  }
+  .block {
+    max-width: var(--container-prose);
+    margin-bottom: var(--space-5);
+  }
+  .block h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+  .block h2.h-small {
+    font-size: var(--text-lg);
+  }
+  .h-good {
+    color: var(--color-safe-text);
+  }
+  .h-bad {
+    color: var(--color-danger-text);
+  }
+  .related {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: var(--container-prose);
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
+    background: var(--color-accent-soft);
+    border: 1px solid color-mix(in oklch, var(--color-accent) 35%, transparent);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform var(--duration-fast) var(--ease-out-expo);
+  }
+  .related:hover {
+    transform: translateY(-2px);
+  }
+  .related-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  .related-title {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+  }
+  .related-cta {
+    margin-top: 0.25rem;
+    font-weight: var(--weight-bold);
+    color: var(--color-accent-strong);
+    font-size: var(--text-sm);
+  }
+  .block-sources {
+    padding: var(--space-4);
+    background: var(--color-surface-2);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+</style>

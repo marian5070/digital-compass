@@ -1,0 +1,143 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaybookCard from '../components/PlaybookCard.astro';
+import { entrySlug, type Lang } from '../lib/i18n-content';
+import { t } from '../i18n/ui';
+import { r } from '../i18n/routes';
+
+// Indexul ghidurilor de prevenție, comun ambelor limbi.
+interface Props {
+  lang: Lang;
+  ghiduri: CollectionEntry<'ghiduri'>[];
+}
+const { lang, ghiduri } = Astro.props;
+const T = t(lang);
+const R = r(lang);
+
+// Categoriile, în ordinea de afișare. Eticheta + o descriere scurtă, pe limbă.
+const CATEGORIES = [
+  {
+    key: 'email-mesaje',
+    label: { ro: 'Email & mesaje', en: 'Email & messages' },
+    desc: {
+      ro: 'Cum îți dai seama cine îți scrie și unde duce un link, fără să-l deschizi.',
+      en: 'How to tell who is really writing to you and where a link leads, without opening it.',
+    },
+  },
+  {
+    key: 'conturi-parole',
+    label: { ro: 'Conturi & parole', en: 'Accounts & passwords' },
+    desc: {
+      ro: 'Cum îți protejezi conturile înainte să pățești ceva.',
+      en: 'How to protect your accounts before anything happens.',
+    },
+  },
+  {
+    key: 'dispozitive',
+    label: { ro: 'Telefon & dispozitive', en: 'Phone & devices' },
+    desc: {
+      ro: 'Actualizări, Wi-Fi public și ce faci când ești pe drum.',
+      en: 'Updates, public Wi-Fi and staying safe on the move.',
+    },
+  },
+  {
+    key: 'cumparaturi-plati',
+    label: { ro: 'Cumpărături & plăți', en: 'Shopping & payments' },
+    desc: {
+      ro: 'Cum cumperi și plătești online în siguranță.',
+      en: 'How to shop and pay online safely.',
+    },
+  },
+  {
+    key: 'la-birou',
+    label: { ro: 'La birou', en: 'At work' },
+    desc: {
+      ro: 'Reguli simple de siguranță pentru muncă — bune și pentru cineva nou într-o echipă.',
+      en: 'Simple safety rules for work — good for anyone new on a team, too.',
+    },
+  },
+] as const;
+
+const groups = CATEGORIES.map((cat) => ({
+  ...cat,
+  items: ghiduri
+    .filter((g) => g.data.category === cat.key)
+    .sort((a, b) => a.data.order - b.data.order),
+})).filter((cat) => cat.items.length > 0);
+---
+
+<BaseLayout
+  title={T('guides.title')}
+  description={T('guides.desc')}
+  alternates={{ ro: '/ghiduri', en: '/en/guides' }}
+>
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">{T('guides.eyebrow')}</span>
+        <h1>{T('guides.h1')}</h1>
+        <p class="lead">{T('guides.lead')}</p>
+      </div>
+
+      {
+        groups.map((cat) => (
+          <section class="cat" aria-labelledby={`cat-${cat.key}`}>
+            <div class="cat-head">
+              <h2 id={`cat-${cat.key}`}>{cat.label[lang]}</h2>
+              <p>{cat.desc[lang]}</p>
+            </div>
+            <div class="cards">
+              {cat.items.map((g) => (
+                <PlaybookCard
+                  href={R.guide(entrySlug(g.id))}
+                  title={g.data.title}
+                  situation={g.data.topic}
+                  icon={g.data.icon}
+                  severity="important"
+                />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    max-width: 52ch;
+    margin-bottom: var(--space-6);
+  }
+  .head h1 {
+    margin-top: var(--space-2);
+  }
+  .head .lead {
+    margin-top: var(--space-3);
+  }
+  .cat {
+    margin-bottom: var(--space-6);
+  }
+  .cat-head {
+    max-width: 52ch;
+    margin-bottom: var(--space-4);
+  }
+  .cat-head h2 {
+    font-size: var(--text-xl);
+  }
+  .cat-head p {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+  }
+  .cards {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

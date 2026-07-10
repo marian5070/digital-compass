@@ -1,37 +1,41 @@
 ---
 import CompassMark from './CompassMark.astro';
+import { t } from '../i18n/ui';
+import { r } from '../i18n/routes';
+import type { Lang } from '../lib/i18n-content';
+
+const lang = (Astro.currentLocale ?? 'ro') as Lang;
+const T = t(lang);
+const R = r(lang);
 const year = 2026;
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <a href="/" class="brand" aria-label="Digital Compass — acasă">
+      <a href={R.home} class="brand" aria-label={T('brand.aria')}>
         <CompassMark size={26} />
         <span>Digital Compass</span>
       </a>
-      <p class="footer-tagline">
-        Cunoaștere publică, practică, pentru momentele de criză digitală.
-        Nu diplome — claritate.
-      </p>
+      <p class="footer-tagline">{T('footer.tagline')}</p>
     </div>
 
-    <nav aria-label="Navigare subsol" class="footer-nav">
-      <a href="/de-ce-existam">De ce existăm</a>
-      <a href="/surse">Surse &amp; cum verificăm</a>
+    <nav aria-label={T('footer.nav.aria')} class="footer-nav">
+      <a href={R.why}>{T('footer.why')}</a>
+      <a href={R.sources}>{T('footer.sources')}</a>
     </nav>
 
     <div class="footer-emergency">
-      <p class="footer-emergency-title">În pericol acum?</p>
+      <p class="footer-emergency-title">{T('footer.emergency.title')}</p>
       <p>
-        Urgențe: <a href="tel:112">112</a> ·
-        Incidente cibernetice (DNSC):
+        {T('footer.emergency.line')} <a href="tel:112">112</a> ·
+        {T('footer.emergency.cyber')}
         <a href="tel:1911">1911</a>
       </p>
     </div>
   </div>
   <div class="container footer-legal">
-    <p>© {year} Digital Compass · Proiect public, independent. Informația e orientativă, nu înlocuiește sfatul oficial al băncii, poliției sau autorităților.</p>
+    <p>© {year} Digital Compass · {T('footer.legal')}</p>
   </div>
 </footer>
 

@@ -1,8 +1,13 @@
 import type { CollectionEntry } from 'astro:content';
+import { entryLang, entrySlug } from './i18n-content';
+import { t } from '../i18n/ui';
+import { routes } from '../i18n/routes';
 
 // Variantele text/markdown ale paginilor — pentru agenți AI și cititoare text.
 // Nu e o conversie din HTML: e ACELAȘI conținut structurat din colecții,
 // redat ca markdown. Sursa unică rămâne frontmatter-ul + corpul .md.
+// Limba se deduce din entry.id (<lang>/<slug>); titlurile de secțiune vin din
+// același dicționar ca paginile HTML.
 
 const SITE = 'https://compass.madeinro.eu';
 
@@ -16,17 +21,19 @@ function inlineMd(s: string): string {
 
 const list = (items: string[]) => items.map((i) => `- ${inlineMd(i)}`).join('\n');
 
-function footer(lastReviewed: string): string {
-  return [
-    '---',
-    '',
-    `Verificat ultima dată: ${lastReviewed}.`,
-    `Digital Compass — cunoaștere publică, practică, în română (conținut CC BY 4.0): ${SITE}/`,
-  ].join('\n');
+function footer(lang: 'ro' | 'en', lastReviewed: string): string {
+  const blurb =
+    lang === 'en'
+      ? `Digital Compass — public, practical digital-safety knowledge for Romania (content CC BY 4.0): ${SITE}/en`
+      : `Digital Compass — cunoaștere publică, practică, în română (conținut CC BY 4.0): ${SITE}/`;
+  const reviewed = lang === 'en' ? 'Last reviewed' : 'Verificat ultima dată';
+  return ['---', '', `${reviewed}: ${lastReviewed}.`, blurb].join('\n');
 }
 
 export function playbookToMarkdown(entry: CollectionEntry<'playbooks'>): string {
   const { data } = entry;
+  const lang = entryLang(entry.id);
+  const T = t(lang);
   const parts: string[] = [
     `# ${data.title}`,
     '',
@@ -34,48 +41,50 @@ export function playbookToMarkdown(entry: CollectionEntry<'playbooks'>): string 
     '',
     (entry.body ?? '').trim(),
     '',
-    '## Primii pași, acum',
+    `## ${T('pb.steps')}`,
     '',
     data.steps.map((s, i) => `${i + 1}. ${inlineMd(s)}`).join('\n'),
   ];
-  if (data.donts.length) parts.push('', '## Ce să NU faci', '', list(data.donts));
+  if (data.donts.length) parts.push('', `## ${T('pb.donts')}`, '', list(data.donts));
   if (data.recognize.length)
-    parts.push('', '## Cum recunoști data viitoare', '', list(data.recognize));
+    parts.push('', `## ${T('pb.recognize')}`, '', list(data.recognize));
   if (data.report.length) {
     parts.push(
       '',
-      '## Unde raportezi',
+      `## ${T('pb.report')}`,
       '',
       data.report
         .map((r) => {
-          const extra = [r.phone && `telefon ${r.phone}`, r.url].filter(Boolean).join(' · ');
+          const extra = [r.phone && `tel. ${r.phone}`, r.url].filter(Boolean).join(' · ');
           return `- **${r.channel}** — ${inlineMd(r.detail)}${extra ? ` (${extra})` : ''}`;
         })
         .join('\n')
     );
   }
   if (data.sources.length)
-    parts.push('', '## Surse', '', data.sources.map((s) => `- [${s.label}](${s.url})`).join('\n'));
-  parts.push('', footer(data.lastReviewed), '');
+    parts.push('', `## ${T('pb.sources')}`, '', data.sources.map((s) => `- [${s.label}](${s.url})`).join('\n'));
+  parts.push('', footer(lang, data.lastReviewed), '');
   return parts.join('\n');
 }
 
 export function ghidToMarkdown(entry: CollectionEntry<'ghiduri'>): string {
   const { data } = entry;
+  const lang = entryLang(entry.id);
+  const T = t(lang);
   const parts: string[] = [`# ${data.title}`, '', data.summary, '', (entry.body ?? '').trim()];
   if (data.greenFlags.length)
-    parts.push('', '## Semne bune', '', list(data.greenFlags));
+    parts.push('', `## ${T('guide.good')}`, '', list(data.greenFlags));
   if (data.redFlags.length)
-    parts.push('', '## Semne de alarmă', '', list(data.redFlags));
+    parts.push('', `## ${T('guide.bad')}`, '', list(data.redFlags));
   if (data.rules.length) parts.push('', `## ${data.rulesTitle}`, '', list(data.rules));
   if (data.relatedPlaybook)
     parts.push(
       '',
-      `Ai pățit deja? Vezi playbook-ul: ${SITE}/playbook/${data.relatedPlaybook}`
+      `${T('guide.related.label')} ${SITE}${routes[lang].playbook(data.relatedPlaybook)}`
     );
   if (data.sources.length)
-    parts.push('', '## Surse', '', data.sources.map((s) => `- [${s.label}](${s.url})`).join('\n'));
-  parts.push('', footer(data.lastReviewed), '');
+    parts.push('', `## ${T('pb.sources')}`, '', data.sources.map((s) => `- [${s.label}](${s.url})`).join('\n'));
+  parts.push('', footer(lang, data.lastReviewed), '');
   return parts.join('\n');
 }
 
