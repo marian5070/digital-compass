@@ -1,104 +1,84 @@
 # Deploy — Digital Compass
 
-Site static Astro (`npm run build` → `dist/`). Domeniu țintă:
-**https://compass.madeinro.eu** (subdomeniu sub `madeinro.eu`).
+Site static Astro (`npm run build` → `dist/`), live pe
+**https://compass.madeinro.eu**.
 
 `site` e setat în `astro.config.mjs`; dacă schimbi subdomeniul, schimbă acolo +
-în `public/robots.txt`, apoi rebuild.
+în `public/robots.txt` + constantele `SITE` din `src/lib/markdown.ts`,
+`src/pages/llms.txt.ts`, `src/pages/index.md.ts` și Link header-ul din
+`server.mjs`, apoi rebuild.
 
 ---
 
-## Varianta aleasă — VPS + Cloudflare Tunnel
+## Setup-ul real (VPS + Cloudflare Tunnel existent)
 
-Serești `dist/` static de pe VPS și îl expui prin `cloudflared` (fără să deschizi porturi).
+Repo-ul e clonat pe VPS în `/opt/apps/digital-compass`. Nu are tunel propriu:
+folosește tunelul cloudflared existent al VPS-ului, care servește deja mai multe
+site-uri (rulat ca serviciu systemd, config în `/etc/cloudflared/config.yml`).
 
-### 1. Build și urcă `dist/` pe VPS
-```
-npm run build
-rsync -avz --delete dist/ user@VPS:/var/www/digital-compass/
+### Servire: `server.mjs` sub pm2, port 3040
+
+`dist/` NU e servit de un file-server generic, ci de `server.mjs` (express, ~50
+de linii), pentru două capabilități pe care un file-server nu le are:
+
+1. **Content negotiation pentru agenți AI** — `Accept: text/markdown` întoarce
+   varianta `.md` a paginii, generată la build din aceleași colecții de conținut
+   (`src/pages/**/[slug].md.ts`, `index.md.ts`). Aceleași variante sunt accesibile
+   și direct, adăugând `.md` la URL.
+2. **404 custom** — servește `dist/404.html` cu status 404.
+
+Plus `Link: <…/sitemap-index.xml>; rel="sitemap"` pe toate răspunsurile.
+
+```bash
+pm2 start server.mjs --name digital-compass   # din /opt/apps/digital-compass
+pm2 save
 ```
 
-### 2. Servește static pe VPS (ex. Caddy — HTTPS/local nu contează, tunelul se ocupă)
-`Caddyfile`:
-```
-:8080 {
-    root * /var/www/digital-compass
-    file_server
-    try_files {path} {path}/ /404.html
-    encode gzip zstd
-}
-```
-(sau nginx cu `root /var/www/digital-compass; try_files $uri $uri/ /404.html;`)
+### Ingress în tunelul existent
 
-### 3. Cloudflare Tunnel → subdomeniu
-```
-! cloudflared tunnel login
-cloudflared tunnel create digital-compass
-```
-În `~/.cloudflared/config.yml`:
-```
-tunnel: digital-compass
-credentials-file: /root/.cloudflared/<UUID>.json
-ingress:
+În `/etc/cloudflared/config.yml`, înainte de regula catch-all:
+
+```yaml
   - hostname: compass.madeinro.eu
-    service: http://localhost:8080
-  - service: http_status:404
-```
-Leagă DNS-ul și pornește:
-```
-cloudflared tunnel route dns digital-compass compass.madeinro.eu
-cloudflared tunnel run digital-compass   # sau ca serviciu: cloudflared service install
+    service: http://localhost:3040
 ```
 
-> Nota: `cloudflared tunnel route dns` funcționează dacă zona `madeinro.eu` e pe Cloudflare.
-> La redeploy: refaci pașii 1 (build + rsync). Tunelul rămâne pornit.
+Apoi `sudo systemctl restart cloudflared` (restart, nu reload — reload oprește
+procesul fără să-l repornească).
+
+DNS: CNAME `compass` → `<tunnel-id>.cfargotunnel.com`, **Proxied**, în zona
+madeinro.eu (adăugat manual în dashboard-ul Cloudflare; `cloudflared tunnel
+route dns` nu merge dacă certificatul tunelului e emis pe altă zonă).
+
+## Redeploy (la orice schimbare de conținut sau cod)
+
+```bash
+cd /opt/apps/digital-compass
+git pull
+npm ci
+npm run build                # regenerează dist/ (HTML + .md + llms.txt + sitemap)
+pm2 restart digital-compass  # necesar doar dacă s-a schimbat server.mjs
+```
+
+Fișierele din `dist/` sunt statice — build-ul nou e servit imediat, fără restart,
+dacă doar conținutul s-a schimbat.
 
 ---
 
-## Varianta A — Cloudflare Pages (alternativă)
+## Agent-readiness (isitagentready.com)
 
-Gratuit, rapid, CDN global, HTTPS automat. Cel mai simplu dacă DNS-ul lui
-`madeinro.eu` e deja pe Cloudflare.
+Ce publicăm real, fără decor:
 
-### 1. Build local (îl fac eu / rulezi tu)
-```
-npm run build
-```
+- `robots.txt` cu **Content-Signal** (`search=yes, ai-input=yes, ai-train=yes` —
+  conținutul e CC BY 4.0, misiunea e reach maxim) și sitemap.
+- **`/llms.txt`** generat la build din colecțiile reale (playbooks + ghiduri).
+- **Markdown negotiation** (vezi mai sus) — conținutul original, nu conversie.
+- `Link: rel="sitemap"` header global.
+- DNS-AID: vine din zona madeinro.eu (DNSSEC activ) + recordurile HTTPS publicate
+  automat de Cloudflare pentru hostname-urile proxied.
 
-### 2. Deploy prin Wrangler (login-ul îl faci TU)
-```
-! npx wrangler login
-npx wrangler pages deploy dist --project-name digital-compass
-```
-`! npx wrangler login` deschide browserul pentru autentificare — rulează-l tu cu
-prefixul `!` în prompt.
-
-### 3. Subdomeniul compass.madeinro.eu
-- Dacă `madeinro.eu` e pe Cloudflare: în proiectul Pages → **Custom domains** →
-  adaugi `compass.madeinro.eu` (CNAME-ul se creează automat).
-- Dacă DNS-ul e la alt registrar: adaugi manual un **CNAME**
-  `compass` → `digital-compass.pages.dev`.
-
----
-
-## Varianta B — Netlify (alternativă)
-
-```
-! npx netlify login
-npx netlify deploy --dir dist --prod
-```
-Apoi în Netlify → Domain settings → add `compass.madeinro.eu` și urmezi
-instrucțiunea de CNAME.
-
----
-
-## Varianta C — orice hosting static
-
-`dist/` e complet static. Îl poți urca prin FTP/SFTP oriunde servește fișiere
-statice (inclusiv pe serverul unde stă deja `madeinro.eu`), într-un folder legat
-de subdomeniul `compass`.
-
----
+Sărite intenționat (site de conținut, fără API sau comerț): OAuth, MCP Server
+Card, API Catalog, Agent Skills, WebMCP, x402/UCP/ACP.
 
 ## După primul deploy — indexare
 
