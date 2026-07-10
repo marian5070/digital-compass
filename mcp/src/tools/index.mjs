@@ -8,7 +8,7 @@ const SITE = 'https://compass.madeinro.eu';
 const LangInput = z
   .enum(['ro', 'en', 'hu', 'pl', 'cs', 'sk', 'it', 'fr', 'de'])
   .default('ro')
-  .describe('Limba conținutului (ro = original; en/hu ancorate în România; pl/cs/sk/it/fr/de ancorate în țările lor, cu canale locale)');
+  .describe('Content language (ro = original; en/hu anchored in Romania; pl/cs/sk/it/fr/de anchored in their own countries, with local reporting channels)');
 
 // Câmpurile pe limbă din index: intrările fără `lang` sunt ro (istoric).
 const byLang = (items, lang) => items.filter((i) => (i.lang ?? 'ro') === lang);
@@ -17,9 +17,9 @@ const byLang = (items, lang) => items.filter((i) => (i.lang ?? 'ro') === lang);
 const listTool = {
   name: 'compass_list_situations',
   config: {
-    title: 'Lista situațiilor acoperite',
+    title: 'List covered situations',
     description:
-      'Toate situațiile de criză digitală (playbook-uri reactive: link fals, cont spart, țeapă online...) și ghidurile de prevenție acoperite de Digital Compass, cu slug-uri pentru compass_get_content. Ghid public românesc, limbaj simplu.',
+      'All digital-crisis situations (reactive playbooks: fake link, hacked account, online scam...) and prevention guides covered by Digital Compass, with slugs for compass_get_content. Public Romanian guide, plain language, content in 9 languages.',
     inputSchema: { lang: LangInput },
   },
 };
@@ -33,7 +33,7 @@ async function handleList(args) {
       slug, situatie, titlu, severitate, url,
     })),
     ghiduri: ghiduri.map(({ slug, titlu, tema, url }) => ({ slug, titlu, tema, url })),
-    hint: 'Cheamă compass_get_content cu {type, slug} pentru conținutul complet.',
+    hint: 'Call compass_get_content with {type, slug} for the full content.',
   };
 }
 
@@ -41,12 +41,12 @@ async function handleList(args) {
 const getTool = {
   name: 'compass_get_content',
   config: {
-    title: 'Conținutul complet al unui playbook sau ghid',
+    title: 'Full content of one playbook or guide',
     description:
-      'Markdown-ul complet al unui playbook de criză (pașii de urmat acum, ce să NU faci, cum recunoști data viitoare, unde raportezi în România) sau al unui ghid de prevenție. Potrivit de transmis utilizatorului pas cu pas, în ordinea din document.',
+      'The full markdown of a crisis playbook (steps to take now, what NOT to do, how to recognize it next time, where to report) or of a prevention guide. Suitable to relay to the user step by step, in document order.',
     inputSchema: {
-      type: z.enum(['playbook', 'ghid']).describe('playbook = criză (reactiv), ghid = prevenție'),
-      slug: z.string().describe('Slug-ul din compass_list_situations, ex. "link-sms-fals"'),
+      type: z.enum(['playbook', 'ghid']).describe('playbook = crisis (reactive), ghid = prevention guide'),
+      slug: z.string().describe('Slug from compass_list_situations, e.g. "link-sms-fals"'),
       lang: LangInput,
     },
   },
@@ -55,7 +55,7 @@ async function handleGet(args) {
   const markdown = getMarkdown(args.type, args.slug, args.lang);
   if (!markdown) {
     throw new Error(
-      `Nu există ${args.type} „${args.slug}" în limba „${args.lang}". Cheamă compass_list_situations pentru lista validă.`
+      `No ${args.type} "${args.slug}" in language "${args.lang}". Call compass_list_situations for the valid list.`
     );
   }
   const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki', cs: 'navody', sk: 'navody', it: 'guide', fr: 'guides', de: 'ratgeber' };
@@ -74,11 +74,11 @@ async function handleGet(args) {
 const findTool = {
   name: 'compass_find_playbook',
   config: {
-    title: 'Găsește playbook-ul potrivit situației',
+    title: 'Find the right playbook for a situation',
     description:
-      'Potrivește descrierea în cuvintele utilizatorului („am dat click pe un link și mi-a cerut cardul") cu situațiile acoperite. Potrivire determinstă pe cuvinte-cheie (titlu, situație, rezumat), nu ghicit. Întoarce cele mai bune 3 potriviri cu scor.',
+      'Matches the situation in the user\'s own words ("I clicked a link and it asked for my card") against the covered situations. Deterministic keyword matching (title, situation, summary), not guessing. Returns the best 3 matches with a score.',
     inputSchema: {
-      query: z.string().min(3).describe('Situația, în cuvintele utilizatorului'),
+      query: z.string().min(3).describe('The situation, in the user\'s own words'),
       lang: LangInput,
     },
   },
@@ -86,7 +86,7 @@ const findTool = {
 async function handleFind(args) {
   const idx = getIndex();
   const tokens = [...new Set(normalize(args.query).split(/[^a-z0-9]+/).filter((t) => t.length >= 3))];
-  if (!tokens.length) throw new Error('Query prea scurt — descrie situația în câteva cuvinte.');
+  if (!tokens.length) throw new Error('Query too short — describe the situation in a few words.');
 
   const score = (entry) => {
     const hay = normalize(`${entry.titlu} ${entry.situatie ?? entry.tema ?? ''} ${entry.rezumat}`);
@@ -100,15 +100,15 @@ async function handleFind(args) {
   const results = [...rank(idx.situatii, 'playbook'), ...rank(idx.ghiduri, 'ghid')]
     .sort((a, b) => b.matched - a.matched)
     .slice(0, 3)
-    .map((e) => ({ ...e, matched: `${e.matched}/${tokens.length} cuvinte-cheie` }));
+    .map((e) => ({ ...e, matched: `${e.matched}/${tokens.length} keywords` }));
 
   return {
     query: args.query,
     lang: args.lang,
     results,
     hint: results.length
-      ? 'Cheamă compass_get_content cu {type, slug} pentru pașii compleți.'
-      : 'Nicio potrivire — cheamă compass_list_situations și alege manual.',
+      ? 'Call compass_get_content with {type, slug} for the full steps.'
+      : 'No match — call compass_list_situations and pick manually.',
   };
 }
 
@@ -116,11 +116,11 @@ async function handleFind(args) {
 const channelsTool = {
   name: 'compass_report_channels',
   config: {
-    title: 'Unde raportezi incidente digitale',
+    title: 'Where to report digital incidents',
     description:
-      'Canalele reale de raportare pentru incidente digitale, din secțiunile „Unde raportezi" ale playbook-urilor. lang=ro/en/hu → canalele din ROMÂNIA (DNSC 1911, Poliția Română, banca); lang=pl → canalele din POLONIA (CERT Polska, policja, zastrzeganie kart). Cu slug: doar canalele acelei situații; fără: toate, deduplicate.',
+      'Real reporting channels for digital incidents, from the playbooks\' "Where to report" sections. lang=ro/en/hu → channels in ROMANIA (DNSC 1911, Romanian Police, your bank); lang=pl → channels in POLAND (CERT Polska, policja, card blocking). With slug: only that situation\'s channels; without: all, deduplicated.',
     inputSchema: {
-      slug: z.string().optional().describe('Opțional: slug-ul unui playbook anume'),
+      slug: z.string().optional().describe('Optional: the slug of one specific playbook'),
       lang: LangInput,
     },
   },
@@ -135,7 +135,7 @@ async function handleChannels(args) {
       : 'Urgențe: 112. Incidente cibernetice (DNSC): 1911.';
   if (args.slug) {
     const entry = situatii.find((s) => s.slug === args.slug);
-    if (!entry) throw new Error(`Nu există playbook „${args.slug}" în limba „${args.lang}".`);
+    if (!entry) throw new Error(`No playbook "${args.slug}" in language "${args.lang}".`);
     return { slug: args.slug, lang: args.lang, titlu: entry.titlu, canale: entry.raportare ?? [], nota };
   }
   const seen = new Map();
@@ -153,9 +153,9 @@ async function handleChannels(args) {
 const freshnessTool = {
   name: 'compass_freshness',
   config: {
-    title: 'Cât de proaspăt e conținutul',
+    title: 'How fresh the content is',
     description:
-      'Data ultimei verificări editoriale („verificat ultima dată") pentru fiecare playbook și ghid — transparență asupra prospețimii sfaturilor.',
+      'The date of the last editorial review ("last verified") for every playbook and guide — transparency about how fresh the advice is.',
     inputSchema: {},
   },
 };
@@ -203,8 +203,22 @@ function wrap(name, handler) {
   };
 }
 
+// All tools are read-only over public data — declared explicitly through the
+// standard MCP annotations; clients (e.g. ChatGPT connectors) use them to
+// decide whether a tool may run without per-call confirmation.
+const READ_ONLY_ANNOTATIONS = {
+  readOnlyHint: true,
+  destructiveHint: false,
+  idempotentHint: true,
+  openWorldHint: false,
+};
+
 export function registerTools(server) {
   for (const [def, handler] of TOOLS) {
-    server.registerTool(def.name, def.config, wrap(def.name, handler));
+    server.registerTool(
+      def.name,
+      { ...def.config, annotations: { title: def.config.title, ...READ_ONLY_ANNOTATIONS } },
+      wrap(def.name, handler)
+    );
   }
 }
