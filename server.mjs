@@ -15,6 +15,13 @@ const app = express();
 app.disable('x-powered-by');
 
 app.use((req, res, next) => {
+  // Security baseline (securityheaders.com); CSP separat, per-app.
+  // HSTS fără includeSubDomains: alte subdomenii madeinro.eu sunt alt origin.
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   res.setHeader(
     'Link',
     '</.well-known/api-catalog>; rel="api-catalog", ' +
