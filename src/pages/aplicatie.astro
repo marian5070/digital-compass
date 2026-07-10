@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pageAlternates } from '../i18n/routes';
+---
+
+<BaseLayout
+  title="Instalează aplicația"
+  description="Digital Compass se poate instala ca aplicație pe telefon și pe calculator, gratuit, direct din browser — și poți salva ghidurile ca să le ai și fără internet."
+  alternates={pageAlternates('pwa')}
+>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">Aplicație</span>
+      <h1>Ține ghidul la îndemână — chiar și fără internet</h1>
+
+      <div class="content">
+        <p class="lead">
+          Digital Compass se poate instala ca aplicație pe telefon sau pe
+          calculator. Nu treci prin niciun magazin de aplicații, nu îți facem
+          cont, nu costă nimic: browserul pe care îl ai deja știe să facă asta.
+        </p>
+        <p>
+          De ce contează? Pentru că momentul în care ai nevoie de ghid e fix
+          momentul în care ceva a mers prost — uneori și internetul. O dată
+          instalată, aplicația se deschide cu o singură atingere, iar ghidurile
+          salvate rămân citibile <strong>și fără conexiune</strong>.
+        </p>
+      </div>
+
+      <div class="offline-box">
+        <h2>Salvează ghidurile pentru offline</h2>
+        <p>
+          Apasă butonul și toate situațiile și ghidurile în limba asta se
+          salvează în telefonul sau calculatorul tău. Data viitoare se deschid
+          chiar și fără internet.
+        </p>
+        <button id="save-offline" class="btn-primary" type="button">
+          Salvează ghidurile offline
+        </button>
+        <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="content">
+        <h2>Cum instalezi aplicația</h2>
+
+        <h3>Pe iPhone sau iPad (Safari)</h3>
+        <ol>
+          <li>Deschide compass.madeinro.eu în <strong>Safari</strong>.</li>
+          <li>Apasă butonul de <strong>Partajare</strong> (pătratul cu săgeată în sus, jos în mijloc).</li>
+          <li>Derulează și alege <strong>„Adaugă la ecranul principal"</strong>, apoi <strong>Adaugă</strong>.</li>
+        </ol>
+
+        <h3>Pe Android (Chrome)</h3>
+        <ol>
+          <li>Deschide site-ul în <strong>Chrome</strong>.</li>
+          <li>Apasă meniul <strong>⋮</strong> (dreapta sus).</li>
+          <li>Alege <strong>„Adaugă pe ecranul de pornire"</strong> sau <strong>„Instalează aplicația"</strong>.</li>
+        </ol>
+
+        <h3>Pe Windows, macOS sau Linux (Chrome ori Edge)</h3>
+        <ol>
+          <li>Deschide site-ul în <strong>Chrome</strong> sau <strong>Edge</strong>.</li>
+          <li>Caută în bara de adrese, în dreapta, <strong>iconița de instalare</strong> (un monitor cu săgeată).</li>
+          <li>Apasă pe ea și confirmă cu <strong>Instalează</strong>. Aplicația apare ca orice alt program.</li>
+        </ol>
+
+        <h3>Firefox</h3>
+        <p>
+          Pe Android, Firefox are și el „Adaugă pe ecranul de pornire" în meniu.
+          Pe calculator, Firefox nu instalează aplicații de acest fel — dar
+          salvarea offline de mai sus funcționează și acolo.
+        </p>
+
+        <h2>Bine de știut</h2>
+        <ul>
+          <li>Aplicația e același site — se <strong>actualizează singură</strong> când ai internet.</li>
+          <li>Nu îți cere niciun drept special și nu colectează nimic în plus.</li>
+          <li>O poți șterge oricând, ca pe orice aplicație.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline data-lang="ro">
+  (function () {
+    var LANG = document.currentScript.getAttribute('data-lang');
+    var MSG = {
+      saving: 'Se salvează…',
+      done: 'Gata! Ghidurile sunt salvate și merg și fără internet.',
+      progress: function (d, t) { return 'Se salvează… ' + d + ' din ' + t; },
+      unsupported: 'Browserul acesta nu poate salva offline — încearcă Chrome, Edge sau Safari.',
+      error: 'Nu am putut salva acum. Verifică internetul și mai încearcă o dată.',
+    };
+    var btn = document.getElementById('save-offline');
+    var status = document.getElementById('save-status');
+    if (!btn) return;
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      btn.disabled = true;
+      status.textContent = MSG.unsupported;
+      return;
+    }
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'CACHE_PROGRESS') {
+        status.textContent =
+          e.data.done >= e.data.total ? MSG.done : MSG.progress(e.data.done, e.data.total);
+      }
+    });
+    btn.addEventListener('click', function () {
+      status.textContent = MSG.saving;
+      btn.disabled = true;
+      fetch('/data/agents.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var urls = [];
+          ['situatii', 'ghiduri'].forEach(function (k) {
+            (data[k] || []).forEach(function (item) {
+              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+            });
+          });
+          urls.push(location.pathname);
+          return navigator.serviceWorker.ready.then(function (reg) {
+            reg.active.postMessage({ type: 'CACHE_URLS', urls: urls });
+          });
+        })
+        .catch(function () {
+          status.textContent = MSG.error;
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .content h3 {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+  }
+  .content ol,
+  .content ul {
+    margin-top: var(--space-2);
+    padding-left: 1.4em;
+  }
+  .content li + li {
+    margin-top: 0.35rem;
+  }
+  .offline-box {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .offline-box h2 {
+    font-size: var(--text-xl);
+  }
+  .offline-box p {
+    margin-top: var(--space-2);
+    max-width: var(--container-prose);
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .save-status {
+    margin-top: var(--space-2);
+    font-weight: var(--weight-medium);
+    min-height: 1.4em;
+  }
+</style>

@@ -11,6 +11,7 @@ export const routes = {
     guidesIndex: '/ghiduri',
     why: '/de-ce-existam',
     sources: '/surse',
+    pwa: '/aplicatie',
     playbook: (slug: string) => `/playbook/${slug}`,
     guide: (slug: string) => `/ghiduri/${slug}`,
   },
@@ -20,6 +21,7 @@ export const routes = {
     guidesIndex: '/en/guides',
     why: '/en/why-we-exist',
     sources: '/en/sources',
+    pwa: '/en/app',
     playbook: (slug: string) => `/en/playbook/${slug}`,
     guide: (slug: string) => `/en/guides/${slug}`,
   },
@@ -30,6 +32,7 @@ export const routes = {
     guidesIndex: '/hu/utmutatok',
     why: '/hu/miert-letezunk',
     sources: '/hu/forrasok',
+    pwa: '/hu/alkalmazas',
     playbook: (slug: string) => `/hu/playbook/${slug}`,
     guide: (slug: string) => `/hu/utmutatok/${slug}`,
   },
@@ -41,6 +44,7 @@ export const routes = {
     guidesIndex: '/pl/poradniki',
     why: '/pl/dlaczego-istniejemy',
     sources: '/pl/zrodla',
+    pwa: '/pl/aplikacja',
     playbook: (slug: string) => `/pl/playbook/${slug}`,
     guide: (slug: string) => `/pl/poradniki/${slug}`,
   },
@@ -51,6 +55,7 @@ export const routes = {
     guidesIndex: '/cs/navody',
     why: '/cs/proc-existujeme',
     sources: '/cs/zdroje',
+    pwa: '/cs/aplikace',
     playbook: (slug: string) => `/cs/playbook/${slug}`,
     guide: (slug: string) => `/cs/navody/${slug}`,
   },
@@ -60,6 +65,7 @@ export const routes = {
     guidesIndex: '/sk/navody',
     why: '/sk/preco-existujeme',
     sources: '/sk/zdroje',
+    pwa: '/sk/aplikacia',
     playbook: (slug: string) => `/sk/playbook/${slug}`,
     guide: (slug: string) => `/sk/navody/${slug}`,
   },
@@ -69,6 +75,7 @@ export const routes = {
     guidesIndex: '/it/guide',
     why: '/it/perche-esistiamo',
     sources: '/it/fonti',
+    pwa: '/it/app',
     playbook: (slug: string) => `/it/playbook/${slug}`,
     guide: (slug: string) => `/it/guide/${slug}`,
   },
@@ -78,6 +85,7 @@ export const routes = {
     guidesIndex: '/fr/guides',
     why: '/fr/pourquoi-nous-existons',
     sources: '/fr/sources',
+    pwa: '/fr/application',
     playbook: (slug: string) => `/fr/playbook/${slug}`,
     guide: (slug: string) => `/fr/guides/${slug}`,
   },
@@ -87,6 +95,7 @@ export const routes = {
     guidesIndex: '/de/ratgeber',
     why: '/de/warum-es-uns-gibt',
     sources: '/de/quellen',
+    pwa: '/de/app',
     playbook: (slug: string) => `/de/playbook/${slug}`,
     guide: (slug: string) => `/de/ratgeber/${slug}`,
   },
@@ -98,7 +107,7 @@ export function r(lang: Lang) {
 
 /** Alternates (hreflang + comutator) pentru paginile statice, peste toate limbile. */
 export function pageAlternates(
-  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources'
+  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources' | 'pwa'
 ): Record<Lang, string> {
   return Object.fromEntries(LANGS.map((l) => [l, routes[l][key]])) as Record<Lang, string>;
 }

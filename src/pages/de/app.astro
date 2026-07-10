@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageAlternates } from '../../i18n/routes';
+---
+
+<BaseLayout
+  title="App installieren"
+  description="Digital Compass lässt sich als App auf dem Handy und dem Computer installieren, kostenlos, direkt aus dem Browser — und Sie können die Ratgeber speichern, damit Sie sie auch ohne Internet haben."
+  alternates={pageAlternates('pwa')}
+>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">App</span>
+      <h1>Den Ratgeber griffbereit — auch ohne Internet</h1>
+
+      <div class="content">
+        <p class="lead">
+          Digital Compass lässt sich als App auf dem Handy oder dem Computer
+          installieren. Sie gehen durch keinen App-Store, wir legen kein Konto
+          für Sie an, es kostet nichts: Der Browser, den Sie schon haben, kann
+          das von sich aus.
+        </p>
+        <p>
+          Warum ist das wichtig? Weil der Moment, in dem Sie den Ratgeber
+          brauchen, genau der Moment ist, in dem etwas schiefgelaufen ist —
+          manchmal auch das Internet. Einmal installiert, öffnet sich die App
+          mit einem einzigen Tippen, und die gespeicherten Ratgeber bleiben
+          <strong>auch ohne Verbindung</strong> lesbar.
+        </p>
+      </div>
+
+      <div class="offline-box">
+        <h2>Speichern Sie die Ratgeber für offline</h2>
+        <p>
+          Drücken Sie den Knopf, und alle Situationen und Ratgeber in dieser
+          Sprache werden auf Ihrem Handy oder Computer gespeichert. Beim
+          nächsten Mal öffnen sie sich auch ohne Internet.
+        </p>
+        <button id="save-offline" class="btn-primary" type="button">
+          Ratgeber offline speichern
+        </button>
+        <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="content">
+        <h2>So installieren Sie die App</h2>
+
+        <h3>Auf iPhone oder iPad (Safari)</h3>
+        <ol>
+          <li>Öffnen Sie compass.madeinro.eu in <strong>Safari</strong>.</li>
+          <li>Tippen Sie auf die Taste <strong>Teilen</strong> (das Quadrat mit dem Pfeil nach oben, unten in der Mitte).</li>
+          <li>Scrollen Sie nach unten und wählen Sie <strong>„Zum Home-Bildschirm“</strong>, dann <strong>Hinzufügen</strong>.</li>
+        </ol>
+
+        <h3>Auf Android (Chrome)</h3>
+        <ol>
+          <li>Öffnen Sie die Website in <strong>Chrome</strong>.</li>
+          <li>Tippen Sie auf das Menü <strong>⋮</strong> (oben rechts).</li>
+          <li>Wählen Sie <strong>„Zum Startbildschirm hinzufügen“</strong> oder <strong>„App installieren“</strong>.</li>
+        </ol>
+
+        <h3>Auf Windows, macOS oder Linux (Chrome oder Edge)</h3>
+        <ol>
+          <li>Öffnen Sie die Website in <strong>Chrome</strong> oder <strong>Edge</strong>.</li>
+          <li>Suchen Sie in der Adressleiste rechts das <strong>Installations-Symbol</strong> (ein Monitor mit Pfeil).</li>
+          <li>Klicken Sie darauf und bestätigen Sie mit <strong>Installieren</strong>. Die App erscheint wie jedes andere Programm.</li>
+        </ol>
+
+        <h3>Firefox</h3>
+        <p>
+          Auf Android hat auch Firefox „Zum Startbildschirm hinzufügen“ im Menü.
+          Am Computer installiert Firefox solche Apps nicht — aber das
+          Offline-Speichern oben funktioniert auch dort.
+        </p>
+
+        <h2>Gut zu wissen</h2>
+        <ul>
+          <li>Die App ist dieselbe Website — sie <strong>aktualisiert sich von selbst</strong>, wenn Sie Internet haben.</li>
+          <li>Sie verlangt keine besonderen Berechtigungen und sammelt nichts zusätzlich.</li>
+          <li>Sie können sie jederzeit löschen, wie jede andere App.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline data-lang="de">
+  (function () {
+    var LANG = document.currentScript.getAttribute('data-lang');
+    var MSG = {
+      saving: 'Wird gespeichert…',
+      done: 'Fertig! Die Ratgeber sind gespeichert und funktionieren auch ohne Internet.',
+      progress: function (d, t) { return 'Wird gespeichert… ' + d + ' von ' + t; },
+      unsupported: 'Dieser Browser kann nicht offline speichern — versuchen Sie Chrome, Edge oder Safari.',
+      error: 'Das Speichern hat gerade nicht geklappt. Prüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal.',
+    };
+    var btn = document.getElementById('save-offline');
+    var status = document.getElementById('save-status');
+    if (!btn) return;
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      btn.disabled = true;
+      status.textContent = MSG.unsupported;
+      return;
+    }
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'CACHE_PROGRESS') {
+        status.textContent =
+          e.data.done >= e.data.total ? MSG.done : MSG.progress(e.data.done, e.data.total);
+      }
+    });
+    btn.addEventListener('click', function () {
+      status.textContent = MSG.saving;
+      btn.disabled = true;
+      fetch('/data/agents.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var urls = [];
+          ['situatii', 'ghiduri'].forEach(function (k) {
+            (data[k] || []).forEach(function (item) {
+              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+            });
+          });
+          urls.push(location.pathname);
+          return navigator.serviceWorker.ready.then(function (reg) {
+            reg.active.postMessage({ type: 'CACHE_URLS', urls: urls });
+          });
+        })
+        .catch(function () {
+          status.textContent = MSG.error;
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .content h3 {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+  }
+  .content ol,
+  .content ul {
+    margin-top: var(--space-2);
+    padding-left: 1.4em;
+  }
+  .content li + li {
+    margin-top: 0.35rem;
+  }
+  .offline-box {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .offline-box h2 {
+    font-size: var(--text-xl);
+  }
+  .offline-box p {
+    margin-top: var(--space-2);
+    max-width: var(--container-prose);
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .save-status {
+    margin-top: var(--space-2);
+    font-weight: var(--weight-medium);
+    min-height: 1.4em;
+  }
+</style>

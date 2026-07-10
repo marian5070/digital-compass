@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageAlternates } from '../../i18n/routes';
+---
+
+<BaseLayout
+  title="Telepítsd az alkalmazást"
+  description="A Digital Compass alkalmazásként telepíthető telefonra és számítógépre, ingyen, közvetlenül a böngészőből — az útmutatókat pedig el is mentheted, hogy internet nélkül is meglegyenek."
+  alternates={pageAlternates('pwa')}
+>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">Alkalmazás</span>
+      <h1>Legyen kéznél az útmutató — internet nélkül is</h1>
+
+      <div class="content">
+        <p class="lead">
+          A Digital Compass alkalmazásként telepíthető telefonra vagy
+          számítógépre. Nem kell alkalmazásboltba menned, nem hozunk létre
+          fiókot, nem kerül semmibe: a böngésző, amit már használsz, magától
+          tudja ezt.
+        </p>
+        <p>
+          Miért számít ez? Mert pont akkor van szükséged az útmutatóra, amikor
+          valami balul sült el — néha az internet is. Ha egyszer telepítetted,
+          az alkalmazás egyetlen érintésre megnyílik, a mentett útmutatók pedig
+          <strong>kapcsolat nélkül is</strong> olvashatók maradnak.
+        </p>
+      </div>
+
+      <div class="offline-box">
+        <h2>Mentsd el az útmutatókat offline használatra</h2>
+        <p>
+          Nyomd meg a gombot, és az összes helyzet és útmutató ezen a nyelven
+          elmentődik a telefonodra vagy a számítógépedre. Legközelebb internet
+          nélkül is megnyílnak.
+        </p>
+        <button id="save-offline" class="btn-primary" type="button">
+          Útmutatók mentése offline
+        </button>
+        <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="content">
+        <h2>Hogyan telepítsd az alkalmazást</h2>
+
+        <h3>iPhone-on vagy iPaden (Safari)</h3>
+        <ol>
+          <li>Nyisd meg a compass.madeinro.eu oldalt <strong>Safariban</strong>.</li>
+          <li>Koppints a <strong>Megosztás</strong> gombra (a felfelé mutató nyilas négyzet, lent középen).</li>
+          <li>Görgess le, és válaszd a <strong>„Hozzáadás a kezdőképernyőhöz"</strong> lehetőséget, majd a <strong>Hozzáadás</strong> gombot.</li>
+        </ol>
+
+        <h3>Androidon (Chrome)</h3>
+        <ol>
+          <li>Nyisd meg az oldalt <strong>Chrome-ban</strong>.</li>
+          <li>Koppints a <strong>⋮</strong> menüre (jobbra fent).</li>
+          <li>Válaszd a <strong>„Hozzáadás a kezdőképernyőhöz"</strong> vagy az <strong>„Alkalmazás telepítése"</strong> lehetőséget.</li>
+        </ol>
+
+        <h3>Windowson, macOS-en vagy Linuxon (Chrome vagy Edge)</h3>
+        <ol>
+          <li>Nyisd meg az oldalt <strong>Chrome-ban</strong> vagy <strong>Edge-ben</strong>.</li>
+          <li>Keresd a címsor jobb oldalán a <strong>telepítés ikont</strong> (egy monitor nyíllal).</li>
+          <li>Kattints rá, és erősítsd meg a <strong>Telepítés</strong> gombbal. Az alkalmazás úgy jelenik meg, mint bármely más program.</li>
+        </ol>
+
+        <h3>Firefox</h3>
+        <p>
+          Androidon a Firefox menüjében is ott a „Hozzáadás a
+          kezdőképernyőhöz". Számítógépen a Firefox nem telepít ilyen
+          alkalmazásokat — de a fenti offline mentés ott is működik.
+        </p>
+
+        <h2>Jó tudni</h2>
+        <ul>
+          <li>Az alkalmazás ugyanaz az oldal — <strong>magától frissül</strong>, amikor van interneted.</li>
+          <li>Nem kér semmilyen külön engedélyt, és nem gyűjt semmi pluszt.</li>
+          <li>Bármikor törölheted, mint bármely más alkalmazást.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline data-lang="hu">
+  (function () {
+    var LANG = document.currentScript.getAttribute('data-lang');
+    var MSG = {
+      saving: 'Mentés folyamatban…',
+      done: 'Kész! Az útmutatók el vannak mentve, és internet nélkül is működnek.',
+      progress: function (d, t) { return 'Mentés folyamatban… ' + d + ' / ' + t; },
+      unsupported: 'Ez a böngésző nem tud offline menteni — próbáld a Chrome-ot, az Edge-et vagy a Safarit.',
+      error: 'Most nem sikerült menteni. Ellenőrizd az internetet, és próbáld újra.',
+    };
+    var btn = document.getElementById('save-offline');
+    var status = document.getElementById('save-status');
+    if (!btn) return;
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      btn.disabled = true;
+      status.textContent = MSG.unsupported;
+      return;
+    }
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'CACHE_PROGRESS') {
+        status.textContent =
+          e.data.done >= e.data.total ? MSG.done : MSG.progress(e.data.done, e.data.total);
+      }
+    });
+    btn.addEventListener('click', function () {
+      status.textContent = MSG.saving;
+      btn.disabled = true;
+      fetch('/data/agents.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var urls = [];
+          ['situatii', 'ghiduri'].forEach(function (k) {
+            (data[k] || []).forEach(function (item) {
+              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+            });
+          });
+          urls.push(location.pathname);
+          return navigator.serviceWorker.ready.then(function (reg) {
+            reg.active.postMessage({ type: 'CACHE_URLS', urls: urls });
+          });
+        })
+        .catch(function () {
+          status.textContent = MSG.error;
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .content h3 {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+  }
+  .content ol,
+  .content ul {
+    margin-top: var(--space-2);
+    padding-left: 1.4em;
+  }
+  .content li + li {
+    margin-top: 0.35rem;
+  }
+  .offline-box {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .offline-box h2 {
+    font-size: var(--text-xl);
+  }
+  .offline-box p {
+    margin-top: var(--space-2);
+    max-width: var(--container-prose);
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .save-status {
+    margin-top: var(--space-2);
+    font-weight: var(--weight-medium);
+    min-height: 1.4em;
+  }
+</style>

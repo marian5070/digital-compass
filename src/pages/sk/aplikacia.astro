@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageAlternates } from '../../i18n/routes';
+---
+
+<BaseLayout
+  title="Nainštaluj si aplikáciu"
+  description="Digital Compass sa dá nainštalovať ako aplikácia do telefónu aj do počítača, zadarmo, priamo z prehliadača — a návody si môžeš uložiť, aby si ich mal aj bez internetu."
+  alternates={pageAlternates('pwa')}
+>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">Aplikácia</span>
+      <h1>Maj návod poruke — aj bez internetu</h1>
+
+      <div class="content">
+        <p class="lead">
+          Digital Compass sa dá nainštalovať ako aplikácia do telefónu alebo do
+          počítača. Neprechádzaš cez žiadny obchod s aplikáciami, nezakladáme ti
+          účet a nič to nestojí: prehliadač, ktorý už máš, to vie urobiť sám.
+        </p>
+        <p>
+          Prečo je to dôležité? Lebo chvíľa, keď potrebuješ návod, je presne tá
+          chvíľa, keď sa niečo pokazilo — niekedy aj internet. Po nainštalovaní
+          sa aplikácia otvorí jedným ťuknutím a uložené návody zostanú čitateľné
+          <strong>aj bez pripojenia</strong>.
+        </p>
+      </div>
+
+      <div class="offline-box">
+        <h2>Ulož si návody na offline</h2>
+        <p>
+          Stlač tlačidlo a všetky situácie a návody v tomto jazyku sa uložia do
+          tvojho telefónu alebo počítača. Nabudúce sa otvoria aj bez internetu.
+        </p>
+        <button id="save-offline" class="btn-primary" type="button">
+          Ulož si návody offline
+        </button>
+        <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="content">
+        <h2>Ako si nainštaluješ aplikáciu</h2>
+
+        <h3>Na iPhone alebo iPade (Safari)</h3>
+        <ol>
+          <li>Otvor compass.madeinro.eu v <strong>Safari</strong>.</li>
+          <li>Ťukni na tlačidlo <strong>Zdieľať</strong> (štvorec so šípkou nahor, dole v strede).</li>
+          <li>Posuň sa nižšie a vyber <strong>„Pridať na plochu“</strong>, potom <strong>Pridať</strong>.</li>
+        </ol>
+
+        <h3>Na Androide (Chrome)</h3>
+        <ol>
+          <li>Otvor stránku v prehliadači <strong>Chrome</strong>.</li>
+          <li>Ťukni na menu <strong>⋮</strong> (vpravo hore).</li>
+          <li>Vyber <strong>„Pridať na plochu“</strong> alebo <strong>„Nainštalovať aplikáciu“</strong>.</li>
+        </ol>
+
+        <h3>Na Windowse, macOS alebo Linuxe (Chrome alebo Edge)</h3>
+        <ol>
+          <li>Otvor stránku v prehliadači <strong>Chrome</strong> alebo <strong>Edge</strong>.</li>
+          <li>V paneli s adresou vpravo hľadaj <strong>ikonu inštalácie</strong> (monitor so šípkou).</li>
+          <li>Klikni na ňu a potvrď tlačidlom <strong>Inštalovať</strong>. Aplikácia sa objaví ako každý iný program.</li>
+        </ol>
+
+        <h3>Firefox</h3>
+        <p>
+          Na Androide má aj Firefox v menu „Pridať na plochu“. Na počítači
+          Firefox takéto aplikácie neinštaluje — ale ukladanie offline vyššie
+          funguje aj tam.
+        </p>
+
+        <h2>Dobré vedieť</h2>
+        <ul>
+          <li>Aplikácia je tá istá stránka — <strong>aktualizuje sa sama</strong>, keď máš internet.</li>
+          <li>Nepýta si žiadne špeciálne oprávnenia a nezbiera nič navyše.</li>
+          <li>Kedykoľvek ju môžeš zmazať, ako každú inú aplikáciu.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline data-lang="sk">
+  (function () {
+    var LANG = document.currentScript.getAttribute('data-lang');
+    var MSG = {
+      saving: 'Ukladá sa…',
+      done: 'Hotovo! Návody sú uložené a fungujú aj bez internetu.',
+      progress: function (d, t) { return 'Ukladá sa… ' + d + ' z ' + t; },
+      unsupported: 'Tento prehliadač nevie ukladať offline — skús Chrome, Edge alebo Safari.',
+      error: 'Teraz sa uloženie nepodarilo. Skontroluj internet a skús to ešte raz.',
+    };
+    var btn = document.getElementById('save-offline');
+    var status = document.getElementById('save-status');
+    if (!btn) return;
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      btn.disabled = true;
+      status.textContent = MSG.unsupported;
+      return;
+    }
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'CACHE_PROGRESS') {
+        status.textContent =
+          e.data.done >= e.data.total ? MSG.done : MSG.progress(e.data.done, e.data.total);
+      }
+    });
+    btn.addEventListener('click', function () {
+      status.textContent = MSG.saving;
+      btn.disabled = true;
+      fetch('/data/agents.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var urls = [];
+          ['situatii', 'ghiduri'].forEach(function (k) {
+            (data[k] || []).forEach(function (item) {
+              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+            });
+          });
+          urls.push(location.pathname);
+          return navigator.serviceWorker.ready.then(function (reg) {
+            reg.active.postMessage({ type: 'CACHE_URLS', urls: urls });
+          });
+        })
+        .catch(function () {
+          status.textContent = MSG.error;
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .content h3 {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+  }
+  .content ol,
+  .content ul {
+    margin-top: var(--space-2);
+    padding-left: 1.4em;
+  }
+  .content li + li {
+    margin-top: 0.35rem;
+  }
+  .offline-box {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .offline-box h2 {
+    font-size: var(--text-xl);
+  }
+  .offline-box p {
+    margin-top: var(--space-2);
+    max-width: var(--container-prose);
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .save-status {
+    margin-top: var(--space-2);
+    font-weight: var(--weight-medium);
+    min-height: 1.4em;
+  }
+</style>

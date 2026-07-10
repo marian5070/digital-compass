@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageAlternates } from '../../i18n/routes';
+---
+
+<BaseLayout
+  title="Zainstaluj aplikację"
+  description="Digital Compass można zainstalować jako aplikację na telefonie i komputerze, za darmo, prosto z przeglądarki — a poradniki możesz zapisać, żeby mieć je nawet bez internetu."
+  alternates={pageAlternates('pwa')}
+>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">Aplikacja</span>
+      <h1>Miej poradnik pod ręką — nawet bez internetu</h1>
+
+      <div class="content">
+        <p class="lead">
+          Digital Compass można zainstalować jako aplikację na telefonie lub
+          komputerze. Nie przechodzisz przez żaden sklep z aplikacjami, nie
+          zakładamy ci konta, nic to nie kosztuje: przeglądarka, którą już
+          masz, umie to zrobić sama.
+        </p>
+        <p>
+          Dlaczego to ważne? Bo moment, w którym potrzebujesz poradnika, to
+          dokładnie ten moment, gdy coś poszło nie tak — czasem także internet.
+          Raz zainstalowana aplikacja otwiera się jednym dotknięciem, a
+          zapisane poradniki dają się czytać <strong>nawet bez połączenia</strong>.
+        </p>
+      </div>
+
+      <div class="offline-box">
+        <h2>Zapisz poradniki do trybu offline</h2>
+        <p>
+          Naciśnij przycisk, a wszystkie sytuacje i poradniki w tym języku
+          zapiszą się na twoim telefonie lub komputerze. Następnym razem
+          otworzą się nawet bez internetu.
+        </p>
+        <button id="save-offline" class="btn-primary" type="button">
+          Zapisz poradniki offline
+        </button>
+        <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="content">
+        <h2>Jak zainstalować aplikację</h2>
+
+        <h3>Na iPhonie lub iPadzie (Safari)</h3>
+        <ol>
+          <li>Otwórz compass.madeinro.eu w <strong>Safari</strong>.</li>
+          <li>Naciśnij przycisk <strong>Udostępnij</strong> (kwadrat ze strzałką w górę, na dole pośrodku).</li>
+          <li>Przewiń i wybierz <strong>„Do ekranu początkowego"</strong>, a potem <strong>Dodaj</strong>.</li>
+        </ol>
+
+        <h3>Na Androidzie (Chrome)</h3>
+        <ol>
+          <li>Otwórz stronę w <strong>Chrome</strong>.</li>
+          <li>Naciśnij menu <strong>⋮</strong> (w prawym górnym rogu).</li>
+          <li>Wybierz <strong>„Dodaj do ekranu głównego"</strong> lub <strong>„Zainstaluj aplikację"</strong>.</li>
+        </ol>
+
+        <h3>Na Windows, macOS lub Linuksie (Chrome albo Edge)</h3>
+        <ol>
+          <li>Otwórz stronę w <strong>Chrome</strong> lub <strong>Edge</strong>.</li>
+          <li>Poszukaj po prawej stronie paska adresu <strong>ikony instalacji</strong> (monitor ze strzałką).</li>
+          <li>Kliknij ją i potwierdź przyciskiem <strong>Zainstaluj</strong>. Aplikacja pojawi się jak każdy inny program.</li>
+        </ol>
+
+        <h3>Firefox</h3>
+        <p>
+          Na Androidzie Firefox też ma w menu „Dodaj do ekranu głównego". Na
+          komputerze Firefox nie instaluje takich aplikacji — ale zapisywanie
+          offline opisane wyżej działa również tam.
+        </p>
+
+        <h2>Dobrze wiedzieć</h2>
+        <ul>
+          <li>Aplikacja to ta sama strona — <strong>aktualizuje się sama</strong>, gdy masz internet.</li>
+          <li>Nie prosi o żadne specjalne uprawnienia i nie zbiera nic więcej.</li>
+          <li>Możesz ją usunąć w każdej chwili, jak każdą inną aplikację.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline data-lang="pl">
+  (function () {
+    var LANG = document.currentScript.getAttribute('data-lang');
+    var MSG = {
+      saving: 'Zapisywanie…',
+      done: 'Gotowe! Poradniki są zapisane i działają nawet bez internetu.',
+      progress: function (d, t) { return 'Zapisywanie… ' + d + ' z ' + t; },
+      unsupported: 'Ta przeglądarka nie umie zapisywać offline — spróbuj Chrome, Edge lub Safari.',
+      error: 'Nie udało się teraz zapisać. Sprawdź internet i spróbuj jeszcze raz.',
+    };
+    var btn = document.getElementById('save-offline');
+    var status = document.getElementById('save-status');
+    if (!btn) return;
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      btn.disabled = true;
+      status.textContent = MSG.unsupported;
+      return;
+    }
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'CACHE_PROGRESS') {
+        status.textContent =
+          e.data.done >= e.data.total ? MSG.done : MSG.progress(e.data.done, e.data.total);
+      }
+    });
+    btn.addEventListener('click', function () {
+      status.textContent = MSG.saving;
+      btn.disabled = true;
+      fetch('/data/agents.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var urls = [];
+          ['situatii', 'ghiduri'].forEach(function (k) {
+            (data[k] || []).forEach(function (item) {
+              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+            });
+          });
+          urls.push(location.pathname);
+          return navigator.serviceWorker.ready.then(function (reg) {
+            reg.active.postMessage({ type: 'CACHE_URLS', urls: urls });
+          });
+        })
+        .catch(function () {
+          status.textContent = MSG.error;
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .content h3 {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+  }
+  .content ol,
+  .content ul {
+    margin-top: var(--space-2);
+    padding-left: 1.4em;
+  }
+  .content li + li {
+    margin-top: 0.35rem;
+  }
+  .offline-box {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .offline-box h2 {
+    font-size: var(--text-xl);
+  }
+  .offline-box p {
+    margin-top: var(--space-2);
+    max-width: var(--container-prose);
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .save-status {
+    margin-top: var(--space-2);
+    font-weight: var(--weight-medium);
+    min-height: 1.4em;
+  }
+</style>

@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pageAlternates } from '../../i18n/routes';
+---
+
+<BaseLayout
+  title="Install the app"
+  description="Digital Compass can be installed as an app on your phone and computer, for free, straight from the browser — and you can save the guides so you have them even without internet."
+  alternates={pageAlternates('pwa')}
+>
+  <section class="section">
+    <div class="container prose">
+      <span class="eyebrow">App</span>
+      <h1>Keep the guide at hand — even without internet</h1>
+
+      <div class="content">
+        <p class="lead">
+          Digital Compass can be installed as an app on your phone or computer.
+          No app store to go through, no account to create, nothing to pay: the
+          browser you already have knows how to do this.
+        </p>
+        <p>
+          Why does it matter? Because the moment you need the guide is exactly
+          the moment something has gone wrong — sometimes the internet too.
+          Once installed, the app opens with a single tap, and the saved guides
+          stay readable <strong>even without a connection</strong>.
+        </p>
+      </div>
+
+      <div class="offline-box">
+        <h2>Save the guides for offline</h2>
+        <p>
+          Press the button and all the situations and guides in this language
+          get saved to your phone or computer. Next time they open even
+          without internet.
+        </p>
+        <button id="save-offline" class="btn-primary" type="button">
+          Save the guides offline
+        </button>
+        <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="content">
+        <h2>How to install the app</h2>
+
+        <h3>On iPhone or iPad (Safari)</h3>
+        <ol>
+          <li>Open compass.madeinro.eu in <strong>Safari</strong>.</li>
+          <li>Tap the <strong>Share</strong> button (the square with an arrow pointing up, at the bottom centre).</li>
+          <li>Scroll down and choose <strong>"Add to Home Screen"</strong>, then <strong>Add</strong>.</li>
+        </ol>
+
+        <h3>On Android (Chrome)</h3>
+        <ol>
+          <li>Open the site in <strong>Chrome</strong>.</li>
+          <li>Tap the <strong>⋮</strong> menu (top right).</li>
+          <li>Choose <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>.</li>
+        </ol>
+
+        <h3>On Windows, macOS or Linux (Chrome or Edge)</h3>
+        <ol>
+          <li>Open the site in <strong>Chrome</strong> or <strong>Edge</strong>.</li>
+          <li>Look on the right side of the address bar for the <strong>install icon</strong> (a monitor with an arrow).</li>
+          <li>Click it and confirm with <strong>Install</strong>. The app shows up like any other program.</li>
+        </ol>
+
+        <h3>Firefox</h3>
+        <p>
+          On Android, Firefox also has "Add to Home screen" in its menu. On a
+          computer, Firefox doesn't install apps of this kind — but the
+          offline saving above works there too.
+        </p>
+
+        <h2>Good to know</h2>
+        <ul>
+          <li>The app is the same site — it <strong>updates itself</strong> whenever you have internet.</li>
+          <li>It asks for no special permissions and collects nothing extra.</li>
+          <li>You can delete it any time, like any other app.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline data-lang="en">
+  (function () {
+    var LANG = document.currentScript.getAttribute('data-lang');
+    var MSG = {
+      saving: 'Saving…',
+      done: 'Done! The guides are saved and work even without internet.',
+      progress: function (d, t) { return 'Saving… ' + d + ' of ' + t; },
+      unsupported: 'This browser can\'t save for offline — try Chrome, Edge or Safari.',
+      error: 'Couldn\'t save right now. Check your internet and try again.',
+    };
+    var btn = document.getElementById('save-offline');
+    var status = document.getElementById('save-status');
+    if (!btn) return;
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      btn.disabled = true;
+      status.textContent = MSG.unsupported;
+      return;
+    }
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'CACHE_PROGRESS') {
+        status.textContent =
+          e.data.done >= e.data.total ? MSG.done : MSG.progress(e.data.done, e.data.total);
+      }
+    });
+    btn.addEventListener('click', function () {
+      status.textContent = MSG.saving;
+      btn.disabled = true;
+      fetch('/data/agents.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var urls = [];
+          ['situatii', 'ghiduri'].forEach(function (k) {
+            (data[k] || []).forEach(function (item) {
+              if (item.lang === LANG) urls.push(new URL(item.url).pathname);
+            });
+          });
+          urls.push(location.pathname);
+          return navigator.serviceWorker.ready.then(function (reg) {
+            reg.active.postMessage({ type: 'CACHE_URLS', urls: urls });
+          });
+        })
+        .catch(function () {
+          status.textContent = MSG.error;
+          btn.disabled = false;
+        });
+    });
+  })();
+</script>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .content h3 {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+  }
+  .content ol,
+  .content ul {
+    margin-top: var(--space-2);
+    padding-left: 1.4em;
+  }
+  .content li + li {
+    margin-top: 0.35rem;
+  }
+  .offline-box {
+    margin-top: var(--space-5);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .offline-box h2 {
+    font-size: var(--text-xl);
+  }
+  .offline-box p {
+    margin-top: var(--space-2);
+    max-width: var(--container-prose);
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: none;
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .save-status {
+    margin-top: var(--space-2);
+    font-weight: var(--weight-medium);
+    min-height: 1.4em;
+  }
+</style>
