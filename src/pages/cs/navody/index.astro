@@ -1,0 +1,8 @@
+---
+import GuidesIndexPage from '../../../templates/GuidesIndexPage.astro';
+import { getGhiduri } from '../../../lib/i18n-content';
+
+const ghiduri = await getGhiduri("cs");
+---
+
+<GuidesIndexPage lang="hu" ghiduri={ghiduri} />

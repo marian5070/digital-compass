@@ -1,0 +1,16 @@
+---
+import GuidePage from '../../../templates/GuidePage.astro';
+import { getGhiduri, entrySlug } from '../../../lib/i18n-content';
+
+export async function getStaticPaths() {
+  const ghiduri = await getGhiduri("sk");
+  return ghiduri.map((entry) => ({
+    params: { slug: entrySlug(entry.id) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<GuidePage entry={entry} />

@@ -1,0 +1,154 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'BSI — Bundesamt für Sicherheit in der Informationstechnik',
+    detail: 'Cybersicherheit für Verbraucherinnen und Verbraucher: Phishing, Identitätsdiebstahl, gehackte Konten, sicheres Online-Banking. Service-Center: 0800 274 1000 (kostenlos, Mo–Do 8–17 Uhr, Fr 8–16 Uhr).',
+    url: 'https://www.bsi.bund.de',
+  },
+  {
+    label: 'Verbraucherzentrale',
+    detail: 'Verbraucherschutz mit dem Phishing-Radar (laufend aktualisierte Warnungen vor gefälschten E-Mails und SMS) und dem Fakeshop-Finder: Shop-URL eingeben, Ampel-Bewertung erhalten — kostenlos.',
+    url: 'https://www.verbraucherzentrale.de',
+  },
+  {
+    label: 'Polizei',
+    detail: 'Strafanzeige bei Online-Betrug: über die Onlinewache Ihres Bundeslandes (portal.onlinewache.polizei.de) oder in jeder Polizeidienststelle. In dringenden Fällen: 110.',
+    url: 'https://portal.onlinewache.polizei.de',
+  },
+  {
+    label: 'Sperr-Notruf 116 116',
+    detail: 'Ein Anruf sperrt alles: Girocard, Kreditkarten, Online-Banking, SIM-Karte und die Online-Ausweisfunktion (eID). Rund um die Uhr, kostenlos; aus dem Ausland: +49 116 116.',
+    url: 'https://www.sperr-notruf.de',
+  },
+  {
+    label: 'Meta — gehacktes Konto',
+    detail: 'Kontowiederherstellung für Facebook und Instagram.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — Kontowiederherstellung',
+    detail: 'Wiederherstellung und Sicherheitscheck für Google-/Gmail-Konten.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Quellen & wie wir prüfen"
+  description="Woher unsere Informationen stammen, wie wir sie prüfen und wie Sie sie ergänzen oder korrigieren können. Ihr Vertrauen verdienen wir uns durch Transparenz."
+  alternates={pageAlternates('sources')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparenz</span>
+      <h1>Quellen & wie wir prüfen</h1>
+
+      <div class="content">
+        <p class="lead">
+          Eine neue Website hat kein Recht, einfach „vertrauen Sie mir“ zu
+          sagen. Deshalb zeigen wir, woher die Informationen stammen und wie
+          wir sie aktuell halten.
+        </p>
+
+        <h2>Wie wir arbeiten</h2>
+        <ul>
+          <li>
+            Wir stützen uns auf <strong>offizielle Quellen</strong> (Behörden,
+            Banken, offizielle Plattformen), nicht auf Gerüchte.
+          </li>
+          <li>
+            Jedes Playbook zeigt das <strong>Datum der letzten Prüfung</strong>
+            und nennt am Ende seine Quellen.
+          </li>
+          <li>
+            Die Informationen hier sind eine <strong>Orientierung</strong> —
+            sie helfen, schnell zu handeln, ersetzen aber nicht die offiziellen
+            Anweisungen Ihrer Bank, der Polizei oder der Behörden.
+          </li>
+          <li>
+            Wenn Sie einen Fehler oder eine veraltete Information bemerken,
+            <strong>sagen Sie uns Bescheid</strong> — wir korrigieren es.
+          </li>
+        </ul>
+
+        <h2>Quellen, auf die wir uns stützen</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Nützliche Nummern, zu jeder Zeit</h2>
+        <ul>
+          <li>
+            <strong>110 / 112</strong> — Notruf: 110 (Polizei), 112 (Feuerwehr
+            und Rettungsdienst).
+          </li>
+          <li>
+            <strong>116 116</strong> — Sperr-Notruf: Karten, Online-Banking,
+            SIM-Karte und eID sperren, rund um die Uhr, kostenlos.
+          </li>
+          <li>
+            <strong>Ihre Bank</strong> — die offizielle Nummer steht auf der
+            Rückseite Ihrer Karte.
+          </li>
+          <li>
+            <strong>116 111</strong> — „Nummer gegen Kummer“ für Kinder und
+            Jugendliche, Mo–Sa 14–20 Uhr, kostenlos und anonym.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

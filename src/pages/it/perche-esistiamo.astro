@@ -1,0 +1,156 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const offer = [
+  'Chiarezza e spiegazioni con parole semplici, senza gergo',
+  'Passi concreti nelle situazioni reali, nell’ordine che conta',
+  'Fonti citate, che puoi verificare da solo',
+  'Numeri e link veri dove segnalare un problema in Italia',
+  'Accesso gratuito — senza account, senza pagamenti, senza tracciamento',
+];
+
+const dontOffer = [
+  'Diplomi, certificati o attestati',
+  'Distintivi di autorità o status professionale',
+  'Promesse di carriera o di lavoro',
+  'Riconoscimenti istituzionali',
+  'Teatro della conformità normativa',
+];
+---
+
+<BaseLayout
+  title="Perché esistiamo"
+  description="Non siamo un’accademia di certificazione. Siamo uno strumento pubblico per capire il mondo digitale e adattarsi. Ecco cosa offriamo — e cosa no."
+  alternates={pageAlternates('why')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Perché esistiamo</span>
+      <h1>Non diamo diplomi. Diamo chiarezza.</h1>
+
+      <div class="content">
+        <p class="lead">
+          Costruiamo questa piattaforma per la persona che deve orientarsi in
+          un mondo digitale che cambia più in fretta di quanto le istituzioni
+          riescano a spiegarlo.
+        </p>
+
+        <p>
+          Si parla molto di digitalizzazione, cybersicurezza, «competenze
+          digitali» e resilienza. Il denaro pubblico va in discorsi e
+          strategie. Ma troppo spesso, quando una persona comune ha davvero un
+          problema — un account violato, una truffa, la telefonata di un
+          truffatore — non trova un percorso chiaro, pubblico, pratico. Trova
+          pagine chiuse, gergo oppure silenzio.
+        </p>
+
+        <p>
+          Non sosteniamo che tutto debba essere pubblico. Nella sicurezza, una
+          parte dei contenuti deve restare sotto controllo. Ma se si parla
+          pubblicamente di «deficit di competenze digitali», le persone comuni
+          meritano almeno uno strumento semplice e accessibile. È questo il
+          vuoto che colmiamo. Non sostituiamo le istituzioni — completiamo ciò
+          che manca.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+        <section class="offer offer-yes" aria-labelledby="oferim">
+          <h2 id="oferim">Cosa offriamo</h2>
+          <ul>
+            {offer.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section class="offer offer-no" aria-labelledby="nu-oferim">
+          <h2 id="nu-oferim">Cosa NON offriamo</h2>
+          <ul>
+            {dontOffer.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      </div>
+
+      <div class="content closing">
+        <p>
+          L’obiettivo non è consegnarti un diploma. L’obiettivo è un altro:
+          meno vulnerabilità alle minacce, più orientamento e più autonomia
+          nel mondo in cui vivi. Il valore non ti aspetta alla fine, in un
+          certificato — è in ogni pagina, in ogni passo, in quel momento in
+          cui dici:
+          <strong>«Adesso so cosa fare.»</strong>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 18ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .offer-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    margin-block: var(--space-6);
+  }
+  @media (min-width: 44rem) {
+    .offer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .offer {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+  .offer h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+  .offer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .offer li {
+    padding-left: 1.8rem;
+    position: relative;
+  }
+  .offer-yes {
+    background: var(--color-safe-soft);
+    border-color: color-mix(in oklch, var(--color-safe) 35%, transparent);
+  }
+  .offer-yes h2 {
+    color: var(--color-safe-text);
+  }
+  .offer-yes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: var(--weight-bold);
+    color: var(--color-safe);
+  }
+  .offer-no {
+    background: var(--color-surface-2);
+  }
+  .offer-no li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-muted);
+  }
+  .closing {
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+</style>

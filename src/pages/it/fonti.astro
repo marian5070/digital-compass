@@ -1,0 +1,160 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'Polizia Postale — Commissariato di P.S. Online',
+    detail: 'Il canale della Polizia di Stato per la criminalità informatica. «Segnala online» per phishing, truffe e contenuti illegali; per la denuncia vera e propria vai in un ufficio di polizia o usa denunceonline.poliziadistato.it (con SPID o CIE).',
+    url: 'https://www.commissariatodips.it',
+  },
+  {
+    label: 'CSIRT Italia — Agenzia per la Cybersicurezza Nazionale',
+    detail: 'La squadra nazionale di risposta agli incidenti informatici. Pubblica allerte sulle campagne attive (es. smishing a tema Poste); segnalazione incidenti su segnalazioni.acn.gov.it.',
+    url: 'https://www.acn.gov.it/portale/csirt-italia',
+  },
+  {
+    label: 'Consob — «Occhio alle truffe!»',
+    detail: 'Prima di investire, verifica l’intermediario nei registri Consob e Banca d’Italia e consulta gli avvisi ai risparmiatori sulle società non autorizzate ad operare.',
+    url: 'https://www.consob.it',
+  },
+  {
+    label: 'Poste Italiane — sicurezza',
+    detail: 'Blocco carte PostePay e BancoPosta: 800.00.33.22 dall’Italia, +39.02.82.44.33.33 dall’estero, 24 ore su 24. Messaggi sospetti a tema Poste: inoltrali a antiphishing@posteitaliane.it.',
+    url: 'https://www.poste.it',
+  },
+  {
+    label: 'Telefono Azzurro',
+    detail: 'Per bambini e adolescenti: 1.96.96, gratuito, 24 ore su 24, più chat su azzurro.it. Per le emergenze che coinvolgono minori: 114.',
+    url: 'https://azzurro.it',
+  },
+  {
+    label: 'Meta — account violato',
+    detail: 'Recupero degli account Facebook e Instagram.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — recupero account',
+    detail: 'Recupero e controllo di sicurezza dell’account Google/Gmail.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Fonti e come verifichiamo"
+  description="Da dove vengono le nostre informazioni, come le verifichiamo e come puoi completarle o correggerle. Ci guadagniamo la tua fiducia con la trasparenza."
+  alternates={pageAlternates('sources')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Trasparenza</span>
+      <h1>Fonti e come verifichiamo</h1>
+
+      <div class="content">
+        <p class="lead">
+          Un sito nuovo non ha il diritto di dire semplicemente «fidati di
+          me». Per questo mostriamo da dove vengono le informazioni e come le
+          teniamo aggiornate.
+        </p>
+
+        <h2>Come lavoriamo</h2>
+        <ul>
+          <li>
+            Ci basiamo su <strong>fonti ufficiali</strong> (istituzioni,
+            banche, piattaforme ufficiali), non su voci.
+          </li>
+          <li>
+            Ogni playbook mostra la <strong>data dell’ultima verifica</strong>
+            ed elenca in fondo le sue fonti.
+          </li>
+          <li>
+            Le informazioni qui sono <strong>orientamenti</strong> — ti
+            aiutano ad agire in fretta, ma non sostituiscono le istruzioni
+            ufficiali della tua banca, della polizia o delle istituzioni.
+          </li>
+          <li>
+            Se noti un errore o un’informazione non aggiornata,
+            <strong>faccelo sapere</strong> — correggeremo.
+          </li>
+        </ul>
+
+        <h2>Le fonti su cui ci basiamo</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Numeri utili, a qualsiasi ora</h2>
+        <ul>
+          <li>
+            <strong>112</strong> — Numero Unico di Emergenza: gratuito,
+            funziona anche senza SIM e senza credito.
+          </li>
+          <li>
+            <strong>800.00.33.22</strong> — blocco carte Poste Italiane
+            (PostePay/BancoPosta), 24 ore su 24; dall’estero
+            +39.02.82.44.33.33.
+          </li>
+          <li>
+            <strong>La tua banca</strong> — il numero ufficiale è sul retro
+            della carta.
+          </li>
+          <li>
+            <strong>1.96.96</strong> — Telefono Azzurro, per bambini e
+            adolescenti, gratuito, 24 ore su 24.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

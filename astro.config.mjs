@@ -11,14 +11,24 @@ export default defineConfig({
   // RO rămâne la rădăcină (URL-urile istorice nu se schimbă); EN sub /en/.
   i18n: {
     defaultLocale: 'ro',
-    locales: ['ro', 'en', 'hu', 'pl'],
+    locales: ['ro', 'en', 'hu', 'pl', 'cs', 'sk', 'it', 'fr', 'de'],
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
     sitemap({
       i18n: {
         defaultLocale: 'ro',
-        locales: { ro: 'ro', en: 'en', hu: 'hu', pl: 'pl' },
+        locales: {
+          ro: 'ro',
+          en: 'en',
+          hu: 'hu',
+          pl: 'pl',
+          cs: 'cs',
+          sk: 'sk',
+          it: 'it',
+          fr: 'fr',
+          de: 'de',
+        },
       },
     }),
   ],

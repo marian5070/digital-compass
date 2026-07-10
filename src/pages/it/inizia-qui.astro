@@ -1,0 +1,195 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Un percorso pulito, nell'ordine consigliato — lo specchio italiano della pagina /incepe-aici.
+const path = [
+  {
+    label: 'Email e messaggi',
+    desc: 'Quasi ogni truffa inizia qui. Impara a verificare chi ti scrive davvero e dove porta un link.',
+    links: [
+      { href: '/it/guide/cine-iti-scrie', title: 'Chi ti scrive davvero?' },
+      {
+        href: '/it/guide/verifica-link-fara-sa-l-deschizi',
+        title: 'Come verificare un link senza aprirlo',
+      },
+    ],
+  },
+  {
+    label: 'Account e password',
+    desc: 'Il passo di protezione più importante: il secondo passaggio all’accesso.',
+    links: [
+      {
+        href: '/it/guide/2fa-authenticator-passkey',
+        title: 'Come proteggere i tuoi account',
+      },
+    ],
+  },
+  {
+    label: 'Riconosci le truffe',
+    desc: 'Alcune situazioni frequenti — imparale prima che ti colgano di sorpresa.',
+    links: [
+      { href: '/it/playbook/link-sms-fals', title: 'Link o SMS falso' },
+      { href: '/it/playbook/cont-spart', title: 'Account violato o bloccato' },
+      { href: '/it/playbook/real-sau-ai', title: 'Vero o fatto con l’AI?' },
+      {
+        href: '/it/playbook/oferta-investitii-crypto',
+        title: 'Offerte truffa di investimenti e crypto',
+      },
+    ],
+  },
+  {
+    label: 'Al lavoro (se lavori)',
+    desc: 'Regole semplici per la vita quotidiana al lavoro.',
+    links: [
+      {
+        href: '/it/guide/email-de-la-sef-bec',
+        title: 'Email dal «capo» che chiede un pagamento urgente',
+      },
+      { href: '/it/guide/raporteaza-la-it', title: 'Segnala all’IT tutto ciò che è sospetto' },
+      {
+        href: '/it/guide/datele-companiei-si-clientilor',
+        title: 'I dati dell’azienda e dei clienti',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Inizia qui"
+  description="Un percorso semplice, passo dopo passo, verso le basi della sicurezza digitale — utile anche per ogni nuova persona nel team. Senza gergo, senza certificati."
+  alternates={pageAlternates('start')}
+>
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Percorso consigliato</span>
+        <h1>Inizia qui</h1>
+        <p class="lead">
+          Se l’argomento è nuovo per te — o sei appena entrato in un team —
+          segui i passi qui sotto, in ordine. In circa 20 minuti avrai le basi
+          che proteggono dalla maggior parte delle trappole. Senza gergo,
+          senza test.
+        </p>
+      </div>
+
+      <ol class="path">
+        {
+          path.map((step, i) => (
+            <li class="step">
+              <div class="step-num" aria-hidden="true">{i + 1}</div>
+              <div class="step-body">
+                <h2>{step.label}</h2>
+                <p class="step-desc">{step.desc}</p>
+                <ul class="step-links">
+                  {step.links.map((l) => (
+                    <li>
+                      <a href={l.href}>{l.title} →</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <aside class="org">
+        <h2>Per le organizzazioni</h2>
+        <p>
+          Tutto ciò che trovi qui può essere usato gratuitamente (licenza
+          <a href="/it/fonti">CC BY</a>) come materiale di sensibilizzazione e
+          di onboarding in qualsiasi organizzazione — puoi indirizzare subito
+          una nuova persona del team al percorso qui sopra.
+        </p>
+        <p>
+          Può anche sostenere requisiti come <strong>ISO 27001 (A.6.3 —
+          consapevolezza, istruzione e formazione)</strong>. Una cosa resta
+          chiara, per principio: <strong>non rilasciamo certificati e non
+          teniamo registri</strong>. Se l’organizzazione ha bisogno di
+          un’attestazione di completamento, la gestisce da sola, con i propri
+          strumenti. Noi forniamo solo la conoscenza.
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    max-width: 54ch;
+    margin-bottom: var(--space-6);
+  }
+  .head h1 {
+    margin-top: var(--space-2);
+  }
+  .head .lead {
+    margin-top: var(--space-3);
+  }
+  .path {
+    list-style: none;
+    padding: 0;
+    max-width: var(--container-prose);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .step {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+  .step-num {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: var(--weight-bold);
+  }
+  .step-body h2 {
+    font-size: var(--text-lg);
+  }
+  .step-desc {
+    margin-top: 0.25rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .step-links {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .step-links a {
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+  }
+  .step-links a:hover {
+    text-decoration: underline;
+  }
+  .org {
+    max-width: var(--container-prose);
+    margin-top: var(--space-6);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .org h2 {
+    font-size: var(--text-lg);
+  }
+  .org p {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+</style>

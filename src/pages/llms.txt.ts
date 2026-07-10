@@ -1,22 +1,74 @@
 import type { APIRoute } from 'astro';
-import { getPlaybooks, getGhiduri, entrySlug } from '../lib/i18n-content';
+import { getPlaybooks, getGhiduri, entrySlug, LANGS, type Lang } from '../lib/i18n-content';
 import { routes } from '../i18n/routes';
 
 // /llms.txt — hartă a site-ului pentru agenți AI (https://llmstxt.org/).
-// Generat la build din colecțiile reale (ambele limbi); se actualizează singur.
+// Generat la build din colecțiile reale (toate limbile); se actualizează singur.
 
 const SITE = 'https://compass.madeinro.eu';
 
-export const GET: APIRoute = async () => {
-  const playbooksRo = await getPlaybooks('ro');
-  const ghiduriRo = await getGhiduri('ro');
-  const playbooksEn = await getPlaybooks('en');
-  const ghiduriEn = await getGhiduri('en');
-  const playbooksHu = await getPlaybooks('hu');
-  const ghiduriHu = await getGhiduri('hu');
-  const playbooksPl = await getPlaybooks('pl');
-  const ghiduriPl = await getGhiduri('pl');
+// Antetul de secțiune per limbă non-ro: titlu + o frază despre ancorare.
+const SECTIONS: Partial<Record<Lang, { title: string; blurb: string[] }>> = {
+  en: {
+    title: 'English version (anchored in Romania — for expats and foreigners living in Romania)',
+    blurb: [
+      'The same playbooks and guides in English, with the real Romanian reporting',
+      `channels (DNSC 1911, Police, banks). Start at ${SITE}/en`,
+    ],
+  },
+  hu: {
+    title: 'Magyar változat (Romániában élő magyaroknak — a bejelentési csatornák a romániaiak)',
+    blurb: [
+      'Ugyanazok az útmutatók magyarul, a valódi romániai bejelentési csatornákkal',
+      `(DNSC 1911, rendőrség, a bankod). Kezdd itt: ${SITE}/hu`,
+    ],
+  },
+  pl: {
+    title: 'Wersja polska (dla Polski — polskie kanały zgłaszania)',
+    blurb: [
+      'Te same poradniki po polsku, z PRAWDZIWYMI polskimi kanałami zgłaszania',
+      '(CERT Polska / SMS 8080, policja, zastrzeganie kart 828 828 828, UOKiK).',
+      `Zacznij tutaj: ${SITE}/pl`,
+    ],
+  },
+  cs: {
+    title: 'Česká verze (pro Česko — české kanály pro nahlášení)',
+    blurb: [
+      'Stejné návody česky, se skutečnými českými kanály pro nahlášení incidentů.',
+      `Začni tady: ${SITE}/cs`,
+    ],
+  },
+  sk: {
+    title: 'Slovenská verzia (pre Slovensko — slovenské kanály na nahlásenie)',
+    blurb: [
+      'Rovnaké návody po slovensky, so skutočnými slovenskými kanálmi na nahlásenie.',
+      `Začni tu: ${SITE}/sk`,
+    ],
+  },
+  it: {
+    title: 'Versione italiana (per l’Italia — canali di segnalazione italiani)',
+    blurb: [
+      'Le stesse guide in italiano, con i veri canali di segnalazione italiani',
+      `(Polizia Postale, CSIRT Italia). Inizia qui: ${SITE}/it`,
+    ],
+  },
+  fr: {
+    title: 'Version française (pour la France — canaux de signalement français)',
+    blurb: [
+      'Les mêmes guides en français, avec les vrais canaux de signalement français',
+      `(Cybermalveillance, 33700, Pharos). Commencez ici: ${SITE}/fr`,
+    ],
+  },
+  de: {
+    title: 'Deutsche Version (für Deutschland — deutsche Meldewege)',
+    blurb: [
+      'Dieselben Leitfäden auf Deutsch, mit den echten deutschen Meldewegen',
+      `(BSI, Polizei, Sperr-Notruf 116 116). Starten Sie hier: ${SITE}/de`,
+    ],
+  },
+};
 
+export const GET: APIRoute = async () => {
   const lines: string[] = [
     '# Digital Compass',
     '',
@@ -32,8 +84,16 @@ export const GET: APIRoute = async () => {
     'la URL sau cere cu antetul `Accept: text/markdown`. Există și un server MCP:',
     `${SITE}/mcp (Streamable HTTP, fără autentificare).`,
     '',
+    'Versiunile en/hu sunt ancorate în ROMÂNIA (canale românești); versiunile',
+    'pl/cs/sk/it/fr/de sunt ancorate în țările respective (canale locale).',
+    '',
     '## Situații de criză (playbook-uri reactive)',
     '',
+  ];
+
+  const playbooksRo = await getPlaybooks('ro');
+  const ghiduriRo = await getGhiduri('ro');
+  lines.push(
     ...playbooksRo.map(
       (p) => `- [${p.data.title}](${SITE}${routes.ro.playbook(entrySlug(p.id))}): ${p.data.summary}`
     ),
@@ -48,90 +108,29 @@ export const GET: APIRoute = async () => {
     '',
     `- [De ce existăm](${SITE}/de-ce-existam): misiunea și principiile proiectului`,
     `- [Începe aici](${SITE}/incepe-aici): primul pas pentru cititorii noi`,
-    `- [Surse](${SITE}/surse): sursele oficiale pe care le cităm`,
-  ];
+    `- [Surse](${SITE}/surse): sursele oficiale pe care le cităm`
+  );
 
-  if (playbooksEn.length || ghiduriEn.length) {
-    lines.push(
-      '',
-      '## English version (anchored in Romania — for expats and foreigners living in Romania)',
-      '',
-      `The same playbooks and guides in English, with the real Romanian reporting`,
-      `channels (DNSC 1911, Police, banks). Start at ${SITE}/en`,
-      ''
-    );
-    if (playbooksEn.length)
+  for (const lang of LANGS) {
+    const section = SECTIONS[lang];
+    if (!section) continue;
+    const playbooks = await getPlaybooks(lang);
+    const ghiduri = await getGhiduri(lang);
+    if (!playbooks.length && !ghiduri.length) continue;
+    lines.push('', `## ${section.title}`, '', ...section.blurb, '');
+    if (playbooks.length)
       lines.push(
-        '### Crisis playbooks (EN)',
-        '',
-        ...playbooksEn.map(
-          (p) => `- [${p.data.title}](${SITE}${routes.en.playbook(entrySlug(p.id))}): ${p.data.summary}`
+        ...playbooks.map(
+          (p) =>
+            `- [${p.data.title}](${SITE}${routes[lang].playbook(entrySlug(p.id))}): ${p.data.summary}`
         ),
         ''
       );
-    if (ghiduriEn.length)
+    if (ghiduri.length)
       lines.push(
-        '### Prevention guides (EN)',
-        '',
-        ...ghiduriEn.map(
-          (g) => `- [${g.data.title}](${SITE}${routes.en.guide(entrySlug(g.id))}): ${g.data.summary}`
-        )
-      );
-  }
-
-  if (playbooksHu.length || ghiduriHu.length) {
-    lines.push(
-      '',
-      '## Magyar változat (Romániában élő magyaroknak — a bejelentési csatornák a romániaiak)',
-      '',
-      `Ugyanazok az útmutatók magyarul, a valódi romániai bejelentési csatornákkal`,
-      `(DNSC 1911, rendőrség, a bankod). Kezdd itt: ${SITE}/hu`,
-      ''
-    );
-    if (playbooksHu.length)
-      lines.push(
-        '### Válsághelyzetek (HU)',
-        '',
-        ...playbooksHu.map(
-          (p) => `- [${p.data.title}](${SITE}${routes.hu.playbook(entrySlug(p.id))}): ${p.data.summary}`
-        ),
-        ''
-      );
-    if (ghiduriHu.length)
-      lines.push(
-        '### Megelőző útmutatók (HU)',
-        '',
-        ...ghiduriHu.map(
-          (g) => `- [${g.data.title}](${SITE}${routes.hu.guide(entrySlug(g.id))}): ${g.data.summary}`
-        )
-      );
-  }
-
-  if (playbooksPl.length || ghiduriPl.length) {
-    lines.push(
-      '',
-      '## Wersja polska (dla Polski — polskie kanały zgłaszania)',
-      '',
-      `Te same poradniki po polsku, z PRAWDZIWYMI polskimi kanałami zgłaszania`,
-      `(CERT Polska / SMS 8080, policja, zastrzeganie kart 828 828 828, UOKiK).`,
-      `Zacznij tutaj: ${SITE}/pl`,
-      ''
-    );
-    if (playbooksPl.length)
-      lines.push(
-        '### Sytuacje kryzysowe (PL)',
-        '',
-        ...playbooksPl.map(
-          (p) => `- [${p.data.title}](${SITE}${routes.pl.playbook(entrySlug(p.id))}): ${p.data.summary}`
-        ),
-        ''
-      );
-    if (ghiduriPl.length)
-      lines.push(
-        '### Poradniki zapobiegawcze (PL)',
-        '',
-        ...ghiduriPl.map(
-          (g) => `- [${g.data.title}](${SITE}${routes.pl.guide(entrySlug(g.id))}): ${g.data.summary}`
+        ...ghiduri.map(
+          (g) =>
+            `- [${g.data.title}](${SITE}${routes[lang].guide(entrySlug(g.id))}): ${g.data.summary}`
         )
       );
   }

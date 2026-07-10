@@ -8,6 +8,19 @@ const lang = (Astro.currentLocale ?? 'ro') as Lang;
 const T = t(lang);
 const R = r(lang);
 const year = 2026;
+
+// Contactul pentru incidente cibernetice diferă pe țară (ro/en/hu = România).
+const CYBER: Record<Lang, { href: string; text: string }> = {
+  ro: { href: 'tel:1911', text: '1911' },
+  en: { href: 'tel:1911', text: '1911' },
+  hu: { href: 'tel:1911', text: '1911' },
+  pl: { href: 'https://incydent.cert.pl', text: 'incydent.cert.pl' },
+  cs: { href: 'https://www.csirt.cz', text: 'csirt.cz' },
+  sk: { href: 'https://www.sk-cert.sk', text: 'sk-cert.sk' },
+  it: { href: 'https://www.commissariatodips.it', text: 'commissariatodips.it' },
+  fr: { href: 'https://www.cybermalveillance.gouv.fr', text: 'cybermalveillance.gouv.fr' },
+  de: { href: 'https://www.bsi.bund.de', text: 'bsi.bund.de' },
+};
 ---
 
 <footer class="site-footer">
@@ -30,7 +43,7 @@ const year = 2026;
       <p>
         {T('footer.emergency.line')} <a href="tel:112">112</a> ·
         {T('footer.emergency.cyber')}
-        <a href="tel:1911">1911</a>
+        <a href={CYBER[lang].href}>{CYBER[lang].text}</a>
       </p>
     </div>
   </div>

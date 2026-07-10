@@ -1,0 +1,161 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'SK-CERT',
+    detail: 'Národná jednotka pre riešenie kybernetických incidentov (pôsobí pod Národným bezpečnostným úradom). Incident alebo phishing nahlásiš cez portál na sk-cert.sk — hlásenia prijíma aj od verejnosti; záložný kanál: e-mail incident@nbu.gov.sk.',
+    url: 'https://www.sk-cert.sk/sk/rady-a-navody/nahlasit-incident/index.html',
+  },
+  {
+    label: 'SOI — Slovenská obchodná inšpekcia',
+    detail: 'Práva spotrebiteľov, podnety na e-shopy a predajcov (elektronicky cez slovensko.sk). Pred nákupom v neznámom e-shope skontroluj oficiálny zoznam rizikových internetových obchodov — pozor, zoznam nie je úplný.',
+    url: 'https://www.soi.sk/sk/informacie-pre-verejnost/internetove-obchody/rizikove-internetove-obchody.soi',
+  },
+  {
+    label: 'Polícia SR',
+    detail: 'Trestné oznámenie o internetovom podvode môžeš podať na ktorejkoľvek policajnej stanici, aj na prokuratúre. Aktuálne varovania a vyvracanie hoaxov: facebook.com/hoaxMV („Hoaxy a podvody – Ministerstvo vnútra SR“).',
+    url: 'https://www.facebook.com/hoaxMV',
+  },
+  {
+    label: 'Stopline.sk',
+    detail: 'Národné centrum pre nahlasovanie nezákonného obsahu na internete — vrátane zneužívania detí a rasovej nenávisti. Online formulár, člen medzinárodnej siete INHOPE.',
+    url: 'https://stopline.sk',
+  },
+  {
+    label: 'Linka detskej istoty — 116 111',
+    detail: 'Pre deti a mladých: zadarmo z každej siete, nonstop a anonymne. Telefón 116 111, chat na ldi.sk (denne 18–22) a e-mail 116111@ldi.sk.',
+    url: 'https://ldi.sk/116-111',
+  },
+  {
+    label: 'NBS — Národná banka Slovenska',
+    detail: 'Finančné podvody a falošné investičné ponuky. NBS nikdy nekontaktuje spotrebiteľov — podozrivé ponuky nahlás NBS alebo polícii a licenciu firmy si over v registri subjekty.nbs.sk.',
+    url: 'https://nbs.sk/pozor-na-podvody/',
+  },
+  {
+    label: 'Meta — napadnutý účet',
+    detail: 'Obnovenie účtov na Facebooku a Instagrame.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — obnovenie účtu',
+    detail: 'Obnovenie a bezpečnostná kontrola účtu Google/Gmail.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Zdroje a ako overujeme"
+  description="Odkiaľ pochádzajú naše informácie, ako ich overujeme a ako ich môžeš doplniť alebo opraviť. Dôveru si získavame transparentnosťou."
+  alternates={pageAlternates('sources')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparentnosť</span>
+      <h1>Zdroje a ako overujeme</h1>
+
+      <div class="content">
+        <p class="lead">
+          Nový web nemá právo len tak povedať „ver mi“. Preto ukazujeme,
+          odkiaľ informácie pochádzajú a ako dbáme na ich aktuálnosť.
+        </p>
+
+        <h2>Ako pracujeme</h2>
+        <ul>
+          <li>
+            Opierame sa o <strong>oficiálne zdroje</strong> (úrady, banky,
+            oficiálne platformy), nie o dohady.
+          </li>
+          <li>
+            Každý playbook ukazuje <strong>dátum poslednej kontroly</strong>
+            a na konci uvádza svoje zdroje.
+          </li>
+          <li>
+            Informácie tu sú <strong>orientačné</strong> — pomôžu ti konať
+            rýchlo, ale nenahrádzajú oficiálne pokyny tvojej banky, polície
+            ani úradov.
+          </li>
+          <li>
+            Ak si všimneš chybu alebo neaktuálnu informáciu,
+            <strong>daj nám vedieť</strong> — opravíme to.
+          </li>
+        </ul>
+
+        <h2>Zdroje, o ktoré sa opierame</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Užitočné čísla, kedykoľvek</h2>
+        <ul>
+          <li>
+            <strong>112 / 158</strong> — tiesňové linky: 112 integrovaný
+            záchranný systém, 158 bezplatná linka polície.
+          </li>
+          <li>
+            <strong>Blokácia karty</strong> — zablokuj ju v aplikácii banky
+            alebo zavolaj svojej banke na číslo zo zadnej strany karty; na
+            Slovensku neexistuje jednotné národné číslo, každá banka má
+            vlastný postup.
+          </li>
+          <li>
+            <strong>116 111</strong> — Linka detskej istoty pre deti a
+            mladých, zadarmo a nonstop.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

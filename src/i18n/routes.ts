@@ -44,6 +44,52 @@ export const routes = {
     playbook: (slug: string) => `/pl/playbook/${slug}`,
     guide: (slug: string) => `/pl/poradniki/${slug}`,
   },
+  // Country packs (fiecare ancorat în țara lui — vezi docs/country-packs/).
+  cs: {
+    home: '/cs',
+    start: '/cs/zacni-tady',
+    guidesIndex: '/cs/navody',
+    why: '/cs/proc-existujeme',
+    sources: '/cs/zdroje',
+    playbook: (slug: string) => `/cs/playbook/${slug}`,
+    guide: (slug: string) => `/cs/navody/${slug}`,
+  },
+  sk: {
+    home: '/sk',
+    start: '/sk/zacni-tu',
+    guidesIndex: '/sk/navody',
+    why: '/sk/preco-existujeme',
+    sources: '/sk/zdroje',
+    playbook: (slug: string) => `/sk/playbook/${slug}`,
+    guide: (slug: string) => `/sk/navody/${slug}`,
+  },
+  it: {
+    home: '/it',
+    start: '/it/inizia-qui',
+    guidesIndex: '/it/guide',
+    why: '/it/perche-esistiamo',
+    sources: '/it/fonti',
+    playbook: (slug: string) => `/it/playbook/${slug}`,
+    guide: (slug: string) => `/it/guide/${slug}`,
+  },
+  fr: {
+    home: '/fr',
+    start: '/fr/commencer-ici',
+    guidesIndex: '/fr/guides',
+    why: '/fr/pourquoi-nous-existons',
+    sources: '/fr/sources',
+    playbook: (slug: string) => `/fr/playbook/${slug}`,
+    guide: (slug: string) => `/fr/guides/${slug}`,
+  },
+  de: {
+    home: '/de',
+    start: '/de/starte-hier',
+    guidesIndex: '/de/ratgeber',
+    why: '/de/warum-es-uns-gibt',
+    sources: '/de/quellen',
+    playbook: (slug: string) => `/de/playbook/${slug}`,
+    guide: (slug: string) => `/de/ratgeber/${slug}`,
+  },
 } as const;
 
 export function r(lang: Lang) {

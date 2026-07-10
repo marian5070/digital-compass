@@ -27,9 +27,9 @@ export function getIndexLoadedAt() {
 }
 
 const SLUG_RE = /^[a-z0-9-]+$/;
-const LANGS = new Set(['ro', 'en', 'hu', 'pl']);
+const LANGS = new Set(['ro', 'en', 'hu', 'pl', 'cs', 'sk', 'it', 'fr', 'de']);
 // Segmentul de URL al colecției de ghiduri diferă pe limbă.
-const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki' };
+const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki', cs: 'navody', sk: 'navody', it: 'guide', fr: 'guides', de: 'ratgeber' };
 
 /**
  * Markdown-ul unei pagini din dist. RO stă la rădăcină, alte limbi sub /<lang>/.

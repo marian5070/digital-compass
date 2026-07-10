@@ -350,6 +350,431 @@ export const ui = {
     'lang.switch': 'Wersja rumuńska',
     'lang.switch.aria': 'Przełącz na rumuński',
   },
+  // Cehă — ancorată în CEHIA (country pack): canalele și exemplele sunt cehe.
+  cs: {
+    'nav.home': 'Domů',
+    'nav.start': 'Začni tady',
+    'nav.guides': 'Návody',
+    'nav.why': 'Proč existujeme',
+    'nav.sources': 'Zdroje',
+    'nav.aria': 'Hlavní navigace',
+    'brand.aria': 'Digital Compass — domů',
+
+    'footer.tagline':
+      'Veřejné, praktické znalosti pro chvíle digitální krize. Ne diplomy — jasno.',
+    'footer.nav.aria': 'Navigace v patičce',
+    'footer.why': 'Proč existujeme',
+    'footer.sources': 'Zdroje a jak ověřujeme',
+    'footer.emergency.title': 'Jsi teď v nebezpečí?',
+    'footer.emergency.line': 'Tísňová linka:',
+    'footer.emergency.cyber': 'Kybernetické incidenty (CSIRT.CZ):',
+    'footer.legal':
+      'Nezávislý veřejný projekt. Informace jsou orientační — nenahrazují oficiální pokyny tvé banky, policie ani úřadů.',
+
+    'card.cta': 'Podívej se, co dělat',
+    'sources.reviewed': 'Naposledy ověřeno:',
+    'sources.tellus': 'Vidíš něco neaktuálního? Dej nám vědět.',
+
+    'pb.back': '← Všechny situace',
+    'pb.urgent': 'Naléhavé — jednej hned',
+    'pb.breathe.aria': 'Nejdřív se nadechni',
+    'pb.steps': 'První kroky, hned teď',
+    'pb.donts': 'Co NEdělat',
+    'pb.recognize': 'Jak to příště poznáš',
+    'pb.report': 'Kam to nahlásit',
+    'pb.sources': 'Zdroje',
+    'pb.disclaimer':
+      'Tento návod ti pomáhá rychle jednat. Nenahrazuje oficiální pokyny tvé banky, policie ani úřadů. Při pochybnostech zavolej na čísla výše.',
+
+    'guide.back': '← Všechny návody',
+    'guide.eyebrow': 'Bezpečnostní návod',
+    'guide.good': 'Dobrá znamení — na tohle se dívej',
+    'guide.bad': 'Varovné signály',
+    'guide.related.label': 'Už se to stalo?',
+    'guide.related.cta': 'Podívej se, co dělat →',
+
+    'notfound.title': 'Stránka nenalezena',
+    'notfound.desc':
+      'Hledaná stránka neexistuje. Vrať se na situace a vyber, co se ti děje.',
+    'notfound.h1': 'Tady nic není. Ale úplně ses neztratil.',
+    'notfound.lead':
+      'Stránka, kterou hledáš, neexistuje nebo se přestěhovala. Vrať se na situace — vyber, co se ti děje, a řekneme ti, co dělat.',
+    'notfound.cta': 'Zpátky na situace',
+
+    'home.eyebrow': 'Veřejný průvodce · česky',
+    'home.h1': 'Stalo se ti něco online? Dýchej. Řekneme ti přesně, co dělat.',
+    'home.lead':
+      'Bez žargonu, bez diplomů, bez strašení. Jen jasné kroky pro chvíle, kdy tě digitální svět zaskočí — se zdroji, které si můžeš ověřit.',
+    'home.cta': 'Vyber svou situaci ↓',
+    'home.cta.start': 'Jsi tu poprvé, nebo jste tým? Začni tady →',
+    'home.situations.h2': 'Co se ti právě děje?',
+    'home.situations.lead':
+      'Vyber, co se děje. Každý návod začíná prvními kroky, popořadě.',
+    'home.prevent.eyebrow': 'Než se něco stane',
+    'home.prevent.h2': 'Chceš se tomu vyhnout už předem?',
+    'home.prevent.lead':
+      'Preventivní návody: na co se dívat, než zaplatíš, jaké jsou varovné signály a jaká jednoduchá pravidla tě ochrání.',
+    'home.prevent.cta': 'Podívej se na návody →',
+    'home.why.eyebrow': 'Proč existujeme',
+    'home.why.h2': 'Nedáváme diplomy. Dáváme jasno.',
+    'home.why.p':
+      'O digitalizaci, bezpečnosti a „digitálních dovednostech" se mluví hodně, ale málokdo obyčejnému člověku srozumitelně vysvětlí, co dělat, když má opravdu problém. Přesně tuhle mezeru vyplňujeme: mezi řečmi a praktickou, veřejnou, dostupnou cestou.',
+    'home.why.cta': 'Podívej se, co nabízíme — a co ne →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Veřejný, praktický průvodce digitálním bezpečím v češtině: falešný odkaz, hacknutý účet, podvod při nákupu, podvodný telefonát. Jasné kroky, ověřené zdroje, skutečné české kanály pro nahlášení (CSIRT.CZ, Policie ČR). Ne diplomy — jasno.',
+
+    'guides.title': 'Bezpečnostní návody',
+    'guides.desc':
+      'Preventivní návody digitálního bezpečí v češtině: e-mail a zprávy, účty a hesla, nákupy a platby online, bezpečnost v práci. Na co se dívat, než se něco stane. Skutečné české kanály (CSIRT.CZ, Policie ČR). Ne diplomy — jasno.',
+    'guides.eyebrow': 'Prevence',
+    'guides.h1': 'Než se ti něco stane',
+    'guides.lead':
+      'Návody na hlavní stránce pomáhají poté, co se něco stalo. Tyhle návody pomáhají předem: na co se dívat, co tě má varovat a jaká jednoduchá pravidla tě ochrání.',
+
+    'lang.switch': 'Rumunská verze',
+    'lang.switch.aria': 'Přepnout na rumunštinu',
+  },
+  // Slovacă — ancorată în SLOVACIA (country pack): canalele și exemplele sunt slovace.
+  sk: {
+    'nav.home': 'Domov',
+    'nav.start': 'Začni tu',
+    'nav.guides': 'Návody',
+    'nav.why': 'Prečo existujeme',
+    'nav.sources': 'Zdroje',
+    'nav.aria': 'Hlavná navigácia',
+    'brand.aria': 'Digital Compass — domov',
+
+    'footer.tagline':
+      'Verejné, praktické znalosti pre chvíle digitálnej krízy. Nie diplomy — jasnosť.',
+    'footer.nav.aria': 'Navigácia v pätičke',
+    'footer.why': 'Prečo existujeme',
+    'footer.sources': 'Zdroje a ako overujeme',
+    'footer.emergency.title': 'Si teraz v nebezpečenstve?',
+    'footer.emergency.line': 'Tiesňová linka:',
+    'footer.emergency.cyber': 'Kybernetické incidenty (SK-CERT):',
+    'footer.legal':
+      'Nezávislý verejný projekt. Informácie sú orientačné — nenahrádzajú oficiálne pokyny tvojej banky, polície ani úradov.',
+
+    'card.cta': 'Pozri, čo robiť',
+    'sources.reviewed': 'Naposledy overené:',
+    'sources.tellus': 'Vidíš niečo neaktuálne? Daj nám vedieť.',
+
+    'pb.back': '← Všetky situácie',
+    'pb.urgent': 'Súrne — konaj hneď',
+    'pb.breathe.aria': 'Najprv sa nadýchni',
+    'pb.steps': 'Prvé kroky, hneď teraz',
+    'pb.donts': 'Čo NErobiť',
+    'pb.recognize': 'Ako to nabudúce spoznáš',
+    'pb.report': 'Kam to nahlásiť',
+    'pb.sources': 'Zdroje',
+    'pb.disclaimer':
+      'Tento návod ti pomáha rýchlo konať. Nenahrádza oficiálne pokyny tvojej banky, polície ani úradov. Pri pochybnostiach zavolaj na čísla vyššie.',
+
+    'guide.back': '← Všetky návody',
+    'guide.eyebrow': 'Bezpečnostný návod',
+    'guide.good': 'Dobré znaky — na tieto sa pozeraj',
+    'guide.bad': 'Varovné signály',
+    'guide.related.label': 'Už sa to stalo?',
+    'guide.related.cta': 'Pozri, čo robiť →',
+
+    'notfound.title': 'Stránka sa nenašla',
+    'notfound.desc':
+      'Hľadaná stránka neexistuje. Vráť sa na situácie a vyber si, čo sa ti deje.',
+    'notfound.h1': 'Tu nič nie je. Ale celkom si sa nestratil.',
+    'notfound.lead':
+      'Stránka, ktorú hľadáš, neexistuje alebo sa presťahovala. Vráť sa na situácie — vyber si, čo sa deje, a povieme ti, čo robiť.',
+    'notfound.cta': 'Späť na situácie',
+
+    'home.eyebrow': 'Verejný sprievodca · po slovensky',
+    'home.h1': 'Stalo sa ti niečo online? Dýchaj. Povieme ti presne, čo robiť.',
+    'home.lead':
+      'Bez žargónu, bez diplomov, bez strašenia. Len jasné kroky pre chvíle, keď ťa digitálny svet zaskočí — so zdrojmi, ktoré si vieš overiť.',
+    'home.cta': 'Vyber si svoju situáciu ↓',
+    'home.cta.start': 'Si tu prvýkrát, alebo ste tím? Začni tu →',
+    'home.situations.h2': 'Čo sa ti práve deje?',
+    'home.situations.lead':
+      'Vyber si, čo sa deje. Každý návod začína prvými krokmi, po poriadku.',
+    'home.prevent.eyebrow': 'Skôr než sa niečo stane',
+    'home.prevent.h2': 'Chceš sa tomu vyhnúť už vopred?',
+    'home.prevent.lead':
+      'Preventívne návody: na čo sa pozerať pred platbou, aké sú varovné signály a aké jednoduché pravidlá ťa ochránia.',
+    'home.prevent.cta': 'Pozri návody →',
+    'home.why.eyebrow': 'Prečo existujeme',
+    'home.why.h2': 'Nedávame diplomy. Dávame jasnosť.',
+    'home.why.p':
+      'O digitalizácii, bezpečnosti a „digitálnych zručnostiach" sa hovorí veľa, ale málokto obyčajnému človeku zrozumiteľne vysvetlí, čo robiť, keď má naozaj problém. Presne túto medzeru vypĺňame: medzi rečami a praktickou, verejnou, dostupnou cestou.',
+    'home.why.cta': 'Pozri, čo ponúkame — a čo nie →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Verejný, praktický sprievodca digitálnym bezpečím po slovensky: falošný odkaz, hacknutý účet, podvod pri nákupe, podvodný telefonát. Jasné kroky, overené zdroje, skutočné slovenské kanály na nahlásenie (SK-CERT, Polícia SR). Nie diplomy — jasnosť.',
+
+    'guides.title': 'Bezpečnostné návody',
+    'guides.desc':
+      'Preventívne návody digitálneho bezpečia po slovensky: e-mail a správy, účty a heslá, nákupy a platby online, bezpečnosť v práci. Na čo sa pozerať, skôr než sa niečo stane. Skutočné slovenské kanály (SK-CERT, Polícia SR). Nie diplomy — jasnosť.',
+    'guides.eyebrow': 'Prevencia',
+    'guides.h1': 'Skôr než sa ti niečo stane',
+    'guides.lead':
+      'Návody na hlavnej stránke pomáhajú po tom, čo sa niečo stalo. Tieto návody pomáhajú vopred: na čo sa pozerať, čo ťa má varovať a aké jednoduché pravidlá ťa ochránia.',
+
+    'lang.switch': 'Rumunská verzia',
+    'lang.switch.aria': 'Prepnúť na rumunčinu',
+  },
+  // Italiană — ancorată în ITALIA (country pack): canalele și exemplele sunt italiene.
+  it: {
+    'nav.home': 'Home',
+    'nav.start': 'Inizia qui',
+    'nav.guides': 'Guide',
+    'nav.why': 'Perché esistiamo',
+    'nav.sources': 'Fonti',
+    'nav.aria': 'Navigazione principale',
+    'brand.aria': 'Digital Compass — home',
+
+    'footer.tagline':
+      'Conoscenza pubblica e pratica per i momenti di crisi digitale. Niente diplomi — chiarezza.',
+    'footer.nav.aria': 'Navigazione del footer',
+    'footer.why': 'Perché esistiamo',
+    'footer.sources': 'Fonti e come verifichiamo',
+    'footer.emergency.title': 'Sei in pericolo adesso?',
+    'footer.emergency.line': 'Emergenze:',
+    'footer.emergency.cyber': 'Polizia Postale:',
+    'footer.legal':
+      'Progetto pubblico e indipendente. Le informazioni sono orientative — non sostituiscono le indicazioni ufficiali della tua banca, della polizia o delle autorità.',
+
+    'card.cta': 'Vedi cosa fare',
+    'sources.reviewed': 'Ultima verifica:',
+    'sources.tellus': 'Vedi qualcosa di non aggiornato? Faccelo sapere.',
+
+    'pb.back': '← Tutte le situazioni',
+    'pb.urgent': 'Urgente — agisci subito',
+    'pb.breathe.aria': 'Prima di tutto, respira',
+    'pb.steps': 'I primi passi, subito',
+    'pb.donts': 'Cosa NON fare',
+    'pb.recognize': 'Come riconoscerlo la prossima volta',
+    'pb.report': 'Dove segnalare',
+    'pb.sources': 'Fonti',
+    'pb.disclaimer':
+      'Questa guida ti aiuta ad agire in fretta. Non sostituisce le istruzioni ufficiali della tua banca, della polizia o delle autorità. Nel dubbio, chiama i numeri qui sopra.',
+
+    'guide.back': '← Tutte le guide',
+    'guide.eyebrow': 'Guida di sicurezza',
+    'guide.good': 'Segnali buoni — guarda questi',
+    'guide.bad': 'Segnali d’allarme',
+    'guide.related.label': 'È già successo?',
+    'guide.related.cta': 'Vedi cosa fare →',
+
+    'notfound.title': 'Pagina non trovata',
+    'notfound.desc':
+      'La pagina che cerchi non esiste. Torna alle situazioni e scegli cosa ti sta succedendo.',
+    'notfound.h1': 'Qui non c’è niente. Ma non ti sei perso del tutto.',
+    'notfound.lead':
+      'La pagina che cerchi non esiste o si è spostata. Torna alle situazioni — scegli cosa ti sta succedendo e ti diciamo cosa fare.',
+    'notfound.cta': 'Torna alle situazioni',
+
+    'home.eyebrow': 'Guida pubblica · in italiano',
+    'home.h1': 'Ti è successo qualcosa online? Respira. Ti diciamo esattamente cosa fare.',
+    'home.lead':
+      'Niente gergo, niente diplomi, niente allarmismi. Solo passi chiari per i momenti in cui il mondo digitale ti coglie alla sprovvista — con fonti che puoi verificare.',
+    'home.cta': 'Scegli la tua situazione ↓',
+    'home.cta.start': 'Sei nuovo qui, o fai parte di un team? Inizia qui →',
+    'home.situations.h2': 'Qual è la tua situazione adesso?',
+    'home.situations.lead':
+      'Scegli cosa ti sta succedendo. Ogni guida inizia con i primi passi, in ordine.',
+    'home.prevent.eyebrow': 'Prima che succeda',
+    'home.prevent.h2': 'Vuoi evitarlo fin dall’inizio?',
+    'home.prevent.lead':
+      'Guide preventive: cosa controllare prima di pagare, i segnali d’allarme e le regole semplici che ti proteggono.',
+    'home.prevent.cta': 'Vedi le guide →',
+    'home.why.eyebrow': 'Perché esistiamo',
+    'home.why.h2': 'Non offriamo diplomi. Offriamo chiarezza.',
+    'home.why.p':
+      'Si parla tanto di digitalizzazione, sicurezza e "competenze digitali", ma troppo raramente qualcuno spiega alla persona comune, con parole semplici, cosa fare quando ha davvero un problema. È questo il vuoto che copriamo: tra i discorsi e un percorso pratico, pubblico e accessibile.',
+    'home.why.cta': 'Vedi cosa offriamo — e cosa no →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Guida pubblica e pratica alla sicurezza digitale in italiano: link falsi, account violati, truffe negli acquisti online, telefonate truffa. Passi chiari, fonti verificate, canali di segnalazione italiani reali (Polizia Postale). Niente diplomi — chiarezza.',
+
+    'guides.title': 'Guide di sicurezza',
+    'guides.desc':
+      'Guide preventive di sicurezza digitale in italiano: email e messaggi, account e password, acquisti e pagamenti online, sicurezza al lavoro. Cosa controllare prima che succeda qualcosa. Canali italiani reali (Polizia Postale). Niente diplomi — chiarezza.',
+    'guides.eyebrow': 'Prevenzione',
+    'guides.h1': 'Prima che ti succeda qualcosa',
+    'guides.lead':
+      'I playbook della pagina principale ti aiutano dopo che è successo qualcosa. Queste guide ti aiutano prima: cosa guardare, cosa deve metterti in allarme e le regole semplici che ti proteggono.',
+
+    'lang.switch': 'Versione rumena',
+    'lang.switch.aria': 'Passa al rumeno',
+  },
+  // Franceză — ancorată în FRANȚA (country pack): canalele și exemplele sunt franceze. Registru: „vous".
+  fr: {
+    'nav.home': 'Accueil',
+    'nav.start': 'Commencez ici',
+    'nav.guides': 'Guides',
+    'nav.why': 'Pourquoi nous existons',
+    'nav.sources': 'Sources',
+    'nav.aria': 'Navigation principale',
+    'brand.aria': 'Digital Compass — accueil',
+
+    'footer.tagline':
+      'Des connaissances publiques et pratiques pour les moments de crise numérique. Pas de diplômes — de la clarté.',
+    'footer.nav.aria': 'Navigation du pied de page',
+    'footer.why': 'Pourquoi nous existons',
+    'footer.sources': 'Sources et méthode de vérification',
+    'footer.emergency.title': 'En danger maintenant ?',
+    'footer.emergency.line': 'Urgences:',
+    'footer.emergency.cyber': 'Cybermalveillance:',
+    'footer.legal':
+      'Projet public et indépendant. Ces informations sont indicatives — elles ne remplacent pas les conseils officiels de votre banque, de la police ou des autorités.',
+
+    'card.cta': 'Voir quoi faire',
+    'sources.reviewed': 'Dernière vérification:',
+    'sources.tellus': 'Quelque chose vous semble dépassé ? Dites-le-nous.',
+
+    'pb.back': '← Toutes les situations',
+    'pb.urgent': 'Urgent — agissez maintenant',
+    'pb.breathe.aria': 'D’abord, respirez',
+    'pb.steps': 'Les premiers pas, maintenant',
+    'pb.donts': 'Ce qu’il ne faut PAS faire',
+    'pb.recognize': 'Comment le repérer la prochaine fois',
+    'pb.report': 'Où signaler',
+    'pb.sources': 'Sources',
+    'pb.disclaimer':
+      'Ce guide vous aide à agir vite. Il ne remplace pas les instructions officielles de votre banque, de la police ou des autorités. En cas de doute, appelez les numéros ci-dessus.',
+
+    'guide.back': '← Tous les guides',
+    'guide.eyebrow': 'Guide de sécurité',
+    'guide.good': 'Bons signes — cherchez ceux-ci',
+    'guide.bad': 'Signaux d’alerte',
+    'guide.related.label': 'C’est déjà arrivé ?',
+    'guide.related.cta': 'Voir quoi faire →',
+
+    'notfound.title': 'Page introuvable',
+    'notfound.desc':
+      'La page recherchée n’existe pas. Revenez aux situations et choisissez ce qui vous arrive.',
+    'notfound.h1': 'Il n’y a rien ici. Mais vous n’êtes pas complètement perdu.',
+    'notfound.lead':
+      'La page que vous cherchez n’existe pas ou a été déplacée. Revenez aux situations — choisissez ce qui vous arrive et nous vous dirons quoi faire.',
+    'notfound.cta': 'Retour aux situations',
+
+    'home.eyebrow': 'Guide public · en français',
+    'home.h1': 'Il vous est arrivé quelque chose en ligne ? Respirez. Nous vous disons exactement quoi faire.',
+    'home.lead':
+      'Pas de jargon, pas de diplômes, pas de peur inutile. Juste des étapes claires pour les moments où le monde numérique vous prend au dépourvu — avec des sources que vous pouvez vérifier.',
+    'home.cta': 'Choisissez votre situation ↓',
+    'home.cta.start': 'Nouveau ici, ou en équipe ? Commencez ici →',
+    'home.situations.h2': 'Quelle est votre situation en ce moment ?',
+    'home.situations.lead':
+      'Choisissez ce qui vous arrive. Chaque guide commence par les premiers pas, dans l’ordre.',
+    'home.prevent.eyebrow': 'Avant que ça arrive',
+    'home.prevent.h2': 'Vous préférez l’éviter dès le départ ?',
+    'home.prevent.lead':
+      'Guides préventifs : ce qu’il faut vérifier avant de payer, les signaux d’alerte et les règles simples qui vous protègent.',
+    'home.prevent.cta': 'Voir les guides →',
+    'home.why.eyebrow': 'Pourquoi nous existons',
+    'home.why.h2': 'Nous n’offrons pas de diplômes. Nous offrons de la clarté.',
+    'home.why.p':
+      'On parle beaucoup de numérisation, de sécurité et de « compétences numériques », mais trop rarement quelqu’un explique à une personne ordinaire, avec des mots simples, quoi faire quand elle a vraiment un problème. C’est ce vide que nous comblons : entre les discours et un chemin pratique, public et accessible.',
+    'home.why.cta': 'Voir ce que nous offrons — et ce que nous n’offrons pas →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Guide public et pratique de sécurité numérique en français : lien piégé, compte piraté, arnaque à l’achat en ligne, appel frauduleux. Des étapes claires, des sources vérifiées, les vrais canaux français (Cybermalveillance, 33700). Pas de diplômes — de la clarté.',
+
+    'guides.title': 'Guides de sécurité',
+    'guides.desc':
+      'Guides préventifs de sécurité numérique en français : email et messages, comptes et mots de passe, achats et paiements en ligne, sécurité au travail. Quoi vérifier avant qu’un incident n’arrive. Les vrais canaux français (Cybermalveillance, 33700). Pas de diplômes — de la clarté.',
+    'guides.eyebrow': 'Prévention',
+    'guides.h1': 'Avant qu’il ne vous arrive quelque chose',
+    'guides.lead':
+      'Les guides de la page d’accueil vous aident après qu’un incident s’est produit. Ceux-ci vous aident avant : quoi regarder, ce qui doit vous alerter et les règles simples qui vous protègent.',
+
+    'lang.switch': 'Version roumaine',
+    'lang.switch.aria': 'Passer au roumain',
+  },
+  // Germană — ancorată în GERMANIA (country pack): canalele și exemplele sunt germane. Registru: „Sie".
+  de: {
+    'nav.home': 'Startseite',
+    'nav.start': 'Hier starten',
+    'nav.guides': 'Ratgeber',
+    'nav.why': 'Warum es uns gibt',
+    'nav.sources': 'Quellen',
+    'nav.aria': 'Hauptnavigation',
+    'brand.aria': 'Digital Compass — Startseite',
+
+    'footer.tagline':
+      'Öffentliches, praktisches Wissen für digitale Krisenmomente. Keine Diplome — Klarheit.',
+    'footer.nav.aria': 'Fußzeilen-Navigation',
+    'footer.why': 'Warum es uns gibt',
+    'footer.sources': 'Quellen & wie wir prüfen',
+    'footer.emergency.title': 'Gerade in Gefahr?',
+    'footer.emergency.line': 'Notruf:',
+    'footer.emergency.cyber': 'Phishing-Radar (Verbraucherzentrale):',
+    'footer.legal':
+      'Ein öffentliches, unabhängiges Projekt. Die Informationen sind eine Orientierung — sie ersetzen nicht die offiziellen Hinweise Ihrer Bank, der Polizei oder der Behörden.',
+
+    'card.cta': 'Sehen Sie, was zu tun ist',
+    'sources.reviewed': 'Zuletzt geprüft:',
+    'sources.tellus': 'Etwas veraltet? Sagen Sie uns Bescheid.',
+
+    'pb.back': '← Alle Situationen',
+    'pb.urgent': 'Dringend — handeln Sie jetzt',
+    'pb.breathe.aria': 'Erst einmal: durchatmen',
+    'pb.steps': 'Die ersten Schritte, jetzt',
+    'pb.donts': 'Was Sie NICHT tun sollten',
+    'pb.recognize': 'Woran Sie es beim nächsten Mal erkennen',
+    'pb.report': 'Wo Sie es melden',
+    'pb.sources': 'Quellen',
+    'pb.disclaimer':
+      'Dieser Ratgeber hilft Ihnen, schnell zu handeln. Er ersetzt nicht die offiziellen Anweisungen Ihrer Bank, der Polizei oder der Behörden. Im Zweifel rufen Sie die Nummern oben an.',
+
+    'guide.back': '← Alle Ratgeber',
+    'guide.eyebrow': 'Sicherheitsratgeber',
+    'guide.good': 'Gute Zeichen — darauf achten Sie',
+    'guide.bad': 'Warnsignale',
+    'guide.related.label': 'Schon passiert?',
+    'guide.related.cta': 'Sehen Sie, was zu tun ist →',
+
+    'notfound.title': 'Seite nicht gefunden',
+    'notfound.desc':
+      'Die gesuchte Seite existiert nicht. Gehen Sie zurück zu den Situationen und wählen Sie, was Ihnen passiert.',
+    'notfound.h1': 'Hier ist nichts. Aber ganz verloren sind Sie nicht.',
+    'notfound.lead':
+      'Die Seite, die Sie suchen, existiert nicht oder ist umgezogen. Gehen Sie zurück zu den Situationen — wählen Sie, was Ihnen passiert, und wir sagen Ihnen, was zu tun ist.',
+    'notfound.cta': 'Zurück zu den Situationen',
+
+    'home.eyebrow': 'Öffentlicher Ratgeber · auf Deutsch',
+    'home.h1': 'Ist Ihnen online etwas passiert? Durchatmen. Wir sagen Ihnen genau, was zu tun ist.',
+    'home.lead':
+      'Kein Fachjargon, keine Diplome, keine Panikmache. Nur klare Schritte für die Momente, in denen die digitale Welt Sie kalt erwischt — mit Quellen, die Sie überprüfen können.',
+    'home.cta': 'Wählen Sie Ihre Situation ↓',
+    'home.cta.start': 'Neu hier oder als Team? Hier starten →',
+    'home.situations.h2': 'Was passiert Ihnen gerade?',
+    'home.situations.lead':
+      'Wählen Sie, was passiert. Jeder Ratgeber beginnt mit den ersten Schritten, der Reihe nach.',
+    'home.prevent.eyebrow': 'Bevor etwas passiert',
+    'home.prevent.h2': 'Möchten Sie es von vornherein vermeiden?',
+    'home.prevent.lead':
+      'Vorbeugende Ratgeber: worauf Sie vor dem Bezahlen achten, welche Warnsignale es gibt und welche einfachen Regeln Sie schützen.',
+    'home.prevent.cta': 'Zu den Ratgebern →',
+    'home.why.eyebrow': 'Warum es uns gibt',
+    'home.why.h2': 'Wir vergeben keine Diplome. Wir schaffen Klarheit.',
+    'home.why.p':
+      'Über Digitalisierung, Sicherheit und „digitale Kompetenzen" wird viel geredet, aber viel zu selten erklärt jemand einem ganz normalen Menschen in einfachen Worten, was zu tun ist, wenn er wirklich ein Problem hat. Genau diese Lücke füllen wir: zwischen den Reden und einem praktischen, öffentlichen, zugänglichen Weg.',
+    'home.why.cta': 'Sehen Sie, was wir bieten — und was nicht →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Ein öffentlicher, praktischer Ratgeber für digitale Sicherheit auf Deutsch: gefälschte Links, gehackte Konten, Betrug beim Online-Kauf, Betrugsanrufe. Klare Schritte, geprüfte Quellen, echte deutsche Meldewege (BSI, Polizei, Verbraucherzentrale). Keine Diplome — Klarheit.',
+
+    'guides.title': 'Sicherheitsratgeber',
+    'guides.desc':
+      'Vorbeugende Ratgeber für digitale Sicherheit auf Deutsch: E-Mail und Nachrichten, Konten und Passwörter, Online-Einkauf und Zahlungen, Sicherheit am Arbeitsplatz. Worauf Sie achten, bevor etwas passiert. Echte deutsche Meldewege (BSI, Polizei, Verbraucherzentrale). Keine Diplome — Klarheit.',
+    'guides.eyebrow': 'Vorbeugung',
+    'guides.h1': 'Bevor Ihnen etwas passiert',
+    'guides.lead':
+      'Die Anleitungen auf der Startseite helfen, nachdem etwas passiert ist. Diese Ratgeber helfen vorher: worauf Sie achten, was Sie alarmieren sollte und welche einfachen Regeln Sie schützen.',
+
+    'lang.switch': 'Rumänische Version',
+    'lang.switch.aria': 'Zu Rumänisch wechseln',
+  },
 } as const;
 
 export type UiKey = keyof (typeof ui)['ro'];

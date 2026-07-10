@@ -1,0 +1,16 @@
+---
+import PlaybookPage from '../../../templates/PlaybookPage.astro';
+import { getPlaybooks, entrySlug } from '../../../lib/i18n-content';
+
+export async function getStaticPaths() {
+  const playbooks = await getPlaybooks("it");
+  return playbooks.map((entry) => ({
+    params: { slug: entrySlug(entry.id) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<PlaybookPage entry={entry} />

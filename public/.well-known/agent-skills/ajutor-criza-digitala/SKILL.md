@@ -25,12 +25,13 @@ Everything is available as plain markdown — no auth, no API key:
   `compass_get_content`, `compass_report_channels`, `compass_freshness`.
 - In the browser, the site also exposes WebMCP tools (`compass_situatii`,
   `compass_continut`) via `navigator.modelContext`.
-- Content languages: Romanian (original), English (expats in Romania) and
-  Hungarian (Romania's Hungarian-speaking community) — Romania-anchored — plus
-  **Polish, anchored in POLAND** (`/pl/…`): Polish reporting channels (CERT
-  Polska / SMS 8080, policja, card blocking +48 828 828 828, UOKiK) and Polish
-  scam examples. Every tool takes a `lang` parameter (`ro` | `en` | `hu` | `pl`);
-  use the lang that matches where the user IS, not just what they speak.
+- Content languages: Romanian (original), English and Hungarian are
+  Romania-anchored (Romanian reporting channels). **Country-anchored versions**
+  with local channels, sources and scam examples: Polish (`/pl/`), Czech
+  (`/cs/`), Slovak (`/sk/`), Italian (`/it/`), French (`/fr/`), German
+  (`/de/`). Every tool takes a `lang` parameter
+  (`ro`|`en`|`hu`|`pl`|`cs`|`sk`|`it`|`fr`|`de`); pick the lang that matches
+  where the user IS, not just what they speak.
 
 ## How to help
 

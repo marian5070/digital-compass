@@ -45,15 +45,15 @@
           properties: {
             tip: { type: 'string', enum: ['playbook', 'ghid'], description: 'playbook = criză (s-a întâmplat deja), ghid = prevenție' },
             slug: { type: 'string', description: 'Slug-ul din compass_situatii, ex: "link-sms-fals"' },
-            lang: { type: 'string', enum: ['ro', 'en', 'hu', 'pl'], description: 'Limba conținutului (implicit ro; pl = ancorat în Polonia)' },
+            lang: { type: 'string', enum: ['ro', 'en', 'hu', 'pl', 'cs', 'sk', 'it', 'fr', 'de'], description: 'Limba conținutului (implicit ro; pl/cs/sk/it/fr/de = ancorate în țările respective)' },
           },
           required: ['tip', 'slug'],
         },
         execute: function (args) {
           var a = args || {};
           if (!a.slug || !/^[a-z0-9-]+$/.test(a.slug)) return Promise.resolve(err('Slug invalid.'));
-          var GUIDES = { ro: '/ghiduri/', en: '/en/guides/', hu: '/hu/utmutatok/', pl: '/pl/poradniki/' };
-          var PLAYBOOKS = { ro: '/playbook/', en: '/en/playbook/', hu: '/hu/playbook/', pl: '/pl/playbook/' };
+          var GUIDES = { ro: '/ghiduri/', en: '/en/guides/', hu: '/hu/utmutatok/', pl: '/pl/poradniki/', cs: '/cs/navody/', sk: '/sk/navody/', it: '/it/guide/', fr: '/fr/guides/', de: '/de/ratgeber/' };
+          var PLAYBOOKS = { ro: '/playbook/', en: '/en/playbook/', hu: '/hu/playbook/', pl: '/pl/playbook/', cs: '/cs/playbook/', sk: '/sk/playbook/', it: '/it/playbook/', fr: '/fr/playbook/', de: '/de/playbook/' };
           var lang = GUIDES[a.lang] ? a.lang : 'ro';
           var base = a.tip === 'ghid' ? GUIDES[lang] : PLAYBOOKS[lang];
           return fetch(base + a.slug + '.md')

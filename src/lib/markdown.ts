@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import { entryLang, entrySlug } from './i18n-content';
+import { entryLang, entrySlug, type Lang } from './i18n-content';
 import { t } from '../i18n/ui';
 import { routes } from '../i18n/routes';
 
@@ -21,14 +21,29 @@ function inlineMd(s: string): string {
 
 const list = (items: string[]) => items.map((i) => `- ${inlineMd(i)}`).join('\n');
 
-function footer(lang: 'ro' | 'en' | 'hu' | 'pl', lastReviewed: string): string {
-  const blurbs = {
+function footer(lang: Lang, lastReviewed: string): string {
+  const blurbs: Record<Lang, string> = {
     ro: `Digital Compass — cunoaștere publică, practică, în română (conținut CC BY 4.0): ${SITE}/`,
     en: `Digital Compass — public, practical digital-safety knowledge for Romania (content CC BY 4.0): ${SITE}/en`,
     hu: `Digital Compass — közhasznú, gyakorlati digitális biztonsági tudás Romániában élőknek (tartalom CC BY 4.0): ${SITE}/hu`,
     pl: `Digital Compass — publiczna, praktyczna wiedza o bezpieczeństwie cyfrowym (treść CC BY 4.0): ${SITE}/pl`,
+    cs: `Digital Compass — veřejné, praktické znalosti o digitální bezpečnosti (obsah CC BY 4.0): ${SITE}/cs`,
+    sk: `Digital Compass — verejné, praktické znalosti o digitálnej bezpečnosti (obsah CC BY 4.0): ${SITE}/sk`,
+    it: `Digital Compass — conoscenza pubblica e pratica sulla sicurezza digitale (contenuto CC BY 4.0): ${SITE}/it`,
+    fr: `Digital Compass — un savoir public et pratique sur la sécurité numérique (contenu CC BY 4.0): ${SITE}/fr`,
+    de: `Digital Compass — öffentliches, praktisches Wissen zur digitalen Sicherheit (Inhalt CC BY 4.0): ${SITE}/de`,
   };
-  const reviewed = { ro: 'Verificat ultima dată', en: 'Last reviewed', hu: 'Utoljára ellenőrizve', pl: 'Ostatnia weryfikacja' };
+  const reviewed: Record<Lang, string> = {
+    ro: 'Verificat ultima dată',
+    en: 'Last reviewed',
+    hu: 'Utoljára ellenőrizve',
+    pl: 'Ostatnia weryfikacja',
+    cs: 'Naposledy ověřeno',
+    sk: 'Naposledy overené',
+    it: 'Ultima verifica',
+    fr: 'Dernière vérification',
+    de: 'Zuletzt geprüft',
+  };
   return ['---', '', `${reviewed[lang]}: ${lastReviewed}.`, blurbs[lang]].join('\n');
 }
 

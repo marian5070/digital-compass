@@ -1,0 +1,8 @@
+---
+import HomePage from '../../templates/HomePage.astro';
+import { getPlaybooks } from '../../lib/i18n-content';
+
+const playbooks = await getPlaybooks("fr");
+---
+
+<HomePage lang="fr" playbooks={playbooks} />

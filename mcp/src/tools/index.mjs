@@ -6,7 +6,7 @@ import { getIndex, getMarkdown, normalize } from '../data/loader.mjs';
 
 const SITE = 'https://compass.madeinro.eu';
 const LangInput = z
-  .enum(['ro', 'en', 'hu', 'pl'])
+  .enum(['ro', 'en', 'hu', 'pl', 'cs', 'sk', 'it', 'fr', 'de'])
   .default('ro')
   .describe('Limba conținutului (ro = original; en/hu ancorate în România, pl ancorat în Polonia)');
 
@@ -58,7 +58,7 @@ async function handleGet(args) {
       `Nu există ${args.type} „${args.slug}" în limba „${args.lang}". Cheamă compass_list_situations pentru lista validă.`
     );
   }
-  const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki' };
+  const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki', cs: 'navody', sk: 'navody', it: 'guide', fr: 'guides', de: 'ratgeber' };
   const base = args.type === 'ghid' ? GUIDE_SEGMENT[args.lang] : 'playbook';
   const prefix = args.lang === 'ro' ? '' : `/${args.lang}`;
   return {

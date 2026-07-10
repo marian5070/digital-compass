@@ -1,0 +1,152 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'CSIRT.CZ',
+    detail: 'Národní CSIRT tým a kontaktní místo pro veřejnost při kybernetických incidentech a phishingu. Incident nahlásíš přes formulář na csirt.cz.',
+    url: 'https://csirt.cz/cs/hlaseni-incidentu/',
+  },
+  {
+    label: 'ČOI — Česká obchodní inspekce',
+    detail: 'Práva spotřebitelů, stížnosti na e-shopy a prodejce. Poradenská linka: +420 222 703 404 (pondělí a středa 8–16). Před nákupem u neznámého e-shopu zkontroluj oficiální seznam rizikových e-shopů.',
+    url: 'https://coi.gov.cz/pro-spotrebitele/rizikove-e-shopy/',
+  },
+  {
+    label: 'Policie ČR',
+    detail: 'Trestní oznámení o internetovém podvodu podáš osobně na kterékoli policejní služebně.',
+    url: 'https://policie.gov.cz',
+  },
+  {
+    label: 'STOPonline.cz',
+    detail: 'Hlášení nezákonného obsahu na internetu — včetně zneužívání dětí a kybernetických hrozeb. Provozuje CZ.NIC, telefon +420 910 101 010.',
+    url: 'https://stoponline.cz',
+  },
+  {
+    label: 'Linka bezpečí — 116 111',
+    detail: 'Pro děti a mladé do 26 let: zdarma, nonstop a anonymně. Telefon 116 111, chat a e-mail na linkabezpeci.cz.',
+    url: 'https://linkabezpeci.cz',
+  },
+  {
+    label: 'Meta — napadený účet',
+    detail: 'Obnova účtů na Facebooku a Instagramu.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — obnova účtu',
+    detail: 'Obnova a bezpečnostní kontrola účtu Google/Gmail.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Zdroje a jak ověřujeme"
+  description="Odkud pocházejí naše informace, jak je ověřujeme a jak je můžeš doplnit nebo opravit. Důvěru si získáváme transparentností."
+  alternates={pageAlternates('sources')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparentnost</span>
+      <h1>Zdroje a jak ověřujeme</h1>
+
+      <div class="content">
+        <p class="lead">
+          Nový web nemá právo jen tak říct „věř mi“. Proto ukazujeme, odkud
+          informace pocházejí a jak dbáme na jejich aktuálnost.
+        </p>
+
+        <h2>Jak pracujeme</h2>
+        <ul>
+          <li>
+            Opíráme se o <strong>oficiální zdroje</strong> (úřady, banky,
+            oficiální platformy), ne o dohady.
+          </li>
+          <li>
+            Každý playbook ukazuje <strong>datum poslední kontroly</strong>
+            a na konci uvádí své zdroje.
+          </li>
+          <li>
+            Informace tady jsou <strong>vodítka</strong> — pomohou ti jednat
+            rychle, ale nenahrazují oficiální pokyny tvé banky, policie ani
+            úřadů.
+          </li>
+          <li>
+            Pokud si všimneš chyby nebo neaktuální informace,
+            <strong>dej nám vědět</strong> — opravíme to.
+          </li>
+        </ul>
+
+        <h2>Zdroje, o které se opíráme</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Užitečná čísla, kdykoli</h2>
+        <ul>
+          <li><strong>112</strong> — tísňová linka.</li>
+          <li>
+            <strong>Blokace karty</strong> — zavolej své bance na číslo ze
+            zadní strany karty; v Česku neexistuje jednotné národní číslo,
+            každá banka má vlastní postup.
+          </li>
+          <li>
+            <strong>116 111</strong> — Linka bezpečí pro děti a mladé do 26
+            let, zdarma a nonstop.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

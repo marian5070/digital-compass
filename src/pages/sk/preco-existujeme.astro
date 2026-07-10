@@ -1,0 +1,154 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const offer = [
+  'Jasnosť a vysvetlenia jednoduchými slovami, bez žargónu',
+  'Konkrétne kroky v skutočných situáciách, v poradí, na ktorom záleží',
+  'Citované zdroje, ktoré si môžeš sám overiť',
+  'Skutočné čísla a odkazy, kde na Slovensku nahlásiš problém',
+  'Prístup zadarmo — bez účtu, bez platieb, bez sledovania',
+];
+
+const dontOffer = [
+  'Diplomy, certifikáty ani osvedčenia',
+  'Odznaky autority ani profesijného statusu',
+  'Sľuby kariéry alebo práce',
+  'Inštitucionálne uznanie',
+  'Divadlo súladu s predpismi',
+];
+---
+
+<BaseLayout
+  title="Prečo existujeme"
+  description="Nie sme certifikačná akadémia. Sme verejný nástroj na pochopenie digitálneho sveta a prispôsobenie sa mu. Tu je, čo ponúkame — a čo nie."
+  alternates={pageAlternates('why')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Prečo existujeme</span>
+      <h1>Nedávame diplomy. Dávame jasnosť.</h1>
+
+      <div class="content">
+        <p class="lead">
+          Túto platformu staviame pre človeka, ktorý sa potrebuje vyznať v
+          digitálnom svete meniacom sa rýchlejšie, než ho inštitúcie stíhajú
+          vysvetľovať.
+        </p>
+
+        <p>
+          Veľa sa hovorí o digitalizácii, kybernetickej bezpečnosti,
+          „digitálnych kompetenciách“ a odolnosti. Verejné peniaze idú na
+          prejavy a stratégie. Ale príliš často, keď má obyčajný človek naozaj
+          problém — hacknutý účet, podvod, telefonát od podvodníka — nenájde
+          jasnú, verejnú, praktickú cestu. Nájde zatvorené stránky, žargón
+          alebo ticho.
+        </p>
+
+        <p>
+          Netvrdíme, že všetko má byť verejné. V bezpečnosti musí časť obsahu
+          zostať pod kontrolou. Ale ak sa verejne hovorí o „nedostatku
+          digitálnych kompetencií“, zaslúžia si obyčajní ľudia aspoň jeden
+          jednoduchý, dostupný nástroj. Túto medzeru vypĺňame. Nenahrádzame
+          inštitúcie — dopĺňame to, čo chýba.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+        <section class="offer offer-yes" aria-labelledby="oferim">
+          <h2 id="oferim">Čo ponúkame</h2>
+          <ul>
+            {offer.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section class="offer offer-no" aria-labelledby="nu-oferim">
+          <h2 id="nu-oferim">Čo NEponúkame</h2>
+          <ul>
+            {dontOffer.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      </div>
+
+      <div class="content closing">
+        <p>
+          Cieľom nie je dať ti diplom. Cieľ je iný: menšia zraniteľnosť voči
+          hrozbám, lepšia orientácia a väčšia samostatnosť vo svete, v ktorom
+          žiješ. Hodnota nečaká na konci, v certifikáte — je na každej
+          stránke, v každom kroku, v tej chvíli, keď si povieš:
+          <strong>„Teraz viem, čo robiť.“</strong>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 18ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .offer-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    margin-block: var(--space-6);
+  }
+  @media (min-width: 44rem) {
+    .offer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .offer {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+  .offer h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+  .offer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .offer li {
+    padding-left: 1.8rem;
+    position: relative;
+  }
+  .offer-yes {
+    background: var(--color-safe-soft);
+    border-color: color-mix(in oklch, var(--color-safe) 35%, transparent);
+  }
+  .offer-yes h2 {
+    color: var(--color-safe-text);
+  }
+  .offer-yes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: var(--weight-bold);
+    color: var(--color-safe);
+  }
+  .offer-no {
+    background: var(--color-surface-2);
+  }
+  .offer-no li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-muted);
+  }
+  .closing {
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+</style>

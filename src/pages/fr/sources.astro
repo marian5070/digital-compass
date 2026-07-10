@@ -1,0 +1,171 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'Cybermalveillance.gouv.fr / 17Cyber',
+    detail: 'Le dispositif national d’assistance aux victimes de cybermalveillance. Diagnostic guidé sur 17cyber.gouv.fr (Police Nationale, Gendarmerie Nationale et Cybermalveillance.gouv.fr) et fiches réflexes pour chaque type d’attaque.',
+    url: 'https://www.cybermalveillance.gouv.fr',
+  },
+  {
+    label: '33700 — SMS et appels indésirables',
+    detail: 'Transférez tout SMS suspect au 33700 (service gratuit) — la plateforme de lutte contre les SMS et appels indésirables, opérée avec les opérateurs mobiles.',
+    url: 'https://www.33700.fr',
+  },
+  {
+    label: 'SignalConso — DGCCRF',
+    detail: 'Un service public gratuit pour signaler un problème de consommation : achats en ligne, télécoms, banques et assurances, immobilier — avec une catégorie dédiée aux faux sites gouvernementaux.',
+    url: 'https://signal.conso.gouv.fr',
+  },
+  {
+    label: 'Service-Public — THESEE et Perceval',
+    detail: 'THESEE : plainte en ligne pour les e-escroqueries (faux site de vente, fausse annonce, piratage de messagerie ou de compte, chantage en ligne, rançongiciel), via FranceConnect. Perceval : signalement d’une fraude à la carte bancaire quand la carte est toujours en votre possession, après opposition auprès de votre banque.',
+    url: 'https://www.service-public.gouv.fr',
+  },
+  {
+    label: 'Ma Sécurité — Pharos',
+    detail: 'Le portail Ma Sécurité (Ministère de l’Intérieur) présente les téléservices de plainte et de signalement. Pharos : signalement des contenus illégaux en ligne, traités par des policiers et des gendarmes.',
+    url: 'https://www.masecurite.interieur.gouv.fr',
+  },
+  {
+    label: '3018 — enfants et adolescents',
+    detail: 'Le numéro national contre les violences numériques faites aux mineurs (cyberharcèlement, chantage) : gratuit, anonyme, confidentiel, 7 jours sur 7, de 9h à 23h — téléphone, chat et application (association e-Enfance).',
+    url: 'https://e-enfance.org',
+  },
+  {
+    label: 'Info Escroqueries — 0 805 805 817',
+    detail: 'Des policiers et des gendarmes vous informent et vous orientent si vous êtes victime d’une escroquerie. Appel gratuit, du lundi au vendredi, de 9h à 18h30 — cité dans les fiches réflexes de Cybermalveillance.gouv.fr.',
+    url: 'https://www.cybermalveillance.gouv.fr',
+  },
+  {
+    label: 'Meta — compte piraté',
+    detail: 'Récupération des comptes Facebook et Instagram.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — récupération de compte',
+    detail: 'Récupération et vérification de sécurité du compte Google/Gmail.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Les sources et comment nous vérifions"
+  description="D’où viennent nos informations, comment nous les vérifions et comment vous pouvez les compléter ou les corriger. C’est par la transparence que nous gagnons votre confiance."
+  alternates={pageAlternates('sources')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparence</span>
+      <h1>Les sources et comment nous vérifions</h1>
+
+      <div class="content">
+        <p class="lead">
+          Un site récent n’a pas le droit de dire simplement « faites-moi
+          confiance ». C’est pourquoi nous montrons d’où viennent les
+          informations et comment nous veillons à leur actualité.
+        </p>
+
+        <h2>Comment nous travaillons</h2>
+        <ul>
+          <li>
+            Nous nous appuyons sur des <strong>sources officielles</strong>
+            (administrations, banques, plateformes officielles), pas sur des
+            rumeurs.
+          </li>
+          <li>
+            Chaque playbook affiche la <strong>date de sa dernière
+            vérification</strong> et cite ses sources à la fin.
+          </li>
+          <li>
+            Les informations présentées ici sont des <strong>repères</strong>
+            — elles vous aident à agir vite, mais ne remplacent pas les
+            instructions officielles de votre banque, de la police ou des
+            administrations.
+          </li>
+          <li>
+            Si vous remarquez une erreur ou une information dépassée,
+            <strong>dites-le-nous</strong> — nous corrigerons.
+          </li>
+        </ul>
+
+        <h2>Les sources sur lesquelles nous nous appuyons</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Numéros utiles, à toute heure</h2>
+        <ul>
+          <li><strong>17 / 112</strong> — urgences (17 : police secours).</li>
+          <li>
+            <strong>SMS suspect</strong> — transférez-le gratuitement au
+            <strong>33700</strong>.
+          </li>
+          <li>
+            <strong>Votre banque</strong> — le numéro officiel est au dos de
+            votre carte : c’est le premier réflexe pour faire opposition. Si
+            vous ne le retrouvez pas : <strong>0 892 705 705</strong>, le
+            serveur interbancaire d’opposition, 7 jours/7 et 24h/24 —
+            attention, c’est un numéro majoré (appel surtaxé).
+          </li>
+          <li>
+            <strong>3018</strong> — pour les mineurs, 7 jours sur 7, de 9h à
+            23h.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>
