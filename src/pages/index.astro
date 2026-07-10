@@ -10,9 +10,34 @@ const playbooks = (await getCollection('playbooks')).sort(
 
 const description =
   'Ghid public, practic, în română, pentru momentele de criză digitală: link fals, cont spart, țeapă online, apel de înșelăciune. Pași clari, surse verificate. Nu diplome — claritate.';
+
+// Structured data WebSite — identitatea site-ului în knowledge graph,
+// cu publisher consecvent cu restul proprietăților (mmatinca.eu).
+const webSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Digital Compass',
+  url: 'https://compass.madeinro.eu/',
+  description,
+  inLanguage: 'ro',
+  license: 'https://creativecommons.org/licenses/by/4.0/',
+  publisher: {
+    '@type': 'Person',
+    name: 'Marian Matinca',
+    url: 'https://mmatinca.eu',
+    jobTitle: 'AI Adoption Lead',
+    sameAs: ['https://mmatinca.eu', 'https://github.com/marian5070'],
+  },
+};
 ---
 
 <BaseLayout title="Digital Compass" description={description}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(webSite)}
+    is:inline
+  />
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">
