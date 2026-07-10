@@ -1,0 +1,20 @@
+{
+  "name": "digital-compass-mcp",
+  "version": "0.1.0",
+  "description": "Digital Compass MCP — Romanian digital-crisis playbooks as tools for AI agents: match a user's situation (phishing link, hacked account, purchase scam, fraud call) to a step-by-step playbook, fetch the full guidance as markdown, list real Romanian reporting channels (DNSC 1911, Police, banks). Public-good content, CC BY 4.0, plain language.",
+  "mcp_endpoint": "https://compass.madeinro.eu/mcp",
+  "protocol": "mcp-streamable-http",
+  "auth": { "type": "none" },
+  "tools": [
+    "compass_list_situations",
+    "compass_get_content",
+    "compass_find_playbook",
+    "compass_report_channels",
+    "compass_freshness"
+  ],
+  "discovery": {
+    "well_known": "https://compass.madeinro.eu/.well-known/mcp.json",
+    "health": "https://compass.madeinro.eu/mcp/health"
+  },
+  "docs": "https://compass.madeinro.eu/de-ce-existam"
+}

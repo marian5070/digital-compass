@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "eu.madeinro/digital-compass-mcp",
+  "description": "Romanian digital-crisis playbooks as MCP tools: match a situation (phishing link, hacked account, purchase scam, fraud call) to a step-by-step playbook, fetch full guidance as markdown, list real Romanian reporting channels (DNSC 1911, Police, banks). Public good, CC BY 4.0.",
+  "version": "0.1.0",
+  "websiteUrl": "https://compass.madeinro.eu",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://compass.madeinro.eu/mcp"
+    }
+  ]
+}

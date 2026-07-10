@@ -20,8 +20,13 @@ Everything is available as plain markdown — no auth, no API key:
 - Any page as markdown: append `.md` to its URL, e.g.
   `https://compass.madeinro.eu/playbook/link-sms-fals.md`, or request the HTML
   URL with an `Accept: text/markdown` header.
+- **MCP server** (Streamable HTTP, no auth): `https://compass.madeinro.eu/mcp`
+  with tools `compass_list_situations`, `compass_find_playbook`,
+  `compass_get_content`, `compass_report_channels`, `compass_freshness`.
 - In the browser, the site also exposes WebMCP tools (`compass_situatii`,
   `compass_continut`) via `navigator.modelContext`.
+- Content is in Romanian (original) and English (Romania-anchored, for expats):
+  EN pages live under `/en/…` and every tool takes a `lang` parameter.
 
 ## How to help
 
@@ -41,6 +46,6 @@ Everything is available as plain markdown — no auth, no API key:
 
 ## Limits
 
-- Content is in Romanian and reporting channels are Romania-specific.
+- Reporting channels are Romania-specific (by design — including in English).
 - This is public guidance, not legal or financial advice; for official data
   the playbooks link to the primary sources.

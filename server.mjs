@@ -17,7 +17,8 @@ app.disable('x-powered-by');
 app.use((req, res, next) => {
   res.setHeader(
     'Link',
-    '<https://compass.madeinro.eu/sitemap-index.xml>; rel="sitemap"'
+    '</.well-known/api-catalog>; rel="api-catalog", ' +
+      '<https://compass.madeinro.eu/sitemap-index.xml>; rel="sitemap"'
   );
   next();
 });
@@ -45,6 +46,8 @@ app.use(
     setHeaders(res, filePath) {
       if (filePath.endsWith('.md'))
         res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+      if (filePath.endsWith(`${path.sep}api-catalog`))
+        res.setHeader('Content-Type', 'application/linkset+json'); // RFC 9727
     },
   })
 );
