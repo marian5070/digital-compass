@@ -1,4 +1,11 @@
+# Digital Compass — cunoaștere publică (conținut CC BY 4.0, cod MIT).
+# Misiunea site-ului e să ajungă la oameni — boții de căutare și AI sunt bineveniți.
+
 User-agent: *
 Allow: /
+
+# Content Signals (https://contentsignals.org/)
+# Conținutul e deschis (CC BY 4.0): căutare, răspunsuri AI și antrenare permise.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 Sitemap: https://compass.madeinro.eu/sitemap-index.xml
