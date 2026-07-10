@@ -3,18 +3,22 @@
   "serverInfo": {
     "name": "digital-compass-mcp",
     "title": "Digital Compass — Romanian digital-crisis playbooks",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
-  "description": "Step-by-step playbooks for online emergencies in Romania (phishing, hacked accounts, purchase scams, fraud calls) exposed as MCP tools: situation matching, full markdown guidance, real reporting channels (DNSC 1911, Police, banks). Public good, CC BY 4.0.",
+  "description": "Step-by-step playbooks for online emergencies in 9 languages with country-anchored reporting channels (Romania, Poland, Czechia, Slovakia, Italy, France, Germany), exposed as MCP tools: situation matching, full markdown guidance, real reporting channels per country. Public good, CC BY 4.0.",
   "transport": {
     "type": "streamable-http",
     "endpoint": "https://compass.madeinro.eu/mcp",
     "url": "https://compass.madeinro.eu/mcp"
   },
   "capabilities": {
-    "tools": { "listChanged": false }
+    "tools": {
+      "listChanged": false
+    }
   },
-  "authentication": { "required": false },
+  "authentication": {
+    "required": false
+  },
   "websiteUrl": "https://compass.madeinro.eu",
   "repository": "https://github.com/marian5070/digital-compass"
 }

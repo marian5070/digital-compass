@@ -8,7 +8,7 @@ const SITE = 'https://compass.madeinro.eu';
 const LangInput = z
   .enum(['ro', 'en', 'hu', 'pl', 'cs', 'sk', 'it', 'fr', 'de'])
   .default('ro')
-  .describe('Limba conținutului (ro = original; en/hu ancorate în România, pl ancorat în Polonia)');
+  .describe('Limba conținutului (ro = original; en/hu ancorate în România; pl/cs/sk/it/fr/de ancorate în țările lor, cu canale locale)');
 
 // Câmpurile pe limbă din index: intrările fără `lang` sunt ro (istoric).
 const byLang = (items, lang) => items.filter((i) => (i.lang ?? 'ro') === lang);
