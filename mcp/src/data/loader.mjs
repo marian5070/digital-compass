@@ -27,7 +27,9 @@ export function getIndexLoadedAt() {
 }
 
 const SLUG_RE = /^[a-z0-9-]+$/;
-const LANGS = new Set(['ro', 'en']);
+const LANGS = new Set(['ro', 'en', 'hu']);
+// Segmentul de URL al colecției de ghiduri diferă pe limbă.
+const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok' };
 
 /**
  * Markdown-ul unei pagini din dist. RO stă la rădăcină, alte limbi sub /<lang>/.
@@ -35,8 +37,7 @@ const LANGS = new Set(['ro', 'en']);
  */
 export function getMarkdown(type, slug, lang = 'ro') {
   if (!SLUG_RE.test(slug) || !LANGS.has(lang)) return null;
-  // Segmentele de URL diferă pe limbă: ro → /ghiduri/, en → /en/guides/.
-  const collection = type === 'ghid' ? (lang === 'ro' ? 'ghiduri' : 'guides') : 'playbook';
+  const collection = type === 'ghid' ? GUIDE_SEGMENT[lang] : 'playbook';
   const rel = lang === 'ro' ? [collection, `${slug}.md`] : [lang, collection, `${slug}.md`];
   const file = path.join(DIST, ...rel);
   if (!file.startsWith(DIST) || !existsSync(file)) return null;

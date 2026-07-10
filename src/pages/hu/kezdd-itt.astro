@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Traseu curat, în ordinea recomandată — oglinda HU a paginii /incepe-aici.
+const path = [
+  {
+    label: 'E-mail és üzenetek',
+    desc: 'Szinte minden átverés itt kezdődik. Tanuld meg látni, ki ír neked valójában, és hová vezet egy link.',
+    links: [
+      { href: '/hu/utmutatok/cine-iti-scrie', title: 'Ki ír neked valójában?' },
+      {
+        href: '/hu/utmutatok/verifica-link-fara-sa-l-deschizi',
+        title: 'Hogyan ellenőrizz egy linket anélkül, hogy megnyitnád',
+      },
+    ],
+  },
+  {
+    label: 'Fiókok és jelszavak',
+    desc: 'A legfontosabb védelmi lépés: egy második lépés a bejelentkezésnél.',
+    links: [
+      {
+        href: '/hu/utmutatok/2fa-authenticator-passkey',
+        title: 'Hogyan védd meg a fiókjaidat',
+      },
+    ],
+  },
+  {
+    label: 'Ismerd fel az átveréseket',
+    desc: 'Néhány gyakori helyzet — hogy már azelőtt ismerd őket, mielőtt lecsapnának rád.',
+    links: [
+      { href: '/hu/playbook/link-sms-fals', title: 'Hamis link vagy SMS' },
+      { href: '/hu/playbook/cont-spart', title: 'Feltört vagy zárolt fiók' },
+      { href: '/hu/playbook/real-sau-ai', title: 'Valódi, vagy AI-jal készült?' },
+      {
+        href: '/hu/playbook/oferta-investitii-crypto',
+        title: 'Csaló befektetési vagy kriptoajánlatok',
+      },
+    ],
+  },
+  {
+    label: 'A munkahelyen (ha alkalmazott vagy)',
+    desc: 'Egyszerű szabályok a mindennapi munkához.',
+    links: [
+      {
+        href: '/hu/utmutatok/email-de-la-sef-bec',
+        title: 'E-mail a „főnöktől”, aki sürgős utalást követel',
+      },
+      { href: '/hu/utmutatok/raporteaza-la-it', title: 'Jelents minden gyanúsat az IT-nek' },
+      {
+        href: '/hu/utmutatok/datele-companiei-si-clientilor',
+        title: 'A cég és az ügyfelek adatai',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Kezdd itt"
+  description="Egyszerű útvonal, sorban, hogy megtanuld a digitális biztonság alapjait — jól jön annak is, aki új egy csapatban. Szakzsargon és tanúsítványok nélkül."
+  alternates={{ ro: '/incepe-aici', en: '/en/start-here', hu: '/hu/kezdd-itt' }}
+>
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Ajánlott útvonal</span>
+        <h1>Kezdd itt</h1>
+        <p class="lead">
+          Ha új vagy a témában — vagy épp most csatlakoztál egy csapathoz —,
+          menj végig az alábbi lépéseken, sorban. Nagyjából 20 perc alatt
+          megvannak az alapok, amelyek a legtöbb csapdától megvédenek. Se
+          szakzsargon, se tesztek.
+        </p>
+      </div>
+
+      <ol class="path">
+        {
+          path.map((step, i) => (
+            <li class="step">
+              <div class="step-num" aria-hidden="true">{i + 1}</div>
+              <div class="step-body">
+                <h2>{step.label}</h2>
+                <p class="step-desc">{step.desc}</p>
+                <ul class="step-links">
+                  {step.links.map((l) => (
+                    <li>
+                      <a href={l.href}>{l.title} →</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <aside class="org">
+        <h2>Szervezeteknek</h2>
+        <p>
+          Minden, ami itt van, szabadon használható (licenc:
+          <a href="/hu/forrasok">CC BY</a>) tudatosító és beilleszkedési
+          anyagként bármely szervezetben — egy új kollégát egyenesen a fenti
+          útvonalra küldhetsz.
+        </p>
+        <p>
+          Támogathat olyan követelményeket is, mint az <strong>ISO 27001
+          (A.6.3 — tudatosság, oktatás és képzés)</strong>. Egy dolog elvből
+          világos marad: <strong>nem állítunk ki tanúsítványokat, és nem
+          vezetünk nyilvántartást</strong>. Ha egy szervezetnek igazolásra van
+          szüksége az elvégzésről, azt maga kezeli, a saját eszközeivel. Mi
+          csak a tudást adjuk.
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    max-width: 54ch;
+    margin-bottom: var(--space-6);
+  }
+  .head h1 {
+    margin-top: var(--space-2);
+  }
+  .head .lead {
+    margin-top: var(--space-3);
+  }
+  .path {
+    list-style: none;
+    padding: 0;
+    max-width: var(--container-prose);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .step {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+  .step-num {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: var(--weight-bold);
+  }
+  .step-body h2 {
+    font-size: var(--text-lg);
+  }
+  .step-desc {
+    margin-top: 0.25rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .step-links {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .step-links a {
+    font-weight: var(--weight-medium);
+    text-decoration: none;
+  }
+  .step-links a:hover {
+    text-decoration: underline;
+  }
+  .org {
+    max-width: var(--container-prose);
+    margin-top: var(--space-6);
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+  .org h2 {
+    font-size: var(--text-lg);
+  }
+  .org p {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+</style>

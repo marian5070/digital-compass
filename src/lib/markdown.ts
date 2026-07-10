@@ -21,13 +21,14 @@ function inlineMd(s: string): string {
 
 const list = (items: string[]) => items.map((i) => `- ${inlineMd(i)}`).join('\n');
 
-function footer(lang: 'ro' | 'en', lastReviewed: string): string {
-  const blurb =
-    lang === 'en'
-      ? `Digital Compass — public, practical digital-safety knowledge for Romania (content CC BY 4.0): ${SITE}/en`
-      : `Digital Compass — cunoaștere publică, practică, în română (conținut CC BY 4.0): ${SITE}/`;
-  const reviewed = lang === 'en' ? 'Last reviewed' : 'Verificat ultima dată';
-  return ['---', '', `${reviewed}: ${lastReviewed}.`, blurb].join('\n');
+function footer(lang: 'ro' | 'en' | 'hu', lastReviewed: string): string {
+  const blurbs = {
+    ro: `Digital Compass — cunoaștere publică, practică, în română (conținut CC BY 4.0): ${SITE}/`,
+    en: `Digital Compass — public, practical digital-safety knowledge for Romania (content CC BY 4.0): ${SITE}/en`,
+    hu: `Digital Compass — közhasznú, gyakorlati digitális biztonsági tudás Romániában élőknek (tartalom CC BY 4.0): ${SITE}/hu`,
+  };
+  const reviewed = { ro: 'Verificat ultima dată', en: 'Last reviewed', hu: 'Utoljára ellenőrizve' };
+  return ['---', '', `${reviewed[lang]}: ${lastReviewed}.`, blurbs[lang]].join('\n');
 }
 
 export function playbookToMarkdown(entry: CollectionEntry<'playbooks'>): string {

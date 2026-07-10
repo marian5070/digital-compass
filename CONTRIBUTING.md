@@ -23,10 +23,45 @@ informația să rămână de încredere.
 5. **Fără** sfaturi nesusținute, ton alarmist, promisiuni, linkuri de afiliere sau
    îndemnuri la plată.
 
+## Limbi și traduceri — avem nevoie de tine
+
+Site-ul există în **română** (originalul), **engleză** și **maghiară** — ambele
+ancorate în România (publicul: expați, respectiv comunitatea maghiarofonă din RO;
+canalele de raportare rămân cele românești). Traducerile EN/HU sunt făcute cu AI
+și verificate editorial, dar **nu de vorbitori nativi**. Dacă ești vorbitor nativ
+și vezi o formulare nefirească — un PR cu corectura, oricât de mică, e exact genul
+de contribuție pe care o căutăm.
+
+### Cum adaugi o limbă nouă („language pack")
+
+Regula de aur: **canalele se localizează, nu se traduc.** O limbă are sens în două
+scenarii, iar ele cer lucruri diferite:
+
+- **Limbă vorbită în România** (cum sunt EN/HU de azi): canalele DNSC/Poliția/banca
+  rămân; e „doar" traducere + glose pentru instituțiile românești.
+- **Limbă pentru altă țară** (PL pentru Polonia etc.): OBLIGATORIU se înlocuiesc
+  canalele de raportare (CERT-ul național, poliția, protecția consumatorului),
+  sursele și exemplele de înșelătorii cu cele locale, verificate cu link real.
+  Fără asta, un playbook tradus e periculos — trimite omul în criză la un număr
+  care nu-l poate ajuta.
+
+Pașii tehnici (modelul complet e limba `hu` din istoric):
+1. Conținut: `src/content/playbooks/<lang>/` + `src/content/ghiduri/<lang>/`
+   (aceleași slug-uri de fișier ca RO — sunt cheia comună între limbi).
+2. `src/lib/i18n-content.ts`: adaugă limba în `Lang` și `LANGS`.
+3. `src/i18n/routes.ts`: rutele limbii (slug-uri localizate pentru paginile statice).
+4. `src/i18n/ui.ts`: dicționarul complet de interfață.
+5. `astro.config.mjs`: locale în `i18n` și în `sitemap({ i18n })`.
+6. Pagini subțiri în `src/pages/<lang>/` (copiate după `src/pages/hu/`) + cele
+   3 pagini de proză traduse.
+7. `public/webmcp.js` și `mcp/src/` — adaugă limba în enum-uri și în maparea
+   segmentului de ghiduri.
+8. `npm run build` trebuie să treacă; verifică hreflang-ul pe o pagină.
+
 ## Cum adaugi un playbook
 
-Creezi un fișier în `src/content/playbooks/<slug>.md`. Schema completă e în
-`src/content.config.ts`. Frontmatter:
+Creezi un fișier în `src/content/playbooks/ro/<slug>.md` (plus, ideal, variantele
+în limbile existente). Schema completă e în `src/content.config.ts`. Frontmatter:
 
 ```yaml
 ---

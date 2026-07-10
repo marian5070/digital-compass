@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'DNSC (Románia nemzeti kiberbiztonsági hatósága)',
+    detail: 'A nemzeti kiberbiztonsági hatóság. Adathalász-riasztások, incidensek bejelentése, 1911-es hívóközpont.',
+    url: 'https://dnsc.ro',
+  },
+  {
+    label: 'ANPC (a román fogyasztóvédelmi hatóság)',
+    detail: 'Panaszok romániai webáruházakról és online kereskedőkről.',
+    url: 'https://anpc.ro',
+  },
+  {
+    label: 'Poliția Română (a román rendőrség)',
+    detail: 'Feljelentés online csalás és átverés miatt.',
+    url: 'https://www.politiaromana.ro',
+  },
+  {
+    label: 'Meta — Feltört fiók',
+    detail: 'Facebook- és Instagram-fiókok visszaszerzése.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — Fiók-helyreállítás',
+    detail: 'Helyreállítás és biztonsági ellenőrzés a Google/Gmail-fiókodhoz.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Források és hogyan ellenőrzünk"
+  description="Honnan származik az információnk, hogyan ellenőrizzük, és hogyan járulhatsz hozzá vagy javíthatsz rajta. Az átláthatósággal érdemeljük ki a bizalmadat."
+  alternates={{ ro: '/surse', en: '/en/sources', hu: '/hu/forrasok' }}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Átláthatóság</span>
+      <h1>Források &amp; hogyan ellenőrzünk</h1>
+
+      <div class="content">
+        <p class="lead">
+          Egy új honlapnak nincs joga csak annyit mondani: „bízz bennem”.
+          Ezért megmutatjuk, honnan származik az információ, és hogyan
+          tartjuk naprakészen.
+        </p>
+
+        <h2>Hogyan dolgozunk</h2>
+        <ul>
+          <li>
+            <strong>Hivatalos forrásokra</strong> támaszkodunk (hatóságok,
+            bankok, a hivatalos platformok), nem szóbeszédre.
+          </li>
+          <li>
+            Minden playbookon látszik <strong>az utolsó ellenőrzés dátuma</strong>,
+            a végén pedig a források listája.
+          </li>
+          <li>
+            Az itteni információ <strong>útmutató jellegű</strong> — segít
+            gyorsan cselekedni, de nem helyettesíti a bankod, a rendőrség
+            vagy a hatóságok hivatalos utasításait.
+          </li>
+          <li>
+            Ha hibát vagy elavult információt látsz, <strong>szólj nekünk</strong> —
+            kijavítjuk.
+          </li>
+        </ul>
+
+        <h2>A források, amelyekre támaszkodunk</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Hasznos számok, bármikor</h2>
+        <ul>
+          <li><strong>112</strong> — vészhelyzetek.</li>
+          <li>
+            <strong>1911</strong> — DNSC, kiberincidensek és útmutatás.
+            Online is bejelenthetsz, itt:
+            <a href="https://pnrisc.dnsc.ro" target="_blank" rel="noopener">pnrisc.dnsc.ro</a>.
+          </li>
+          <li>
+            <strong>A bankod</strong> — a hivatalos szám a kártyád hátoldalán
+            található.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

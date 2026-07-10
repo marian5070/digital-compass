@@ -23,6 +23,16 @@ export const routes = {
     playbook: (slug: string) => `/en/playbook/${slug}`,
     guide: (slug: string) => `/en/guides/${slug}`,
   },
+  // Maghiară ancorată în România: limba se schimbă, canalele de raportare nu.
+  hu: {
+    home: '/hu',
+    start: '/hu/kezdd-itt',
+    guidesIndex: '/hu/utmutatok',
+    why: '/hu/miert-letezunk',
+    sources: '/hu/forrasok',
+    playbook: (slug: string) => `/hu/playbook/${slug}`,
+    guide: (slug: string) => `/hu/utmutatok/${slug}`,
+  },
 } as const;
 
 export function r(lang: Lang) {

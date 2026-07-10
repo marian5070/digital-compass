@@ -10,7 +10,7 @@ import { rateLimit } from './middleware/rate-limit.mjs';
 import { authOptional } from './middleware/auth.mjs';
 import { accessLog } from './middleware/log.mjs';
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 
 getIndex(); // fail-fast dacă dist/ nu e construit
 

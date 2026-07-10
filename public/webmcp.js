@@ -28,7 +28,7 @@
       {
         name: 'compass_situatii',
         description:
-          'Lista situațiilor de criză digitală acoperite de Digital Compass (link fals, cont spart, țeapă online...) plus ghidurile de prevenție, în română și engleză (câmpul lang per intrare). Folosește-o ca să găsești slug-ul potrivit pentru problema utilizatorului, apoi cheamă compass_continut.',
+          'Lista situațiilor de criză digitală acoperite de Digital Compass (link fals, cont spart, țeapă online...) plus ghidurile de prevenție, în română, engleză și maghiară (câmpul lang per intrare). Folosește-o ca să găsești slug-ul potrivit pentru problema utilizatorului, apoi cheamă compass_continut.',
         inputSchema: { type: 'object', properties: {} },
         execute: function () {
           return loadIndex().then(ok, function () {
@@ -39,21 +39,23 @@
       {
         name: 'compass_continut',
         description:
-          'Conținutul complet (markdown) al unui playbook de criză sau ghid de prevenție: pașii de urmat acum, ce să NU faci, cum recunoști data viitoare, unde raportezi în România (DNSC 1911, Poliție, bancă), cu surse citate. Ghid public, limbaj simplu — potrivit de transmis direct utilizatorului. lang: "ro" (implicit) sau "en".',
+          'Conținutul complet (markdown) al unui playbook de criză sau ghid de prevenție: pașii de urmat acum, ce să NU faci, cum recunoști data viitoare, unde raportezi în România (DNSC 1911, Poliție, bancă), cu surse citate. Ghid public, limbaj simplu — potrivit de transmis direct utilizatorului. lang: "ro" (implicit), "en" sau "hu".',
         inputSchema: {
           type: 'object',
           properties: {
             tip: { type: 'string', enum: ['playbook', 'ghid'], description: 'playbook = criză (s-a întâmplat deja), ghid = prevenție' },
             slug: { type: 'string', description: 'Slug-ul din compass_situatii, ex: "link-sms-fals"' },
-            lang: { type: 'string', enum: ['ro', 'en'], description: 'Limba conținutului (implicit ro)' },
+            lang: { type: 'string', enum: ['ro', 'en', 'hu'], description: 'Limba conținutului (implicit ro)' },
           },
           required: ['tip', 'slug'],
         },
         execute: function (args) {
           var a = args || {};
           if (!a.slug || !/^[a-z0-9-]+$/.test(a.slug)) return Promise.resolve(err('Slug invalid.'));
-          var en = a.lang === 'en';
-          var base = a.tip === 'ghid' ? (en ? '/en/guides/' : '/ghiduri/') : (en ? '/en/playbook/' : '/playbook/');
+          var lang = a.lang === 'en' || a.lang === 'hu' ? a.lang : 'ro';
+          var GUIDES = { ro: '/ghiduri/', en: '/en/guides/', hu: '/hu/utmutatok/' };
+          var PLAYBOOKS = { ro: '/playbook/', en: '/en/playbook/', hu: '/hu/playbook/' };
+          var base = a.tip === 'ghid' ? GUIDES[lang] : PLAYBOOKS[lang];
           return fetch(base + a.slug + '.md')
             .then(function (r) {
               if (!r.ok) throw new Error(String(r.status));

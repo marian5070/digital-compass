@@ -42,7 +42,11 @@ const howTo = {
 <BaseLayout
   title={data.title}
   description={data.summary}
-  alternates={{ ro: routes.ro.playbook(slug), en: routes.en.playbook(slug) }}
+  alternates={{
+    ro: routes.ro.playbook(slug),
+    en: routes.en.playbook(slug),
+    hu: routes.hu.playbook(slug),
+  }}
 >
   <script
     slot="head"

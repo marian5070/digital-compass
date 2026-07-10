@@ -1,10 +1,12 @@
 {
   "name": "digital-compass-mcp",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "MCP server pentru Digital Compass: playbook-urile de criză digitală ca unelte pentru agenți AI.",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "start": "node src/server.mjs"
   },

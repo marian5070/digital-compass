@@ -3,7 +3,7 @@
   "serverInfo": {
     "name": "digital-compass-mcp",
     "title": "Digital Compass — Romanian digital-crisis playbooks",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "description": "Step-by-step playbooks for online emergencies in Romania (phishing, hacked accounts, purchase scams, fraud calls) exposed as MCP tools: situation matching, full markdown guidance, real reporting channels (DNSC 1911, Police, banks). Public good, CC BY 4.0.",
   "transport": {

@@ -25,8 +25,10 @@ Everything is available as plain markdown — no auth, no API key:
   `compass_get_content`, `compass_report_channels`, `compass_freshness`.
 - In the browser, the site also exposes WebMCP tools (`compass_situatii`,
   `compass_continut`) via `navigator.modelContext`.
-- Content is in Romanian (original) and English (Romania-anchored, for expats):
-  EN pages live under `/en/…` and every tool takes a `lang` parameter.
+- Content is in Romanian (original), English (for expats in Romania) and
+  Hungarian (for Romania's Hungarian-speaking community) — all Romania-anchored.
+  EN pages live under `/en/…`, HU under `/hu/…`, and every tool takes a `lang`
+  parameter (`ro` | `en` | `hu`).
 
 ## How to help
 

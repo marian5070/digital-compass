@@ -30,7 +30,11 @@ const related = data.relatedPlaybook
 <BaseLayout
   title={data.title}
   description={data.summary}
-  alternates={{ ro: routes.ro.guide(slug), en: routes.en.guide(slug) }}
+  alternates={{
+    ro: routes.ro.guide(slug),
+    en: routes.en.guide(slug),
+    hu: routes.hu.guide(slug),
+  }}
 >
   <article class="guide">
     <div class="container">

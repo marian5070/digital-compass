@@ -7,8 +7,8 @@ import type { Lang } from '../lib/i18n-content';
 interface Props {
   title: string;
   description: string;
-  /** Path-urile paginii în ambele limbi — emit hreflang + comutatorul de limbă. */
-  alternates?: { ro: string; en: string };
+  /** Path-urile paginii în fiecare limbă — emit hreflang + comutatorul de limbă. */
+  alternates?: Partial<Record<Lang, string>>;
 }
 
 const lang = (Astro.currentLocale ?? 'ro') as Lang;
@@ -17,12 +17,18 @@ const fullTitle =
   title === 'Digital Compass' ? title : `${title} · Digital Compass`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const abs = (p: string) => new URL(p, Astro.site).href;
-const altUrl = alternates ? alternates[lang === 'ro' ? 'en' : 'ro'] : undefined;
-const ogAlt =
-  lang === 'en'
-    ? 'Digital Compass — a public digital-safety guide for Romania'
-    : 'Digital Compass — ghid public de siguranță digitală, în română';
-const skipLabel = lang === 'en' ? 'Skip to content' : 'Sari la conținut';
+const altEntries = Object.entries(alternates ?? {}) as [Lang, string][];
+const OG_LOCALE: Record<Lang, string> = { ro: 'ro_RO', en: 'en_US', hu: 'hu_HU' };
+const OG_ALT: Record<Lang, string> = {
+  ro: 'Digital Compass — ghid public de siguranță digitală, în română',
+  en: 'Digital Compass — a public digital-safety guide for Romania',
+  hu: 'Digital Compass — közhasznú digitális biztonsági útmutató, Romániában élőknek',
+};
+const SKIP: Record<Lang, string> = {
+  ro: 'Sari la conținut',
+  en: 'Skip to content',
+  hu: 'Ugrás a tartalomhoz',
+};
 ---
 
 <!doctype html>
@@ -33,13 +39,10 @@ const skipLabel = lang === 'en' ? 'Skip to content' : 'Sari la conținut';
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {altEntries.map(([l, p]) => <link rel="alternate" hreflang={l} href={abs(p)} />)}
     {
-      alternates && (
-        <>
-          <link rel="alternate" hreflang="ro" href={abs(alternates.ro)} />
-          <link rel="alternate" hreflang="en" href={abs(alternates.en)} />
-          <link rel="alternate" hreflang="x-default" href={abs(alternates.ro)} />
-        </>
+      alternates?.ro && (
+        <link rel="alternate" hreflang="x-default" href={abs(alternates.ro)} />
       )
     }
     <meta name="color-scheme" content="light dark" />
@@ -49,11 +52,11 @@ const skipLabel = lang === 'en' ? 'Skip to content' : 'Sari la conținut';
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ro_RO'} />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
     <meta property="og:image" content={new URL('/og-image.png', Astro.site).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:image:alt" content={OG_ALT[lang]} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={new URL('/og-image.png', Astro.site).href} />
 
@@ -67,8 +70,8 @@ const skipLabel = lang === 'en' ? 'Skip to content' : 'Sari la conținut';
     <script src="/webmcp.js" defer is:inline></script>
   </head>
   <body>
-    <a href="#main" class="skip-link">{skipLabel}</a>
-    <SiteHeader altUrl={altUrl} />
+    <a href="#main" class="skip-link">{SKIP[lang]}</a>
+    <SiteHeader alternates={alternates} />
     <main id="main">
       <slot />
     </main>

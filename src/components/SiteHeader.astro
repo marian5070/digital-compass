@@ -4,14 +4,18 @@ import { t } from '../i18n/ui';
 import { r } from '../i18n/routes';
 import type { Lang } from '../lib/i18n-content';
 
-// URL-ul paginii-pereche în cealaltă limbă (pentru comutator), primit din layout.
+// Path-urile paginii în fiecare limbă (pentru comutator), primite din layout.
 interface Props {
-  altUrl?: string;
+  alternates?: Partial<Record<Lang, string>>;
 }
 const lang = (Astro.currentLocale ?? 'ro') as Lang;
 const T = t(lang);
 const R = r(lang);
-const { altUrl } = Astro.props;
+const { alternates } = Astro.props;
+const LANG_LABEL: Record<Lang, string> = { ro: 'Română', en: 'English', hu: 'Magyar' };
+const otherLangs = (Object.entries(alternates ?? {}) as [Lang, string][]).filter(
+  ([l]) => l !== lang
+);
 
 const links = [
   { href: R.home, label: T('nav.home') },
@@ -46,13 +50,13 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           })
         }
         {
-          altUrl && (
+          otherLangs.map(([l, p]) => (
             <li>
-              <a href={altUrl} class="lang-switch" aria-label={T('lang.switch.aria')}>
-                {T('lang.switch')}
+              <a href={p} class="lang-switch" lang={l} hreflang={l}>
+                {LANG_LABEL[l]}
               </a>
             </li>
-          )
+          ))
         }
       </ul>
     </nav>

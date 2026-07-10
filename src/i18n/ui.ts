@@ -181,6 +181,90 @@ export const ui = {
     'lang.switch': 'Versiunea în română',
     'lang.switch.aria': 'Comută la română',
   },
+  hu: {
+    'nav.home': 'Kezdőlap',
+    'nav.start': 'Kezdd itt',
+    'nav.guides': 'Útmutatók',
+    'nav.why': 'Miért létezünk',
+    'nav.sources': 'Források',
+    'nav.aria': 'Fő navigáció',
+    'brand.aria': 'Digital Compass — kezdőlap',
+
+    'footer.tagline':
+      'Közhasznú, gyakorlati tudás a digitális válsághelyzetekre. Nem diploma — világosság.',
+    'footer.nav.aria': 'Lábléc navigáció',
+    'footer.why': 'Miért létezünk',
+    'footer.sources': 'Források & hogyan ellenőrzünk',
+    'footer.emergency.title': 'Veszélyben vagy most?',
+    'footer.emergency.line': 'Segélyhívó:',
+    'footer.emergency.cyber': 'Kiberincidensek (DNSC):',
+    'footer.legal':
+      'Független, közhasznú projekt. Az itt található információ tájékoztató jellegű — nem helyettesíti a bankod, a rendőrség vagy a hatóságok hivatalos útmutatását.',
+
+    'card.cta': 'Nézd meg, mit tegyél',
+    'sources.reviewed': 'Utoljára ellenőrizve:',
+    'sources.tellus': 'Elavult információt látsz? Szólj nekünk.',
+
+    'pb.back': '← Minden helyzet',
+    'pb.urgent': 'Sürgős — cselekedj most',
+    'pb.breathe.aria': 'Először is: lélegezz',
+    'pb.steps': 'Első lépések, most azonnal',
+    'pb.donts': 'Mit NE tegyél',
+    'pb.recognize': 'Hogyan ismered fel legközelebb',
+    'pb.report': 'Hol jelentheted (Románia)',
+    'pb.sources': 'Források',
+    'pb.disclaimer':
+      'Ez az útmutató abban segít, hogy gyorsan cselekedj. Nem helyettesíti a bankod, a rendőrség vagy a hatóságok hivatalos utasításait. Ha kétséged van, hívd a fenti számokat.',
+
+    'guide.back': '← Minden útmutató',
+    'guide.eyebrow': 'Biztonsági útmutató',
+    'guide.good': 'Jó jelek — ezeket keresd',
+    'guide.bad': 'Vészjelek',
+    'guide.related.label': 'Már megtörtént?',
+    'guide.related.cta': 'Nézd meg, mit tegyél →',
+
+    'notfound.title': 'Az oldal nem található',
+    'notfound.desc':
+      'A keresett oldal nem létezik. Menj vissza a helyzetekhez, és válaszd ki, mi történik veled.',
+    'notfound.h1': 'Itt nincs semmi. De nem tévedtél el teljesen.',
+    'notfound.lead':
+      'A keresett oldal nem létezik vagy elköltözött. Menj vissza a helyzetekhez — válaszd ki, mi történik veled, és megmondjuk, mit tegyél.',
+    'notfound.cta': 'Vissza a helyzetekhez',
+
+    'home.eyebrow': 'Közhasznú útmutató · Romániában élőknek',
+    'home.h1': 'Történt veled valami az interneten? Lélegezz. Pontosan megmondjuk, mit tegyél.',
+    'home.lead':
+      'Se szakzsargon, se diploma, se ijesztgetés. Csak világos lépések azokra a pillanatokra, amikor a digitális világ váratlanul ér — ellenőrizhető forrásokkal.',
+    'home.cta': 'Válaszd ki a helyzeted ↓',
+    'home.cta.start': 'Új vagy itt, vagy egy csapat tagja? Kezdd itt →',
+    'home.situations.h2': 'Mi történik veled most?',
+    'home.situations.lead':
+      'Válaszd ki, mi történik. Minden útmutató az első lépésekkel kezdődik, sorrendben.',
+    'home.prevent.eyebrow': 'Mielőtt megtörténne',
+    'home.prevent.h2': 'Inkább elkerülnéd az egészet?',
+    'home.prevent.lead':
+      'Megelőző útmutatók: mit nézz meg fizetés előtt, melyek a vészjelek, és milyen egyszerű szabályok védenek meg.',
+    'home.prevent.cta': 'Nézd meg az útmutatókat →',
+    'home.why.eyebrow': 'Miért létezünk',
+    'home.why.h2': 'Nem diplomát adunk. Világosságot adunk.',
+    'home.why.p':
+      'Sok szó esik a digitalizációról, a biztonságról és a „digitális készségekről", de túl ritkán magyarázza el valaki az egyszerű embernek, a saját nyelvén, hogy mit tegyen, amikor tényleg baja van. Ezt a rést töltjük be: a beszéd és egy gyakorlati, nyilvános, elérhető út közötti űrt.',
+    'home.why.cta': 'Nézd meg, mit kínálunk — és mit nem →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Közhasznú, gyakorlati digitális biztonsági útmutató magyarul, Romániában élőknek: hamis link, feltört fiók, online átverés, csaló telefonhívás. Világos lépések, ellenőrzött források, valódi romániai bejelentési csatornák. Nem diploma — világosság.',
+
+    'guides.title': 'Biztonsági útmutatók',
+    'guides.desc':
+      'Megelőző digitális biztonsági útmutatók magyarul, Romániában élőknek: email és üzenetek, fiókok és jelszavak, online vásárlás és fizetés, biztonság a munkahelyen. Mit nézz meg, mielőtt baj történne. Nem diploma — világosság.',
+    'guides.eyebrow': 'Megelőzés',
+    'guides.h1': 'Mielőtt bármi történne veled',
+    'guides.lead':
+      'A kezdőlapon lévő útmutatók azután segítenek, hogy valami megtörtént. Ezek az útmutatók előtte segítenek: mit nézz meg, mi figyelmeztessen, és milyen egyszerű szabályok védenek meg.',
+
+    'lang.switch': 'Versiunea în română',
+    'lang.switch.aria': 'Váltás románra',
+  },
 } as const;
 
 export type UiKey = keyof (typeof ui)['ro'];

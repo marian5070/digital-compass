@@ -3,8 +3,8 @@ import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 // Conținutul stă pe subfoldere de limbă (src/content/<colecție>/<lang>/<slug>.md),
 // deci entry.id = "<lang>/<slug>". Helpers comune pentru toate call-site-urile.
 
-export type Lang = 'ro' | 'en';
-export const LANGS: Lang[] = ['ro', 'en'];
+export type Lang = 'ro' | 'en' | 'hu';
+export const LANGS: Lang[] = ['ro', 'en', 'hu'];
 export const DEFAULT_LANG: Lang = 'ro';
 
 export function entryLang(id: string): Lang {

@@ -12,6 +12,8 @@ export const GET: APIRoute = async () => {
   const ghiduriRo = await getGhiduri('ro');
   const playbooksEn = await getPlaybooks('en');
   const ghiduriEn = await getGhiduri('en');
+  const playbooksHu = await getPlaybooks('hu');
+  const ghiduriHu = await getGhiduri('hu');
 
   const lines: string[] = [
     '# Digital Compass',
@@ -71,6 +73,34 @@ export const GET: APIRoute = async () => {
         '',
         ...ghiduriEn.map(
           (g) => `- [${g.data.title}](${SITE}${routes.en.guide(entrySlug(g.id))}): ${g.data.summary}`
+        )
+      );
+  }
+
+  if (playbooksHu.length || ghiduriHu.length) {
+    lines.push(
+      '',
+      '## Magyar változat (Romániában élő magyaroknak — a bejelentési csatornák a romániaiak)',
+      '',
+      `Ugyanazok az útmutatók magyarul, a valódi romániai bejelentési csatornákkal`,
+      `(DNSC 1911, rendőrség, a bankod). Kezdd itt: ${SITE}/hu`,
+      ''
+    );
+    if (playbooksHu.length)
+      lines.push(
+        '### Válsághelyzetek (HU)',
+        '',
+        ...playbooksHu.map(
+          (p) => `- [${p.data.title}](${SITE}${routes.hu.playbook(entrySlug(p.id))}): ${p.data.summary}`
+        ),
+        ''
+      );
+    if (ghiduriHu.length)
+      lines.push(
+        '### Megelőző útmutatók (HU)',
+        '',
+        ...ghiduriHu.map(
+          (g) => `- [${g.data.title}](${SITE}${routes.hu.guide(entrySlug(g.id))}): ${g.data.summary}`
         )
       );
   }
