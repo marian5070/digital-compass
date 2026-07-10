@@ -1,6 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CompassMark from '../components/CompassMark.astro';
+import { LANGS } from '../lib/i18n-content';
+import { routes } from '../i18n/routes';
+import { t } from '../i18n/ui';
+
+// Astro servește un singur 404.html pentru tot site-ul. Înglobăm textele
+// tuturor limbilor (vin din același dicționar ca restul UI-ului) și un
+// mini-script alege varianta după prefixul de limbă din URL. Fără JS → RO.
+const NOTFOUND = Object.fromEntries(
+  LANGS.map((l) => {
+    const T = t(l);
+    return [
+      l,
+      {
+        h1: T('notfound.h1'),
+        lead: T('notfound.lead'),
+        cta: T('notfound.cta'),
+        home: routes[l].home,
+      },
+    ];
+  })
+);
 ---
 
 <BaseLayout
@@ -10,14 +31,34 @@ import CompassMark from '../components/CompassMark.astro';
   <section class="section">
     <div class="container notfound">
       <CompassMark size={72} />
-      <h1>Aici nu e nimic. Dar nu te-ai rătăcit de tot.</h1>
-      <p class="lead">
+      <h1 id="nf-h1">Aici nu e nimic. Dar nu te-ai rătăcit de tot.</h1>
+      <p class="lead" id="nf-lead">
         Pagina pe care o cauți nu există sau s-a mutat. Hai înapoi la situații —
         alege ce ți se întâmplă și îți spunem ce ai de făcut.
       </p>
-      <a href="/" class="btn-primary">Înapoi la situații</a>
+      <a href="/" class="btn-primary" id="nf-cta">Înapoi la situații</a>
     </div>
   </section>
+
+  <script type="application/json" id="nf-i18n" set:html={JSON.stringify(NOTFOUND)} is:inline />
+  <script is:inline>
+    (function () {
+      try {
+        var data = JSON.parse(document.getElementById('nf-i18n').textContent);
+        var seg = location.pathname.split('/')[1];
+        var v = data[seg];
+        if (!v) return; // fără prefix cunoscut → rămâne RO
+        document.documentElement.lang = seg;
+        document.getElementById('nf-h1').textContent = v.h1;
+        document.getElementById('nf-lead').textContent = v.lead;
+        var cta = document.getElementById('nf-cta');
+        cta.textContent = v.cta;
+        cta.href = v.home;
+      } catch (e) {
+        /* fallback RO */
+      }
+    })();
+  </script>
 </BaseLayout>
 
 <style>
