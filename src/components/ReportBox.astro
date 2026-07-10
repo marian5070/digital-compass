@@ -1,0 +1,82 @@
+---
+interface ReportChannel {
+  channel: string;
+  detail: string;
+  phone?: string;
+  url?: string;
+}
+interface Props {
+  channels: ReportChannel[];
+}
+const { channels } = Astro.props;
+---
+
+<div class="reportbox">
+  <ul>
+    {
+      channels.map((c) => (
+        <li>
+          <div class="report-head">
+            <span class="report-channel">{c.channel}</span>
+            {c.phone && (
+              <a class="report-phone" href={`tel:${c.phone.replace(/\s/g, '')}`}>
+                {c.phone}
+              </a>
+            )}
+          </div>
+          <p class="report-detail" set:html={c.detail} />
+          {c.url && (
+            <a class="report-link" href={c.url} target="_blank" rel="noopener">
+              {c.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .reportbox ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .reportbox li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-warn-soft);
+    border: 1px solid color-mix(in oklch, var(--color-warn) 40%, transparent);
+    border-radius: var(--radius);
+  }
+  .report-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .report-channel {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+  }
+  .report-phone {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .report-detail {
+    margin-top: 0.25rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .report-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    word-break: break-word;
+  }
+</style>

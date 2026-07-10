@@ -1,0 +1,121 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlaybookCard from '../../components/PlaybookCard.astro';
+
+const ghiduri = await getCollection('ghiduri');
+
+// Categoriile, în ordinea de afișare. Eticheta + o descriere scurtă.
+const CATEGORIES = [
+  {
+    key: 'email-mesaje',
+    label: 'Email & mesaje',
+    desc: 'Cum îți dai seama cine îți scrie și unde duce un link, fără să-l deschizi.',
+  },
+  {
+    key: 'conturi-parole',
+    label: 'Conturi & parole',
+    desc: 'Cum îți protejezi conturile înainte să pățești ceva.',
+  },
+  {
+    key: 'dispozitive',
+    label: 'Telefon & dispozitive',
+    desc: 'Actualizări, Wi-Fi public și ce faci când ești pe drum.',
+  },
+  {
+    key: 'cumparaturi-plati',
+    label: 'Cumpărături & plăți',
+    desc: 'Cum cumperi și plătești online în siguranță.',
+  },
+  {
+    key: 'la-birou',
+    label: 'La birou',
+    desc: 'Reguli simple de siguranță pentru muncă — bune și pentru cineva nou într-o echipă.',
+  },
+];
+
+const groups = CATEGORIES.map((cat) => ({
+  ...cat,
+  items: ghiduri
+    .filter((g) => g.data.category === cat.key)
+    .sort((a, b) => a.data.order - b.data.order),
+})).filter((cat) => cat.items.length > 0);
+
+const description =
+  'Ghiduri proactive de siguranță digitală, în română: email și mesaje, conturi și parole, cumpărături și plăți, siguranță la birou. La ce te uiți înainte să pățești. Nu diplome — claritate.';
+---
+
+<BaseLayout title="Ghiduri de siguranță" description={description}>
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Prevenție</span>
+        <h1>Înainte să pățești ceva</h1>
+        <p class="lead">
+          Playbook-urile de pe pagina principală te ajută <em>după</em> ce s-a
+          întâmplat ceva. Ghidurile astea te ajută <em>înainte</em>: la ce te
+          uiți, ce te avertizează și regulile simple care te feresc.
+        </p>
+      </div>
+
+      {
+        groups.map((cat) => (
+          <section class="cat" aria-labelledby={`cat-${cat.key}`}>
+            <div class="cat-head">
+              <h2 id={`cat-${cat.key}`}>{cat.label}</h2>
+              <p>{cat.desc}</p>
+            </div>
+            <div class="cards">
+              {cat.items.map((g) => (
+                <PlaybookCard
+                  href={`/ghiduri/${g.id}`}
+                  title={g.data.title}
+                  situation={g.data.topic}
+                  icon={g.data.icon}
+                  severity="important"
+                />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    max-width: 52ch;
+    margin-bottom: var(--space-6);
+  }
+  .head h1 {
+    margin-top: var(--space-2);
+  }
+  .head .lead {
+    margin-top: var(--space-3);
+  }
+  .cat {
+    margin-bottom: var(--space-6);
+  }
+  .cat-head {
+    max-width: 52ch;
+    margin-bottom: var(--space-4);
+  }
+  .cat-head h2 {
+    font-size: var(--text-xl);
+  }
+  .cat-head p {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+  }
+  .cards {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

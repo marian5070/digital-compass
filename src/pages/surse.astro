@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'DNSC — Directoratul Național de Securitate Cibernetică',
+    detail: 'Autoritatea națională pentru securitate cibernetică. Alerte de phishing, raportare incidente, call center 1911.',
+    url: 'https://dnsc.ro',
+  },
+  {
+    label: 'ANPC — Autoritatea Națională pentru Protecția Consumatorilor',
+    detail: 'Reclamații despre magazine și comercianți online.',
+    url: 'https://anpc.ro',
+  },
+  {
+    label: 'Poliția Română',
+    detail: 'Plângeri pentru înșelăciune și fraude online.',
+    url: 'https://www.politiaromana.ro',
+  },
+  {
+    label: 'Meta — Cont compromis',
+    detail: 'Recuperarea conturilor Facebook și Instagram.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — Recuperarea contului',
+    detail: 'Recuperare și verificare de securitate pentru contul Google/Gmail.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Surse & cum verificăm"
+  description="De unde luăm informația, cum o verificăm și cum poți contribui sau corecta. Transparența e felul nostru de a merita încrederea."
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparență</span>
+      <h1>Surse &amp; cum verificăm</h1>
+
+      <div class="content">
+        <p class="lead">
+          Un site nou nu are dreptul să-ți spună doar „ai încredere în mine”.
+          De aceea îți arătăm de unde vine informația și cum o ținem la zi.
+        </p>
+
+        <h2>Cum lucrăm</h2>
+        <ul>
+          <li>
+            Ne bazăm pe <strong>surse oficiale</strong> (autorități, bănci,
+            platformele oficiale), nu pe zvonuri.
+          </li>
+          <li>
+            Fiecare playbook are <strong>data ultimei verificări</strong> și
+            lista surselor la sfârșit.
+          </li>
+          <li>
+            Informația de aici e <strong>orientativă</strong> — te ajută să
+            acționezi rapid, dar nu înlocuiește instrucțiunile oficiale ale
+            băncii tale, ale poliției sau ale autorităților.
+          </li>
+          <li>
+            Dacă vezi ceva greșit sau neactualizat, <strong>spune-ne</strong> —
+            corectăm.
+          </li>
+        </ul>
+
+        <h2>Sursele pe care ne bazăm</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Numere utile, oricând</h2>
+        <ul>
+          <li><strong>112</strong> — urgențe.</li>
+          <li>
+            <strong>1911</strong> — DNSC, incidente cibernetice și îndrumare.
+            Poți raporta și online, pe
+            <a href="https://pnrisc.dnsc.ro" target="_blank" rel="noopener">pnrisc.dnsc.ro</a>.
+          </li>
+          <li>
+            <strong>Banca ta</strong> — numărul oficial e pe spatele cardului.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

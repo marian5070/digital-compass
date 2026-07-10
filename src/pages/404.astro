@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CompassMark from '../components/CompassMark.astro';
+---
+
+<BaseLayout
+  title="Pagina nu a fost găsită"
+  description="Pagina căutată nu există. Întoarce-te la situații și alege ce ți se întâmplă."
+>
+  <section class="section">
+    <div class="container notfound">
+      <CompassMark size={72} />
+      <h1>Aici nu e nimic. Dar nu te-ai rătăcit de tot.</h1>
+      <p class="lead">
+        Pagina pe care o cauți nu există sau s-a mutat. Hai înapoi la situații —
+        alege ce ți se întâmplă și îți spunem ce ai de făcut.
+      </p>
+      <a href="/" class="btn-primary">Înapoi la situații</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    max-width: 40ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    padding-block: var(--space-5);
+  }
+  .notfound h1 {
+    margin-top: var(--space-2);
+    font-size: var(--text-2xl);
+  }
+  .btn-primary {
+    align-self: flex-start;
+    margin-top: var(--space-3);
+    padding: 0.85rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border-radius: var(--radius);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover {
+    background: var(--color-accent-strong);
+    color: var(--color-on-accent);
+  }
+</style>

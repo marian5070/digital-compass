@@ -1,0 +1,75 @@
+/* Typography — ierarhie clară, corp mare pentru lizibilitate (inclusiv vârstnici). */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--text-hero);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  letter-spacing: -0.01em;
+}
+
+h4 {
+  font-size: var(--text-lg);
+  letter-spacing: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Bloc de conținut lung (playbook / manifest) */
+.content {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+.content > * + * {
+  margin-top: var(--space-3);
+}
+.content h2 {
+  margin-top: var(--space-5);
+}
+.content h3 {
+  margin-top: var(--space-4);
+}
+.content ul,
+.content ol {
+  padding-left: 1.3em;
+}
+.content li + li {
+  margin-top: var(--space-2);
+}
+.content strong {
+  font-weight: var(--weight-bold);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-strong);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-text-muted);
+}

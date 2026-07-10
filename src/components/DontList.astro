@@ -1,0 +1,42 @@
+---
+interface Props {
+  items: string[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="dontlist">
+  {
+    items.map((item) => (
+      <li>
+        <svg class="x" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+        </svg>
+        <span set:html={item} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .dontlist {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .dontlist li {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+  .x {
+    flex: none;
+    color: var(--color-danger);
+    margin-top: 0.15rem;
+  }
+  .dontlist :global(strong) {
+    font-weight: var(--weight-bold);
+  }
+</style>

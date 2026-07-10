@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const offer = [
+  'Claritate și explicații pe limba omului, fără jargon',
+  'Pași concreți pentru situații reale, în ordinea în care contează',
+  'Surse citate, pe care le poți verifica singur',
+  'Numere și linkuri reale unde poți raporta o problemă',
+  'Acces liber, fără cont, fără plată, fără să te urmărim',
+];
+
+const dontOffer = [
+  'Diplome, certificate sau atestate',
+  'Badge-uri de autoritate sau statut profesional',
+  'Promisiuni de carieră sau de job',
+  'Recunoaștere instituțională',
+  'Teatru de conformitate',
+];
+---
+
+<BaseLayout
+  title="De ce existăm"
+  description="Nu suntem o academie de certificare. Suntem o unealtă publică de înțelegere și adaptare la lumea digitală. Iată ce oferim și ce nu oferim."
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">De ce existăm</span>
+      <h1>Nu oferim diplome. Oferim claritate.</h1>
+
+      <div class="content">
+        <p class="lead">
+          Construim această platformă pentru omul care trebuie să se adapteze
+          unei lumi digitale care se schimbă mai repede decât reușesc
+          instituțiile să-i explice.
+        </p>
+
+        <p>
+          Se vorbește mult despre digitalizare, securitate cibernetică,
+          „competențe digitale” și reziliență. Se cheltuie bani publici pe
+          discursuri și strategii. Dar prea des, când un om obișnuit chiar are o
+          problemă — un cont spart, o țeapă, un apel de escrocherie — nu găsește
+          un drum clar, public și practic. Găsește pagini închise, jargon sau
+          tăcere.
+        </p>
+
+        <p>
+          Nu spunem că orice trebuie să fie public. În securitate există
+          conținut care trebuie controlat. Dar dacă vorbim public despre un
+          „deficit de competențe digitale”, atunci omul de rând merită măcar o
+          unealtă simplă și accesibilă. Acesta e golul pe care îl acoperim. Nu
+          înlocuim instituțiile — completăm ce lipsește.
+        </p>
+      </div>
+
+      <div class="offer-grid">
+        <section class="offer offer-yes" aria-labelledby="oferim">
+          <h2 id="oferim">Ce oferim</h2>
+          <ul>
+            {offer.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section class="offer offer-no" aria-labelledby="nu-oferim">
+          <h2 id="nu-oferim">Ce NU oferim</h2>
+          <ul>
+            {dontOffer.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      </div>
+
+      <div class="content closing">
+        <p>
+          Scopul nu e să-ți dăm o diplomă. Scopul e să te facem mai puțin
+          vulnerabil, mai informat și mai capabil în lumea în care trăiești.
+          Valoarea nu e la final, într-un certificat — e în fiecare pagină, în
+          fiecare pas, în momentul în care spui:
+          <strong>„Acum știu ce am de făcut.”</strong>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+    max-width: 18ch;
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .offer-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    margin-block: var(--space-6);
+  }
+  @media (min-width: 44rem) {
+    .offer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .offer {
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+  .offer h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+  .offer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .offer li {
+    padding-left: 1.8rem;
+    position: relative;
+  }
+  .offer-yes {
+    background: var(--color-safe-soft);
+    border-color: color-mix(in oklch, var(--color-safe) 35%, transparent);
+  }
+  .offer-yes h2 {
+    color: var(--color-safe-text);
+  }
+  .offer-yes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: var(--weight-bold);
+    color: var(--color-safe);
+  }
+  .offer-no {
+    background: var(--color-surface-2);
+  }
+  .offer-no li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-muted);
+  }
+  .closing {
+    padding: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    border-radius: var(--radius);
+  }
+</style>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://compass.madeinro.eu/sitemap-index.xml

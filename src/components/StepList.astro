@@ -1,0 +1,52 @@
+---
+interface Props {
+  steps: string[];
+}
+const { steps } = Astro.props;
+---
+
+<ol class="steplist">
+  {
+    steps.map((step, i) => (
+      <li>
+        <span class="step-num" aria-hidden="true">{i + 1}</span>
+        <span class="step-text" set:html={step} />
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .steplist {
+    list-style: none;
+    padding: 0;
+    counter-reset: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .steplist li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+  .step-num {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-sm);
+    margin-top: 0.1rem;
+  }
+  .step-text {
+    padding-top: 0.25rem;
+  }
+  .step-text :global(strong) {
+    font-weight: var(--weight-bold);
+  }
+</style>

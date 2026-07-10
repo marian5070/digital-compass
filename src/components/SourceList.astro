@@ -1,0 +1,47 @@
+---
+interface Source {
+  label: string;
+  url: string;
+}
+interface Props {
+  sources: Source[];
+  lastReviewed: string;
+}
+const { sources, lastReviewed } = Astro.props;
+---
+
+<div class="sources">
+  <p class="sources-reviewed">
+    Informație verificată ultima dată: <time>{lastReviewed}</time>.
+    Dacă vezi ceva neactualizat, spune-ne.
+  </p>
+  {
+    sources.length > 0 && (
+      <ul>
+        {sources.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="noopener">
+              {s.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</div>
+
+<style>
+  .sources {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  .sources-reviewed {
+    margin-bottom: var(--space-2);
+  }
+  .sources ul {
+    padding-left: 1.2em;
+  }
+  .sources li + li {
+    margin-top: 0.35rem;
+  }
+</style>

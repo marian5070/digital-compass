@@ -1,0 +1,102 @@
+---
+import CompassMark from './CompassMark.astro';
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="brand" aria-label="Digital Compass — acasă">
+        <CompassMark size={26} />
+        <span>Digital Compass</span>
+      </a>
+      <p class="footer-tagline">
+        Cunoaștere publică, practică, pentru momentele de criză digitală.
+        Nu diplome — claritate.
+      </p>
+    </div>
+
+    <nav aria-label="Navigare subsol" class="footer-nav">
+      <a href="/de-ce-existam">De ce existăm</a>
+      <a href="/surse">Surse &amp; cum verificăm</a>
+    </nav>
+
+    <div class="footer-emergency">
+      <p class="footer-emergency-title">În pericol acum?</p>
+      <p>
+        Urgențe: <a href="tel:112">112</a> ·
+        Incidente cibernetice (DNSC):
+        <a href="tel:1911">1911</a>
+      </p>
+    </div>
+  </div>
+  <div class="container footer-legal">
+    <p>© {year} Digital Compass · Proiect public, independent. Informația e orientativă, nu înlocuiește sfatul oficial al băncii, poliției sau autorităților.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-section);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface-2);
+    padding-block: var(--space-5) var(--space-4);
+  }
+  .footer-inner {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 48rem) {
+    .footer-inner {
+      grid-template-columns: 1.6fr 1fr 1fr;
+      align-items: start;
+    }
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+  }
+  .footer-tagline {
+    margin-top: var(--space-2);
+    max-width: 34ch;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: var(--weight-medium);
+  }
+  .footer-nav a:hover {
+    color: var(--color-text);
+  }
+  .footer-emergency-title {
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+  }
+  .footer-emergency {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  .footer-legal {
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+  }
+  .footer-legal p {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    max-width: 70ch;
+  }
+</style>

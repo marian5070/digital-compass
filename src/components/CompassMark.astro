@@ -1,0 +1,26 @@
+---
+/* Marca vizuală: o busolă stilizată. Motivul de orientare al proiectului. */
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 32, class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 48 48"
+  fill="none"
+  role="img"
+  aria-label="Digital Compass"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="2.5" opacity="0.35" />
+  <circle cx="24" cy="24" r="14.5" stroke="currentColor" stroke-width="1.5" opacity="0.2" />
+  <!-- Acul busolei: nord (accent) / sud (contur) -->
+  <path d="M24 8 L29 24 L24 21 L19 24 Z" fill="var(--color-accent)" />
+  <path d="M24 40 L19 24 L24 27 L29 24 Z" fill="currentColor" opacity="0.55" />
+  <circle cx="24" cy="24" r="2.4" fill="var(--color-surface)" stroke="currentColor" stroke-width="1.5" />
+</svg>
