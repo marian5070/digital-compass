@@ -50,6 +50,9 @@ app.use(
 );
 
 app.use((req, res) => {
+  // no-store: altfel Cloudflare cachează 404-ul și un URL abia publicat
+  // rămâne „inexistent" la edge mult după ce există la origin.
+  res.setHeader('Cache-Control', 'no-store');
   res.status(404).sendFile(path.join(DIST, '404.html'));
 });
 
