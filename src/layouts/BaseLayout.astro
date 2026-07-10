@@ -18,16 +18,23 @@ const fullTitle =
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const abs = (p: string) => new URL(p, Astro.site).href;
 const altEntries = Object.entries(alternates ?? {}) as [Lang, string][];
-const OG_LOCALE: Record<Lang, string> = { ro: 'ro_RO', en: 'en_US', hu: 'hu_HU' };
+const OG_LOCALE: Record<Lang, string> = {
+  ro: 'ro_RO',
+  en: 'en_US',
+  hu: 'hu_HU',
+  pl: 'pl_PL',
+};
 const OG_ALT: Record<Lang, string> = {
   ro: 'Digital Compass — ghid public de siguranță digitală, în română',
   en: 'Digital Compass — a public digital-safety guide for Romania',
   hu: 'Digital Compass — közhasznú digitális biztonsági útmutató, Romániában élőknek',
+  pl: 'Digital Compass — publiczny przewodnik bezpieczeństwa cyfrowego, po polsku',
 };
 const SKIP: Record<Lang, string> = {
   ro: 'Sari la conținut',
   en: 'Skip to content',
   hu: 'Ugrás a tartalomhoz',
+  pl: 'Przejdź do treści',
 };
 ---
 

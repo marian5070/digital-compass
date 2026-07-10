@@ -1,4 +1,4 @@
-import type { Lang } from '../lib/i18n-content';
+import { LANGS, type Lang } from '../lib/i18n-content';
 
 // Harta rutelor pe limbă. RO stă la rădăcină; EN are slug-uri englezești pentru
 // paginile statice și segmentul 'guides'. Slug-urile de CONȚINUT (playbook/ghid)
@@ -33,8 +33,31 @@ export const routes = {
     playbook: (slug: string) => `/hu/playbook/${slug}`,
     guide: (slug: string) => `/hu/utmutatok/${slug}`,
   },
+  // Poloneză ancorată în POLONIA (primul country pack): substanța e localizată —
+  // canale, surse și exemple poloneze, nu traduceri ale celor românești.
+  pl: {
+    home: '/pl',
+    start: '/pl/zacznij-tutaj',
+    guidesIndex: '/pl/poradniki',
+    why: '/pl/dlaczego-istniejemy',
+    sources: '/pl/zrodla',
+    playbook: (slug: string) => `/pl/playbook/${slug}`,
+    guide: (slug: string) => `/pl/poradniki/${slug}`,
+  },
 } as const;
 
 export function r(lang: Lang) {
   return routes[lang];
+}
+
+/** Alternates (hreflang + comutator) pentru paginile statice, peste toate limbile. */
+export function pageAlternates(
+  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources'
+): Record<Lang, string> {
+  return Object.fromEntries(LANGS.map((l) => [l, routes[l][key]])) as Record<Lang, string>;
+}
+
+/** Alternates pentru paginile de conținut (slug comun între limbi). */
+export function contentAlternates(kind: 'playbook' | 'guide', slug: string): Record<Lang, string> {
+  return Object.fromEntries(LANGS.map((l) => [l, routes[l][kind](slug)])) as Record<Lang, string>;
 }

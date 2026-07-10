@@ -25,12 +25,14 @@ informația să rămână de încredere.
 
 ## Limbi și traduceri — avem nevoie de tine
 
-Site-ul există în **română** (originalul), **engleză** și **maghiară** — ambele
-ancorate în România (publicul: expați, respectiv comunitatea maghiarofonă din RO;
-canalele de raportare rămân cele românești). Traducerile EN/HU sunt făcute cu AI
-și verificate editorial, dar **nu de vorbitori nativi**. Dacă ești vorbitor nativ
-și vezi o formulare nefirească — un PR cu corectura, oricât de mică, e exact genul
-de contribuție pe care o căutăm.
+Site-ul există în **română** (originalul), **engleză** și **maghiară** — ancorate
+în România (publicul: expați, respectiv comunitatea maghiarofonă din RO; canalele
+de raportare rămân cele românești) — și în **poloneză, ancorată în POLONIA**
+(primul „country pack": canale, surse și exemple poloneze; sursa editorială e
+`docs/country-packs/pl.md`, cu fiecare URL verificat). Traducerile sunt făcute cu
+AI și verificate editorial, dar **nu de vorbitori nativi**. Dacă ești vorbitor
+nativ și vezi o formulare nefirească — un PR cu corectura, oricât de mică, e exact
+genul de contribuție pe care o căutăm.
 
 ### Cum adaugi o limbă nouă („language pack")
 

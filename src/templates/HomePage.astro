@@ -5,7 +5,7 @@ import PlaybookCard from '../components/PlaybookCard.astro';
 import CompassMark from '../components/CompassMark.astro';
 import { entrySlug, type Lang } from '../lib/i18n-content';
 import { t } from '../i18n/ui';
-import { r } from '../i18n/routes';
+import { r, pageAlternates } from '../i18n/routes';
 
 // Corpul homepage-ului, comun ambelor limbi; paginile ro/en sunt wrappere subțiri.
 interface Props {
@@ -39,7 +39,7 @@ const webSite = {
 <BaseLayout
   title={T('home.title')}
   description={T('home.desc')}
-  alternates={{ ro: '/', en: '/en', hu: '/hu' }}
+  alternates={pageAlternates('home')}
 >
   <script
     slot="head"

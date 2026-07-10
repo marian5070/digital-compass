@@ -1,0 +1,156 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sources = [
+  {
+    label: 'CERT Polska',
+    detail: 'Krajowy zespół reagowania na incydenty komputerowe. Zgłoszenia na incydent.cert.pl, lista ostrzeżeń przed niebezpiecznymi stronami, podejrzany SMS przekażesz bezpłatnie na numer 8080.',
+    url: 'https://cert.pl',
+  },
+  {
+    label: 'UOKiK — Urząd Ochrony Konkurencji i Konsumentów',
+    detail: 'Prawa konsumenta, skargi na sklepy internetowe i sprzedawców. Infolinia konsumencka: 801 440 220.',
+    url: 'https://uokik.gov.pl',
+  },
+  {
+    label: 'Policja',
+    detail: 'Zawiadomienie o oszustwie internetowym składasz osobiście w dowolnym komisariacie.',
+    url: 'https://policja.pl',
+  },
+  {
+    label: 'System Zastrzegania Kart',
+    detail: 'Zastrzeżenie zgubionej lub skradzionej karty w dowolnym banku: +48 828 828 828 — bezpłatnie, całą dobę.',
+    url: 'https://zastrzegam.pl',
+  },
+  {
+    label: 'Zastrzeż PESEL',
+    detail: 'Bezpłatne zastrzeżenie numeru PESEL na gov.pl lub w aplikacji mObywatel — chroni przed kredytami wyłudzonymi na twoje dane.',
+    url: 'https://www.gov.pl/web/gov/zastrzez-swoj-numer-pesel-lub-cofnij-zastrzezenie',
+  },
+  {
+    label: 'Meta — przejęte konto',
+    detail: 'Odzyskiwanie kont na Facebooku i Instagramie.',
+    url: 'https://www.facebook.com/hacked',
+  },
+  {
+    label: 'Google — odzyskiwanie konta',
+    detail: 'Odzyskiwanie i kontrola bezpieczeństwa konta Google/Gmail.',
+    url: 'https://accounts.google.com/signin/recovery',
+  },
+];
+---
+
+<BaseLayout
+  title="Źródła i jak weryfikujemy"
+  description="Skąd pochodzą nasze informacje, jak je weryfikujemy i jak możesz je uzupełnić lub poprawić. Przejrzystością zdobywamy twoje zaufanie."
+  alternates={pageAlternates('sources')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Przejrzystość</span>
+      <h1>Źródła i jak weryfikujemy</h1>
+
+      <div class="content">
+        <p class="lead">
+          Nowa strona internetowa nie ma prawa po prostu powiedzieć „zaufaj
+          mi”. Dlatego pokazujemy, skąd pochodzą informacje i jak dbamy o ich
+          aktualność.
+        </p>
+
+        <h2>Jak pracujemy</h2>
+        <ul>
+          <li>
+            Opieramy się na <strong>oficjalnych źródłach</strong> (urzędy,
+            banki, oficjalne platformy), nie na pogłoskach.
+          </li>
+          <li>
+            Każdy playbook pokazuje <strong>datę ostatniej weryfikacji</strong>
+            i wymienia na końcu swoje źródła.
+          </li>
+          <li>
+            Informacje tutaj to <strong>wskazówki</strong> — pomagają działać
+            szybko, ale nie zastępują oficjalnych instrukcji twojego banku,
+            policji ani urzędów.
+          </li>
+          <li>
+            Jeśli zauważysz błąd lub nieaktualną informację,
+            <strong>daj nam znać</strong> — poprawimy.
+          </li>
+        </ul>
+
+        <h2>Źródła, na których się opieramy</h2>
+      </div>
+
+      <ul class="source-cards">
+        {
+          sources.map((s) => (
+            <li>
+              <a href={s.url} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+              <p>{s.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="content">
+        <h2>Przydatne numery, o każdej porze</h2>
+        <ul>
+          <li><strong>112</strong> — numer alarmowy.</li>
+          <li>
+            <strong>Podejrzany SMS</strong> — przekaż go bezpłatnie na numer
+            <strong>8080</strong> (CERT Polska).
+          </li>
+          <li>
+            <strong>+48 828 828 828</strong> — zastrzeżenie karty, dowolny
+            bank, całą dobę.
+          </li>
+          <li>
+            <strong>Twój bank</strong> — oficjalny numer jest na odwrocie
+            karty.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .source-cards {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .source-cards li {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .source-cards a {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+  .source-cards a:hover {
+    text-decoration: underline;
+  }
+  .source-cards p {
+    margin-top: 0.3rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+</style>

@@ -12,10 +12,13 @@ const lang = (Astro.currentLocale ?? 'ro') as Lang;
 const T = t(lang);
 const R = r(lang);
 const { alternates } = Astro.props;
-const LANG_LABEL: Record<Lang, string> = { ro: 'Română', en: 'English', hu: 'Magyar' };
-const otherLangs = (Object.entries(alternates ?? {}) as [Lang, string][]).filter(
-  ([l]) => l !== lang
-);
+const LANG_LABEL: Record<Lang, string> = {
+  ro: 'Română',
+  en: 'English',
+  hu: 'Magyar',
+  pl: 'Polski',
+};
+const langEntries = Object.entries(alternates ?? {}) as [Lang, string][];
 
 const links = [
   { href: R.home, label: T('nav.home') },
@@ -50,13 +53,34 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           })
         }
         {
-          otherLangs.map(([l, p]) => (
+          langEntries.length > 1 && (
             <li>
-              <a href={p} class="lang-switch" lang={l} hreflang={l}>
-                {LANG_LABEL[l]}
-              </a>
+              <details class="lang-menu">
+                <summary aria-label="Limba / Language">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M3.5 12h17M12 3.5c-2.5 2.5-2.5 14.5 0 17M12 3.5c2.5 2.5 2.5 14.5 0 17" stroke="currentColor" stroke-width="1.5" />
+                  </svg>
+                  {lang.toUpperCase()}
+                  <span class="caret" aria-hidden="true">▾</span>
+                </summary>
+                <ul class="lang-list">
+                  {langEntries.map(([l, p]) => (
+                    <li>
+                      <a
+                        href={p}
+                        lang={l}
+                        hreflang={l}
+                        aria-current={l === lang ? 'true' : undefined}
+                      >
+                        {LANG_LABEL[l]}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </li>
-          ))
+          )
         }
       </ul>
     </nav>
@@ -112,10 +136,63 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     color: var(--color-accent-strong);
     box-shadow: inset 0 -0.14em 0 var(--color-accent);
   }
-  .lang-switch {
+  .lang-menu {
+    position: relative;
+  }
+  .lang-menu summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    list-style: none;
+    cursor: pointer;
     font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
     border: 1px solid var(--color-border);
     border-radius: 999px;
-    padding: 0.3rem 0.75rem !important;
+    padding: 0.3rem 0.75rem;
+  }
+  .lang-menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .lang-menu summary:hover {
+    color: var(--color-text);
+  }
+  .lang-menu .caret {
+    font-size: 0.7em;
+  }
+  .lang-menu[open] summary {
+    color: var(--color-text);
+    border-color: var(--color-accent);
+  }
+  .lang-list {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.4rem);
+    z-index: 30;
+    min-width: 9rem;
+    list-style: none;
+    padding: 0.35rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lift);
+  }
+  .lang-list a {
+    display: block;
+    padding: 0.45rem 0.7rem !important;
+    border-radius: calc(var(--radius) - 4px);
+    font-size: var(--text-sm);
+  }
+  .lang-list a:hover {
+    background: var(--color-surface-2);
+  }
+  .lang-list a[aria-current='true'] {
+    color: var(--color-accent-strong);
+    font-weight: var(--weight-bold);
   }
 </style>

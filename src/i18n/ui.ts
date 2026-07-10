@@ -265,6 +265,91 @@ export const ui = {
     'lang.switch': 'Versiunea în română',
     'lang.switch.aria': 'Váltás románra',
   },
+  // Poloneză — ancorată în POLONIA (country pack): canalele și exemplele sunt poloneze.
+  pl: {
+    'nav.home': 'Strona główna',
+    'nav.start': 'Zacznij tutaj',
+    'nav.guides': 'Poradniki',
+    'nav.why': 'Dlaczego istniejemy',
+    'nav.sources': 'Źródła',
+    'nav.aria': 'Nawigacja główna',
+    'brand.aria': 'Digital Compass — strona główna',
+
+    'footer.tagline':
+      'Publiczna, praktyczna wiedza na chwile cyfrowego kryzysu. Nie dyplomy — jasność.',
+    'footer.nav.aria': 'Nawigacja w stopce',
+    'footer.why': 'Dlaczego istniejemy',
+    'footer.sources': 'Źródła i jak weryfikujemy',
+    'footer.emergency.title': 'Jesteś teraz w niebezpieczeństwie?',
+    'footer.emergency.line': 'Numer alarmowy:',
+    'footer.emergency.cyber': 'Incydenty cybernetyczne (CERT Polska):',
+    'footer.legal':
+      'Niezależny, publiczny projekt. Informacje mają charakter orientacyjny — nie zastępują oficjalnych zaleceń Twojego banku, policji ani urzędów.',
+
+    'card.cta': 'Zobacz, co robić',
+    'sources.reviewed': 'Ostatnia weryfikacja:',
+    'sources.tellus': 'Widzisz coś nieaktualnego? Daj nam znać.',
+
+    'pb.back': '← Wszystkie sytuacje',
+    'pb.urgent': 'Pilne — działaj teraz',
+    'pb.breathe.aria': 'Najpierw oddech',
+    'pb.steps': 'Pierwsze kroki, teraz',
+    'pb.donts': 'Czego NIE robić',
+    'pb.recognize': 'Jak to rozpoznać następnym razem',
+    'pb.report': 'Gdzie to zgłosić',
+    'pb.sources': 'Źródła',
+    'pb.disclaimer':
+      'Ten poradnik pomaga szybko działać. Nie zastępuje oficjalnych instrukcji Twojego banku, policji ani urzędów. W razie wątpliwości zadzwoń pod powyższe numery.',
+
+    'guide.back': '← Wszystkie poradniki',
+    'guide.eyebrow': 'Poradnik bezpieczeństwa',
+    'guide.good': 'Dobre znaki — na to patrz',
+    'guide.bad': 'Sygnały ostrzegawcze',
+    'guide.related.label': 'Już się stało?',
+    'guide.related.cta': 'Zobacz, co robić →',
+
+    'notfound.title': 'Nie znaleziono strony',
+    'notfound.desc':
+      'Szukana strona nie istnieje. Wróć do sytuacji i wybierz, co się u Ciebie dzieje.',
+    'notfound.h1': 'Tu nic nie ma. Ale nie zgubiłeś się całkiem.',
+    'notfound.lead':
+      'Strona, której szukasz, nie istnieje albo została przeniesiona. Wróć do sytuacji — wybierz, co się dzieje, a powiemy Ci, co robić.',
+    'notfound.cta': 'Wróć do sytuacji',
+
+    'home.eyebrow': 'Publiczny przewodnik · po polsku',
+    'home.h1': 'Coś Ci się przydarzyło w internecie? Oddychaj. Powiemy Ci dokładnie, co robić.',
+    'home.lead':
+      'Bez żargonu, bez dyplomów, bez straszenia. Tylko jasne kroki na chwile, gdy cyfrowy świat zaskoczy Cię z zaskoczenia — ze źródłami, które możesz sprawdzić.',
+    'home.cta': 'Wybierz swoją sytuację ↓',
+    'home.cta.start': 'Nowy tutaj albo w zespole? Zacznij tutaj →',
+    'home.situations.h2': 'Co się u Ciebie teraz dzieje?',
+    'home.situations.lead':
+      'Wybierz, co się dzieje. Każdy poradnik zaczyna się od pierwszych kroków, po kolei.',
+    'home.prevent.eyebrow': 'Zanim coś się stanie',
+    'home.prevent.h2': 'Wolisz tego uniknąć od początku?',
+    'home.prevent.lead':
+      'Poradniki zapobiegawcze: na co patrzeć przed płatnością, jakie są sygnały ostrzegawcze i jakie proste zasady Cię chronią.',
+    'home.prevent.cta': 'Zobacz poradniki →',
+    'home.why.eyebrow': 'Dlaczego istniejemy',
+    'home.why.h2': 'Nie dajemy dyplomów. Dajemy jasność.',
+    'home.why.p':
+      'Dużo mówi się o cyfryzacji, bezpieczeństwie i „kompetencjach cyfrowych", ale zbyt rzadko ktoś tłumaczy zwykłemu człowiekowi, jego językiem, co robić, gdy naprawdę ma problem. To jest luka, którą wypełniamy: między mówieniem a praktyczną, publiczną, dostępną drogą.',
+    'home.why.cta': 'Zobacz, co oferujemy — a czego nie →',
+    'home.title': 'Digital Compass',
+    'home.desc':
+      'Publiczny, praktyczny przewodnik bezpieczeństwa cyfrowego po polsku: fałszywy link, przejęte konto, oszustwo przy zakupach, telefon od oszusta. Jasne kroki, zweryfikowane źródła, prawdziwe polskie kanały zgłaszania (CERT Polska, policja). Nie dyplomy — jasność.',
+
+    'guides.title': 'Poradniki bezpieczeństwa',
+    'guides.desc':
+      'Zapobiegawcze poradniki bezpieczeństwa cyfrowego po polsku: e-mail i wiadomości, konta i hasła, zakupy i płatności online, bezpieczeństwo w pracy. Na co patrzeć, zanim coś się stanie. Nie dyplomy — jasność.',
+    'guides.eyebrow': 'Zapobieganie',
+    'guides.h1': 'Zanim coś Ci się stanie',
+    'guides.lead':
+      'Poradniki ze strony głównej pomagają po tym, jak coś się stało. Te poradniki pomagają wcześniej: na co patrzeć, co powinno Cię zaalarmować i jakie proste zasady Cię chronią.',
+
+    'lang.switch': 'Wersja rumuńska',
+    'lang.switch.aria': 'Przełącz na rumuński',
+  },
 } as const;
 
 export type UiKey = keyof (typeof ui)['ro'];

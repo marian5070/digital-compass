@@ -14,6 +14,8 @@ export const GET: APIRoute = async () => {
   const ghiduriEn = await getGhiduri('en');
   const playbooksHu = await getPlaybooks('hu');
   const ghiduriHu = await getGhiduri('hu');
+  const playbooksPl = await getPlaybooks('pl');
+  const ghiduriPl = await getGhiduri('pl');
 
   const lines: string[] = [
     '# Digital Compass',
@@ -101,6 +103,35 @@ export const GET: APIRoute = async () => {
         '',
         ...ghiduriHu.map(
           (g) => `- [${g.data.title}](${SITE}${routes.hu.guide(entrySlug(g.id))}): ${g.data.summary}`
+        )
+      );
+  }
+
+  if (playbooksPl.length || ghiduriPl.length) {
+    lines.push(
+      '',
+      '## Wersja polska (dla Polski — polskie kanały zgłaszania)',
+      '',
+      `Te same poradniki po polsku, z PRAWDZIWYMI polskimi kanałami zgłaszania`,
+      `(CERT Polska / SMS 8080, policja, zastrzeganie kart 828 828 828, UOKiK).`,
+      `Zacznij tutaj: ${SITE}/pl`,
+      ''
+    );
+    if (playbooksPl.length)
+      lines.push(
+        '### Sytuacje kryzysowe (PL)',
+        '',
+        ...playbooksPl.map(
+          (p) => `- [${p.data.title}](${SITE}${routes.pl.playbook(entrySlug(p.id))}): ${p.data.summary}`
+        ),
+        ''
+      );
+    if (ghiduriPl.length)
+      lines.push(
+        '### Poradniki zapobiegawcze (PL)',
+        '',
+        ...ghiduriPl.map(
+          (g) => `- [${g.data.title}](${SITE}${routes.pl.guide(entrySlug(g.id))}): ${g.data.summary}`
         )
       );
   }

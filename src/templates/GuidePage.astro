@@ -7,7 +7,7 @@ import StepList from '../components/StepList.astro';
 import SourceList from '../components/SourceList.astro';
 import { entryLang, entrySlug, getPlaybook } from '../lib/i18n-content';
 import { t } from '../i18n/ui';
-import { routes, r } from '../i18n/routes';
+import { r, contentAlternates } from '../i18n/routes';
 
 // Corpul unei pagini de ghid de prevenție, comun ambelor limbi.
 interface Props {
@@ -30,11 +30,7 @@ const related = data.relatedPlaybook
 <BaseLayout
   title={data.title}
   description={data.summary}
-  alternates={{
-    ro: routes.ro.guide(slug),
-    en: routes.en.guide(slug),
-    hu: routes.hu.guide(slug),
-  }}
+  alternates={contentAlternates('guide', slug)}
 >
   <article class="guide">
     <div class="container">

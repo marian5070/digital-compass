@@ -8,7 +8,7 @@ import ReportBox from '../components/ReportBox.astro';
 import SourceList from '../components/SourceList.astro';
 import { entryLang, entrySlug } from '../lib/i18n-content';
 import { t } from '../i18n/ui';
-import { routes, r } from '../i18n/routes';
+import { r, contentAlternates } from '../i18n/routes';
 
 // Corpul unei pagini de playbook, comun ambelor limbi.
 interface Props {
@@ -42,11 +42,7 @@ const howTo = {
 <BaseLayout
   title={data.title}
   description={data.summary}
-  alternates={{
-    ro: routes.ro.playbook(slug),
-    en: routes.en.playbook(slug),
-    hu: routes.hu.playbook(slug),
-  }}
+  alternates={contentAlternates('playbook', slug)}
 >
   <script
     slot="head"

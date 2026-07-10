@@ -21,13 +21,14 @@ function inlineMd(s: string): string {
 
 const list = (items: string[]) => items.map((i) => `- ${inlineMd(i)}`).join('\n');
 
-function footer(lang: 'ro' | 'en' | 'hu', lastReviewed: string): string {
+function footer(lang: 'ro' | 'en' | 'hu' | 'pl', lastReviewed: string): string {
   const blurbs = {
     ro: `Digital Compass — cunoaștere publică, practică, în română (conținut CC BY 4.0): ${SITE}/`,
     en: `Digital Compass — public, practical digital-safety knowledge for Romania (content CC BY 4.0): ${SITE}/en`,
     hu: `Digital Compass — közhasznú, gyakorlati digitális biztonsági tudás Romániában élőknek (tartalom CC BY 4.0): ${SITE}/hu`,
+    pl: `Digital Compass — publiczna, praktyczna wiedza o bezpieczeństwie cyfrowym (treść CC BY 4.0): ${SITE}/pl`,
   };
-  const reviewed = { ro: 'Verificat ultima dată', en: 'Last reviewed', hu: 'Utoljára ellenőrizve' };
+  const reviewed = { ro: 'Verificat ultima dată', en: 'Last reviewed', hu: 'Utoljára ellenőrizve', pl: 'Ostatnia weryfikacja' };
   return ['---', '', `${reviewed[lang]}: ${lastReviewed}.`, blurbs[lang]].join('\n');
 }
 

@@ -6,9 +6,9 @@ import { getIndex, getMarkdown, normalize } from '../data/loader.mjs';
 
 const SITE = 'https://compass.madeinro.eu';
 const LangInput = z
-  .enum(['ro', 'en', 'hu'])
+  .enum(['ro', 'en', 'hu', 'pl'])
   .default('ro')
-  .describe('Limba conținutului (ro = original; en/hu dacă există traducere)');
+  .describe('Limba conținutului (ro = original; en/hu ancorate în România, pl ancorat în Polonia)');
 
 // Câmpurile pe limbă din index: intrările fără `lang` sunt ro (istoric).
 const byLang = (items, lang) => items.filter((i) => (i.lang ?? 'ro') === lang);
@@ -58,7 +58,7 @@ async function handleGet(args) {
       `Nu există ${args.type} „${args.slug}" în limba „${args.lang}". Cheamă compass_list_situations pentru lista validă.`
     );
   }
-  const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok' };
+  const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki' };
   const base = args.type === 'ghid' ? GUIDE_SEGMENT[args.lang] : 'playbook';
   const prefix = args.lang === 'ro' ? '' : `/${args.lang}`;
   return {
@@ -116,20 +116,27 @@ async function handleFind(args) {
 const channelsTool = {
   name: 'compass_report_channels',
   config: {
-    title: 'Unde raportezi în România',
+    title: 'Unde raportezi incidente digitale',
     description:
-      'Canalele reale de raportare din România pentru incidente digitale (DNSC 1911, Poliția Română, banca), din secțiunile „Unde raportezi" ale playbook-urilor. Cu slug: doar canalele acelei situații; fără: toate canalele, deduplicate.',
+      'Canalele reale de raportare pentru incidente digitale, din secțiunile „Unde raportezi" ale playbook-urilor. lang=ro/en/hu → canalele din ROMÂNIA (DNSC 1911, Poliția Română, banca); lang=pl → canalele din POLONIA (CERT Polska, policja, zastrzeganie kart). Cu slug: doar canalele acelei situații; fără: toate, deduplicate.',
     inputSchema: {
       slug: z.string().optional().describe('Opțional: slug-ul unui playbook anume'),
+      lang: LangInput,
     },
   },
 };
 async function handleChannels(args) {
-  const situatii = byLang(getIndex().situatii, 'ro');
+  // en/hu sunt ancorate în România — canalele lor sunt cele din ro,
+  // dar în limba cerută (fiecare limbă are propriul frontmatter `report`).
+  const situatii = byLang(getIndex().situatii, args.lang);
+  const nota =
+    args.lang === 'pl'
+      ? 'Numer alarmowy: 112. Incydenty: CERT Polska (incydent.cert.pl).'
+      : 'Urgențe: 112. Incidente cibernetice (DNSC): 1911.';
   if (args.slug) {
     const entry = situatii.find((s) => s.slug === args.slug);
-    if (!entry) throw new Error(`Nu există playbook „${args.slug}".`);
-    return { slug: args.slug, titlu: entry.titlu, canale: entry.raportare ?? [] };
+    if (!entry) throw new Error(`Nu există playbook „${args.slug}" în limba „${args.lang}".`);
+    return { slug: args.slug, lang: args.lang, titlu: entry.titlu, canale: entry.raportare ?? [], nota };
   }
   const seen = new Map();
   for (const s of situatii) {
@@ -139,7 +146,7 @@ async function handleChannels(args) {
       seen.get(key).situatii.push(s.slug);
     }
   }
-  return { canale: [...seen.values()], nota: 'Urgențe: 112. Incidente cibernetice (DNSC): 1911.' };
+  return { lang: args.lang, canale: [...seen.values()], nota };
 }
 
 // --- 5. compass_freshness ----------------------------------------------------

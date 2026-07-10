@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PlaybookCard from '../components/PlaybookCard.astro';
 import { entrySlug, type Lang } from '../lib/i18n-content';
 import { t } from '../i18n/ui';
-import { r } from '../i18n/routes';
+import { r, pageAlternates } from '../i18n/routes';
 
 // Indexul ghidurilor de prevenție, comun ambelor limbi.
 interface Props {
@@ -19,47 +19,52 @@ const R = r(lang);
 const CATEGORIES = [
   {
     key: 'email-mesaje',
-    label: { ro: 'Email & mesaje', en: 'Email & messages', hu: 'Email & üzenetek', },
+    label: { ro: 'Email & mesaje', en: 'Email & messages', hu: 'Email & üzenetek', pl: 'E-mail i wiadomości', },
     desc: {
       ro: 'Cum îți dai seama cine îți scrie și unde duce un link, fără să-l deschizi.',
       en: 'How to tell who is really writing to you and where a link leads, without opening it.',
       hu: 'Hogyan látod, ki ír neked valójában, és hová vezet egy link — anélkül, hogy megnyitnád.',
+      pl: 'Jak poznać, kto naprawdę do Ciebie pisze i dokąd prowadzi link — bez otwierania go.',
     },
   },
   {
     key: 'conturi-parole',
-    label: { ro: 'Conturi & parole', en: 'Accounts & passwords', hu: 'Fiókok & jelszavak', },
+    label: { ro: 'Conturi & parole', en: 'Accounts & passwords', hu: 'Fiókok & jelszavak', pl: 'Konta i hasła', },
     desc: {
       ro: 'Cum îți protejezi conturile înainte să pățești ceva.',
       en: 'How to protect your accounts before anything happens.',
       hu: 'Hogyan védd meg a fiókjaidat, mielőtt bármi történne.',
+      pl: 'Jak chronić swoje konta, zanim cokolwiek się stanie.',
     },
   },
   {
     key: 'dispozitive',
-    label: { ro: 'Telefon & dispozitive', en: 'Phone & devices', hu: 'Telefon & eszközök', },
+    label: { ro: 'Telefon & dispozitive', en: 'Phone & devices', hu: 'Telefon & eszközök', pl: 'Telefon i urządzenia', },
     desc: {
       ro: 'Actualizări, Wi-Fi public și ce faci când ești pe drum.',
       en: 'Updates, public Wi-Fi and staying safe on the move.',
       hu: 'Frissítések, nyilvános Wi-Fi, és biztonság útközben.',
+      pl: 'Aktualizacje, publiczne Wi-Fi i bezpieczeństwo w drodze.',
     },
   },
   {
     key: 'cumparaturi-plati',
-    label: { ro: 'Cumpărături & plăți', en: 'Shopping & payments', hu: 'Vásárlás & fizetés', },
+    label: { ro: 'Cumpărături & plăți', en: 'Shopping & payments', hu: 'Vásárlás & fizetés', pl: 'Zakupy i płatności', },
     desc: {
       ro: 'Cum cumperi și plătești online în siguranță.',
       en: 'How to shop and pay online safely.',
       hu: 'Hogyan vásárolj és fizess biztonságosan online.',
+      pl: 'Jak bezpiecznie kupować i płacić w internecie.',
     },
   },
   {
     key: 'la-birou',
-    label: { ro: 'La birou', en: 'At work', hu: 'A munkahelyen', },
+    label: { ro: 'La birou', en: 'At work', hu: 'A munkahelyen', pl: 'W pracy', },
     desc: {
       ro: 'Reguli simple de siguranță pentru muncă — bune și pentru cineva nou într-o echipă.',
       en: 'Simple safety rules for work — good for anyone new on a team, too.',
       hu: 'Egyszerű biztonsági szabályok a munkához — új csapattagoknak is.',
+      pl: 'Proste zasady bezpieczeństwa w pracy — dobre też dla nowych w zespole.',
     },
   },
 ] as const;
@@ -75,7 +80,7 @@ const groups = CATEGORIES.map((cat) => ({
 <BaseLayout
   title={T('guides.title')}
   description={T('guides.desc')}
-  alternates={{ ro: '/ghiduri', en: '/en/guides', hu: '/hu/utmutatok' }}
+  alternates={pageAlternates('guidesIndex')}
 >
   <section class="section">
     <div class="container">
