@@ -9,6 +9,17 @@ const T = t(lang);
 const R = r(lang);
 const year = 2026;
 
+// Proiectele autorului (instanța oficială e a lui Marian Matinca; fork-urile
+// pot elimina secțiunea — e o listă simplă, nu logică).
+const PROJECTS = [
+  { href: 'https://mmatinca.eu', label: 'mmatinca.eu' },
+  { href: 'https://tv.madeinro.eu', label: 'tv.madeinro.eu' },
+  { href: 'https://avizo.ro', label: 'avizo.ro' },
+  { href: 'https://euaicomply.eu', label: 'euaicomply.eu' },
+  { href: 'https://travel-trends.mmatinca.eu', label: 'travel-trends.mmatinca.eu' },
+  { href: 'https://cand-reciclam.madeinro.eu', label: 'cand-reciclam.madeinro.eu' },
+];
+
 // Contactul pentru incidente cibernetice diferă pe țară (ro/en/hu = România).
 const CYBER: Record<Lang, { href: string; text: string }> = {
   ro: { href: 'tel:1911', text: '1911' },
@@ -36,6 +47,20 @@ const CYBER: Record<Lang, { href: string; text: string }> = {
     <nav aria-label={T('footer.nav.aria')} class="footer-nav">
       <a href={R.why}>{T('footer.why')}</a>
       <a href={R.sources}>{T('footer.sources')}</a>
+      <a href={R.pwa}>{T('footer.pwa')}</a>
+    </nav>
+
+    <nav aria-label={T('footer.projects')} class="footer-projects">
+      <p class="footer-projects-title">{T('footer.projects')}</p>
+      <ul>
+        {
+          PROJECTS.map((p) => (
+            <li>
+              <a href={p.href} rel="noopener">{p.label}</a>
+            </li>
+          ))
+        }
+      </ul>
     </nav>
 
     <div class="footer-emergency">
@@ -66,9 +91,30 @@ const CYBER: Record<Lang, { href: string; text: string }> = {
   }
   @media (min-width: 48rem) {
     .footer-inner {
-      grid-template-columns: 1.6fr 1fr 1fr;
+      grid-template-columns: 1.5fr 0.9fr 1.1fr 1fr;
       align-items: start;
     }
+  }
+  .footer-projects-title {
+    font-weight: var(--weight-bold);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    margin-bottom: 0.5rem;
+  }
+  .footer-projects ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .footer-projects a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  .footer-projects a:hover {
+    color: var(--color-text);
   }
   .brand {
     display: inline-flex;
