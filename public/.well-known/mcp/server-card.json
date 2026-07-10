@@ -8,6 +8,7 @@
   "description": "Step-by-step playbooks for online emergencies in Romania (phishing, hacked accounts, purchase scams, fraud calls) exposed as MCP tools: situation matching, full markdown guidance, real reporting channels (DNSC 1911, Police, banks). Public good, CC BY 4.0.",
   "transport": {
     "type": "streamable-http",
+    "endpoint": "https://compass.madeinro.eu/mcp",
     "url": "https://compass.madeinro.eu/mcp"
   },
   "capabilities": {

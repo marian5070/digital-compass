@@ -48,6 +48,10 @@ app.use(
         res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
       if (filePath.endsWith(`${path.sep}api-catalog`))
         res.setHeader('Content-Type', 'application/linkset+json'); // RFC 9727
+      // Fișierele de descoperire se schimbă odată cu deploy-ul — cache scurt,
+      // altfel Cloudflare le ține ore întregi la edge (văzut pe viu).
+      if (filePath.includes(`${path.sep}.well-known${path.sep}`))
+        res.setHeader('Cache-Control', 'public, max-age=300');
     },
   })
 );
