@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 app.use(
   express.static(DIST, {
     extensions: ['html'],
+    dotfiles: 'allow', // altfel /.well-known/* (agent-skills) ar da 404
     setHeaders(res, filePath) {
       if (filePath.endsWith('.md'))
         res.setHeader('Content-Type', 'text/markdown; charset=utf-8');

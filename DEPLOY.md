@@ -74,11 +74,19 @@ Ce publicăm real, fără decor:
 - **`/llms.txt`** generat la build din colecțiile reale (playbooks + ghiduri).
 - **Markdown negotiation** (vezi mai sus) — conținutul original, nu conversie.
 - `Link: rel="sitemap"` header global.
-- DNS-AID: vine din zona madeinro.eu (DNSSEC activ) + recordurile HTTPS publicate
-  automat de Cloudflare pentru hostname-urile proxied.
+- **Agent Skills** — `/.well-known/agent-skills/index.json` (generat la build de
+  `scripts/agent-skills-index.mjs`, cu digest sha256 din fișierul livrat) +
+  `SKILL.md` care învață un agent să ghideze un om printr-o criză digitală
+  folosind conținutul site-ului.
+- **WebMCP** — `public/webmcp.js` (vanilla, no-op fără `navigator.modelContext`):
+  `compass_situatii` (index din `/data/agents.json`) și `compass_continut`
+  (markdown-ul unui playbook/ghid).
+- **DNS-AID** — record SVCB în zona madeinro.eu (DNSSEC activ):
+  `_index._agents.compass` → `1 compass.madeinro.eu. alpn="h2" port=443`.
 
-Sărite intenționat (site de conținut, fără API sau comerț): OAuth, MCP Server
-Card, API Catalog, Agent Skills, WebMCP, x402/UCP/ACP.
+Sărite intenționat (site de conținut, fără API sau comerț): OAuth ×2, Auth.md,
+MCP Server Card, API Catalog, x402/UCP/ACP — le-am publica doar dacă apare un
+API sau un server MCP real.
 
 ## După primul deploy — indexare
 

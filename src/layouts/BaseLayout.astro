@@ -46,6 +46,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     />
 
     <slot name="head" />
+    <!-- WebMCP: unelte pentru agenții AI din browser; no-op fără API. -->
+    <script src="/webmcp.js" defer is:inline></script>
   </head>
   <body>
     <a href="#main" class="skip-link">Sari la conținut</a>
