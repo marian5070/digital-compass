@@ -5,6 +5,7 @@ situation: Quelqu'un menace de publier des photos/vidéos intimes de moi
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Arrêtez-vous et respirez.</strong> Vous n'êtes pas coupable et vous n'êtes pas seul·e — cela arrive à beaucoup de gens, de tous âges. La panique est exactement ce que recherchent les maîtres chanteurs."

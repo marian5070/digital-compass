@@ -5,6 +5,7 @@ situation: Cineva mi-a trimis un link ca să „primesc” banii pe OLX
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 iulie 2026"
 steps:
   - "<strong>Nu deschide linkul și nu introduce datele cardului.</strong> Reține regula de aur: ca să PRIMEȘTI bani nu ai nevoie niciodată de numărul cardului, de PIN sau de vreun cod. Doar ca să DAI bani."

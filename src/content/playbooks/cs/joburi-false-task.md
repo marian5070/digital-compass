@@ -5,6 +5,8 @@ situation: Dostal jsem nabídku práce / „placených úkolů“, která je až
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10. července 2026"
 steps:
   - "<strong>Zastav všechny platby.</strong> Jednoduché pravidlo: skutečná práce po tobě nikdy nechce peníze za to, abys mohl pracovat nebo si vybrat vydělané peníze."

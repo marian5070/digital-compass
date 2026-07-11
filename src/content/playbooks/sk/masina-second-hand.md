@@ -5,6 +5,7 @@ situation: Chcem kúpiť auto (najmä zo zahraničia) a žiadajú odo mňa zálo
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Neposielaj žiadnu zálohu, kým auto neuvidíš naživo.</strong> „Rezervuj si ho zálohou“ pri aute, ktoré si nemôžeš pozrieť, je klasický znak podvodu — auto často ani neexistuje."

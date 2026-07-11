@@ -5,6 +5,7 @@ situation: Someone sent me a link so I can "receive" money on OLX
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 July 2026"
 steps:
   - "<strong>Do not open the link and do not enter your card details.</strong> Remember the golden rule: to RECEIVE money you never need your card number, PIN or any code. Only to SEND money."

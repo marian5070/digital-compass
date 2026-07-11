@@ -5,6 +5,7 @@ situation: Pénzt tettem egy befektetésbe/kriptóba, és valami nem stimmel
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "2026. július 9."
 steps:
   - "<strong>Állíts le minden további fizetést, most azonnal.</strong> Főleg, ha „díjakat” kérnek azért, hogy kivehesd a pénzedet — ilyen nem létezik, ez az átverés folytatása."

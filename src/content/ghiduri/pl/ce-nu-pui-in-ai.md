@@ -3,6 +3,7 @@ title: "Czego NIE wklejać do narzędzi AI (ChatGPT i spółka)"
 summary: "Narzędzia AI są przydatne, ale wszystko, co w nich napiszesz, trafia do zewnętrznej firmy. Oto dlaczego to ważne — i czego nigdy tam nie wklejać."
 topic: Dlaczego poufne dane nie powinny tam trafiać
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 lipca 2026"

@@ -12,6 +12,7 @@ export const routes = {
     why: '/de-ce-existam',
     sources: '/surse',
     pwa: '/aplicatie',
+    org: '/pentru-firma',
     playbook: (slug: string) => `/playbook/${slug}`,
     guide: (slug: string) => `/ghiduri/${slug}`,
   },
@@ -22,6 +23,7 @@ export const routes = {
     why: '/en/why-we-exist',
     sources: '/en/sources',
     pwa: '/en/app',
+    org: '/en/for-your-team',
     playbook: (slug: string) => `/en/playbook/${slug}`,
     guide: (slug: string) => `/en/guides/${slug}`,
   },
@@ -33,6 +35,7 @@ export const routes = {
     why: '/hu/miert-letezunk',
     sources: '/hu/forrasok',
     pwa: '/hu/alkalmazas',
+    org: '/hu/a-cegednek',
     playbook: (slug: string) => `/hu/playbook/${slug}`,
     guide: (slug: string) => `/hu/utmutatok/${slug}`,
   },
@@ -45,6 +48,7 @@ export const routes = {
     why: '/pl/dlaczego-istniejemy',
     sources: '/pl/zrodla',
     pwa: '/pl/aplikacja',
+    org: '/pl/dla-twojej-firmy',
     playbook: (slug: string) => `/pl/playbook/${slug}`,
     guide: (slug: string) => `/pl/poradniki/${slug}`,
   },
@@ -56,6 +60,7 @@ export const routes = {
     why: '/cs/proc-existujeme',
     sources: '/cs/zdroje',
     pwa: '/cs/aplikace',
+    org: '/cs/pro-vasi-firmu',
     playbook: (slug: string) => `/cs/playbook/${slug}`,
     guide: (slug: string) => `/cs/navody/${slug}`,
   },
@@ -66,6 +71,7 @@ export const routes = {
     why: '/sk/preco-existujeme',
     sources: '/sk/zdroje',
     pwa: '/sk/aplikacia',
+    org: '/sk/pre-vasu-firmu',
     playbook: (slug: string) => `/sk/playbook/${slug}`,
     guide: (slug: string) => `/sk/navody/${slug}`,
   },
@@ -76,6 +82,7 @@ export const routes = {
     why: '/it/perche-esistiamo',
     sources: '/it/fonti',
     pwa: '/it/app',
+    org: '/it/per-la-tua-azienda',
     playbook: (slug: string) => `/it/playbook/${slug}`,
     guide: (slug: string) => `/it/guide/${slug}`,
   },
@@ -86,6 +93,7 @@ export const routes = {
     why: '/fr/pourquoi-nous-existons',
     sources: '/fr/sources',
     pwa: '/fr/application',
+    org: '/fr/pour-votre-entreprise',
     playbook: (slug: string) => `/fr/playbook/${slug}`,
     guide: (slug: string) => `/fr/guides/${slug}`,
   },
@@ -96,6 +104,7 @@ export const routes = {
     why: '/de/warum-es-uns-gibt',
     sources: '/de/quellen',
     pwa: '/de/app',
+    org: '/de/fuer-ihre-firma',
     playbook: (slug: string) => `/de/playbook/${slug}`,
     guide: (slug: string) => `/de/ratgeber/${slug}`,
   },
@@ -107,7 +116,7 @@ export function r(lang: Lang) {
 
 /** Alternates (hreflang + comutator) pentru paginile statice, peste toate limbile. */
 export function pageAlternates(
-  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources' | 'pwa'
+  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources' | 'pwa' | 'org'
 ): Record<Lang, string> {
   return Object.fromEntries(LANGS.map((l) => [l, routes[l][key]])) as Record<Lang, string>;
 }

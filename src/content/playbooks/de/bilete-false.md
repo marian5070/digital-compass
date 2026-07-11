@@ -5,6 +5,7 @@ situation: Ich habe Geld für ein Ticket vom Zweitmarkt bezahlt und bin nicht si
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Prüfen Sie das Ticket an der Quelle:</strong> Fragen Sie beim Veranstalter oder der offiziellen Vorverkaufsstelle nach, ob der Code oder die Bestellung gültig ist. Ein QR-Code kann mehrfach verkauft werden — die Wahrheit zeigt sich erst beim Scannen am Einlass."

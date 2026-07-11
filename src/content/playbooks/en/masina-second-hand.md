@@ -5,6 +5,7 @@ situation: I want to buy a car (especially an import) and I'm asked for a deposi
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 July 2026"
 steps:
   - "<strong>Don't send any deposit before you see the car in person.</strong> \"Reserve it with a deposit\" for a car you can't see is the classic sign of a scam — often the car doesn't even exist."

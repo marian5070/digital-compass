@@ -3,6 +3,7 @@ title: "Ai primit ceva suspect pe email-ul de serviciu? Raportează"
 summary: "Dacă la muncă primești un mesaj care pare suspect, cel mai valoros lucru e simplu — nu interacționa și anunță pe cineva. Iată pașii."
 topic: Ce faci când ceva pare suspect pe email-ul de la muncă
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10 iulie 2026"

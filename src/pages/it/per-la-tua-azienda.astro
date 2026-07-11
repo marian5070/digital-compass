@@ -1,0 +1,9 @@
+---
+import OrgHubPage from '../../templates/OrgHubPage.astro';
+import { getPlaybooks, getGhiduri } from '../../lib/i18n-content';
+
+const playbooks = await getPlaybooks('it');
+const ghiduri = await getGhiduri('it');
+---
+
+<OrgHubPage lang="it" playbooks={playbooks} ghiduri={ghiduri} />

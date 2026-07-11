@@ -5,6 +5,8 @@ situation: Ich komme nicht mehr in ein Konto, oder jemand hat es übernommen
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "10. Juli 2026"
 steps:
   - "Versuchen Sie jetzt <strong>„Passwort vergessen?“</strong> in der offiziellen App oder auf der offiziellen Website. Wenn Sie noch Zugriff auf die hinterlegte E-Mail-Adresse oder Telefonnummer haben, ist das Konto oft in wenigen Minuten wiederhergestellt."

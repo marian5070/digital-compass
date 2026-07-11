@@ -5,6 +5,7 @@ situation: Ktoś grozi, że opublikuje moje intymne zdjęcia lub filmy
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Zatrzymaj się i oddychaj.</strong> To nie twoja wina i nie jesteś jedyny — to spotyka wielu ludzi, w każdym wieku. Panika to dokładnie to, czego chcą szantażyści."

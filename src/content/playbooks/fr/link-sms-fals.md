@@ -5,6 +5,8 @@ situation: J'ai reçu un message suspect ou j'ai cliqué sur un lien
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Ne saisissez plus rien</strong> sur la page qui s'est ouverte. Fermez-la. Si vous avez déjà saisi des données, passez tout de suite à l'étape suivante."

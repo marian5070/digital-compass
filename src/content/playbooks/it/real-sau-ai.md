@@ -5,6 +5,7 @@ situation: Ho ricevuto qualcosa che sembra falso o fatto con l'AI
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Non reagire a caldo.</strong> Non mandare soldi, non dare dati e non condividere prima di aver verificato. La fretta è esattamente ciò che vogliono."

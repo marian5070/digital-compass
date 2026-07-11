@@ -3,6 +3,7 @@ title: "E-mail a „főnöktől” vagy a „beszállítótól”, aki sürgős 
 summary: Az irodában az egyik legköltségesebb átverés technikailag semmit sem tör fel — téged vesz rá arra, hogy önként elindíts egy fizetést vagy megváltoztass egy bankszámlaszámot. Íme, hogyan ismered fel, és mit tegyél.
 topic: "„Sürgős” fizetési vagy adatkérések a vezetőségtől vagy a beszállítóktól"
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "2026. július 10."

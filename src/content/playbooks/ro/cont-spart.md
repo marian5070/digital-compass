@@ -5,6 +5,8 @@ situation: Nu mai pot intra pe un cont sau cineva l-a preluat
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "9 iulie 2026"
 steps:
   - "Încearcă acum <strong>„Ai uitat parola?”</strong> pe aplicația sau site-ul oficial. Dacă mai ai acces la email sau la numărul de telefon asociat, deseori poți recupera contul în câteva minute."

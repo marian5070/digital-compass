@@ -5,6 +5,7 @@ situation: Ich finde mein Handy nicht mehr oder es wurde gestohlen
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10. Juli 2026"
 steps:
   - "Gehen Sie von einem anderen Gerät (anderes Handy, Computer) auf <strong>„Mein Gerät finden“</strong>: beim iPhone „Wo ist?“, bei Android „Find Hub“ von Google. Dort können Sie das Handy orten, klingeln lassen, sperren oder aus der Ferne löschen."

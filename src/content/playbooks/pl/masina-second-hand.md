@@ -5,6 +5,7 @@ situation: Chcę kupić auto (zwłaszcza „z zagranicy”) i sprzedający chce 
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Nie wysyłaj żadnej zaliczki, zanim nie zobaczysz auta na żywo.</strong> „Zarezerwuj zaliczką” auto, którego nie możesz obejrzeć, to klasyczny znak oszustwa — często takie auto w ogóle nie istnieje."

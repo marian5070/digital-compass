@@ -3,6 +3,7 @@ title: "Company and client data — basic rules"
 summary: When you work with a company's data and its clients' data, a few simple habits make almost all the difference. Here they are.
 topic: Simple habits to protect data at work
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10 July 2026"

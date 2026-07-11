@@ -5,6 +5,7 @@ situation: Un proche a été escroqué et je ne sais pas comment l'aider
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Ne le grondez pas, ne lui faites pas honte.</strong> Les escrocs sont des professionnels ; cela peut arriver à n'importe qui. S'il se sent jugé, il se fermera et cachera des détails qui comptent."

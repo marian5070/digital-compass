@@ -5,6 +5,7 @@ situation: Am fost sunat de cineva care cere bani sau date urgent
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "9 iulie 2026"
 steps:
   - "<strong>Închide telefonul.</strong> Nu e nepoliticos — e cel mai sigur lucru. Nicio instituție reală nu te pedepsește că ai închis și ai sunat înapoi tu."

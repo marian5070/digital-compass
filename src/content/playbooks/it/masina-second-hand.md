@@ -5,6 +5,7 @@ situation: Compro o vendo un'auto tra privati e mi chiedono soldi prima
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Se vendi: non pagare nessuna «visura» chiesta dal compratore.</strong> Qualsiasi richiesta di soldi «come garanzia dell'acquisto» è una truffa; le visure del veicolo si fanno solo attraverso i canali ufficiali ACI, mai da un link ricevuto da lui."

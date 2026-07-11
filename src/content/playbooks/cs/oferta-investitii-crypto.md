@@ -5,6 +5,7 @@ situation: Vložil jsem peníze do investice/krypta a něco nesedí
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10. července 2026"
 steps:
   - "<strong>Zastav všechny další platby, hned.</strong> Hlavně pokud po tobě chtějí „poplatky“, abys mohl vybrat svoje peníze — nic takového neexistuje, je to pokračování podvodu."

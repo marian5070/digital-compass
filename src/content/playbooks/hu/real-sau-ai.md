@@ -5,6 +5,7 @@ situation: Kaptam valamit, ami hamisnak vagy AI-jal készültnek tűnik
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "2026. július 9."
 steps:
   - "<strong>Ne reagálj felindulásból.</strong> Ne küldj pénzt, ne adj meg adatokat, és ne oszd tovább, mielőtt ellenőriznéd. Pont a sietség az, amit az elkövetők akarnak."

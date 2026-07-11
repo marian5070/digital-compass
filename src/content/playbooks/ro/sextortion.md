@@ -5,6 +5,7 @@ situation: Cineva mă amenință că publică poze/filme intime cu mine
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 iulie 2026"
 steps:
   - "<strong>Oprește-te și respiră.</strong> Nu ești vinovat și nu ești singurul — se întâmplă multor oameni, de toate vârstele. Panica e exact ce vor ei."

@@ -5,6 +5,7 @@ situation: Someone dear to me lost money to a scam and I don't know how to help
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "9 July 2026"
 steps:
   - "<strong>Don't scold them and don't shame them.</strong> Scammers are professionals; it can happen to anyone. If they feel judged, they will shut down and hide details that matter."

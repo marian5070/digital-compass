@@ -5,6 +5,7 @@ situation: Dal som peniaze za vstupenku z druhej ruky a neviem, či je pravá
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Over vstupenku pri zdroji:</strong> choď na oficiálny predajný portál a zisti, či je kód alebo objednávka platná. Ten istý QR kód sa dá predať viackrát — pravda sa ukáže až pri skenovaní pri vstupe, a dnu pustia len prvého."

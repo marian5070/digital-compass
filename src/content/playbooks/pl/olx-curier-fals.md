@@ -5,6 +5,7 @@ situation: Ktoś przysłał mi link, żebym „odebrał pieniądze” za sprzeda
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Nie otwieraj linku i nie wpisuj danych karty ani loginu do banku.</strong> Zapamiętaj żelazną zasadę: żeby ODEBRAĆ pieniądze, nigdy nie musisz podawać numeru karty, PIN-u, kodu ani logować się do banku na obcej stronie. To jest potrzebne tylko wtedy, gdy pieniądze WYSYŁASZ."

@@ -3,6 +3,7 @@ title: "An email from the “boss” or a “supplier” asking for an urgent pa
 summary: At the office, one of the most expensive scams doesn't break anything technical — it tricks you into making a payment or changing a bank account yourself, willingly. Here is how to spot it and what to do.
 topic: "“Urgent” requests for payments or data, from management or suppliers"
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10 July 2026"

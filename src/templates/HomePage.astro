@@ -3,11 +3,14 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PlaybookCard from '../components/PlaybookCard.astro';
 import CompassMark from '../components/CompassMark.astro';
+import CategoryIcon from '../components/CategoryIcon.astro';
 import { entrySlug, type Lang } from '../lib/i18n-content';
-import { t } from '../i18n/ui';
+import { t, type UiKey } from '../i18n/ui';
 import { r, pageAlternates } from '../i18n/routes';
 
-// Corpul homepage-ului, comun ambelor limbi; paginile ro/en sunt wrappere subțiri.
+// Corpul homepage-ului, comun tuturor limbilor; paginile per-limbă sunt wrappere subțiri.
+// UX 2.0: triaj (criză / prevenție / firmă) + situațiile grupate pe categorii de use case
+// + filtru client-side minimal (progressive enhancement — fără JS totul rămâne vizibil).
 interface Props {
   lang: Lang;
   playbooks: CollectionEntry<'playbooks'>[];
@@ -15,6 +18,23 @@ interface Props {
 const { lang, playbooks } = Astro.props;
 const T = t(lang);
 const R = r(lang);
+
+// Ordinea categoriilor = frecvența de uz (cumpărături primele).
+const CATEGORY_ORDER = [
+  'cumparaturi-bani',
+  'conturi-dispozitive',
+  'mesaje-apeluri',
+  'oameni-manipulare',
+] as const;
+
+const catLabel = (c: (typeof CATEGORY_ORDER)[number]) => T(`cat.${c}` as UiKey);
+
+const grouped = CATEGORY_ORDER.map((cat) => ({
+  cat,
+  items: playbooks
+    .filter((p) => p.data.category === cat)
+    .sort((a, b) => a.data.order - b.data.order),
+})).filter((g) => g.items.length > 0);
 
 // Structured data WebSite — identitatea site-ului în knowledge graph,
 // cu publisher consecvent cu restul proprietăților (mmatinca.eu).
@@ -47,42 +67,116 @@ const webSite = {
     set:html={JSON.stringify(webSite)}
     is:inline
   />
-  <!-- Hero -->
+  <!-- Hero + triaj -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
         <span class="eyebrow">{T('home.eyebrow')}</span>
         <h1>{T('home.h1')}</h1>
         <p class="lead">{T('home.lead')}</p>
-        <a href="#situatii" class="btn-primary">{T('home.cta')}</a>
-        <a href={R.start} class="hero-secondary">{T('home.cta.start')}</a>
       </div>
       <div class="hero-mark" aria-hidden="true">
-        <CompassMark size={220} />
+        <CompassMark size={160} />
       </div>
+    </div>
+    <div class="container">
+      <nav class="triage" aria-label={T('home.cta')}>
+        <a href="#situatii" class="triage-card triage-crisis">
+          <span class="triage-t">{T('home.path.crisis.t')}</span>
+          <span class="triage-d">{T('home.path.crisis.d')}</span>
+        </a>
+        <a href={R.guidesIndex} class="triage-card">
+          <span class="triage-t">{T('home.path.prevent.t')}</span>
+          <span class="triage-d">{T('home.path.prevent.d')}</span>
+        </a>
+        <a href={R.org} class="triage-card">
+          <span class="triage-t">{T('home.path.org.t')}</span>
+          <span class="triage-d">{T('home.path.org.d')}</span>
+        </a>
+      </nav>
     </div>
   </section>
 
-  <!-- Situații -->
+  <!-- Situații, grupate pe categorii + filtru -->
   <section id="situatii" class="section">
     <div class="container">
       <div class="section-head">
         <h2>{T('home.situations.h2')}</h2>
         <p class="lead">{T('home.situations.lead')}</p>
       </div>
-      <div class="cards">
-        {
-          playbooks.map((pb) => (
-            <PlaybookCard
-              href={R.playbook(entrySlug(pb.id))}
-              title={pb.data.title}
-              situation={pb.data.situation}
-              icon={pb.data.icon}
-              severity={pb.data.severity}
-            />
-          ))
-        }
+
+      <div class="filter" hidden data-filter-wrap>
+        <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.8-3.8" />
+        </svg>
+        <input
+          type="search"
+          id="situation-filter"
+          placeholder={T('home.search.placeholder')}
+          aria-label={T('home.search.placeholder')}
+          autocomplete="off"
+        />
       </div>
+
+      {
+        grouped.map(({ cat, items }) => (
+          <div class="cat-group" data-cat-group>
+            <h3 class="cat-head" id={`cat-${cat}`}>
+              <span class="cat-icon">
+                <CategoryIcon name={cat} />
+              </span>
+              {catLabel(cat)}
+            </h3>
+            <div class="cards">
+              {items.map((pb) => (
+                <div
+                  data-card
+                  data-search={`${pb.data.title} ${pb.data.situation} ${pb.data.summary}`.toLowerCase()}
+                >
+                  <PlaybookCard
+                    href={R.playbook(entrySlug(pb.id))}
+                    title={pb.data.title}
+                    situation={pb.data.situation}
+                    icon={pb.data.icon}
+                    severity={pb.data.severity}
+                    badge={pb.data.audience !== 'individ' ? T('badge.org') : undefined}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+
+      <p class="filter-none" hidden data-filter-none>{T('home.search.none')}</p>
+
+      <script is:inline>
+        // Filtru minimal: ascunde cardurile care nu conțin textul căutat.
+        // Progressive enhancement — inputul apare doar dacă JS rulează.
+        (function () {
+          var wrap = document.querySelector('[data-filter-wrap]');
+          var input = document.getElementById('situation-filter');
+          var none = document.querySelector('[data-filter-none]');
+          if (!wrap || !input || !none) return;
+          wrap.hidden = false;
+          var cards = [].slice.call(document.querySelectorAll('[data-card]'));
+          var groups = [].slice.call(document.querySelectorAll('[data-cat-group]'));
+          input.addEventListener('input', function () {
+            var q = input.value.trim().toLowerCase();
+            var visible = 0;
+            cards.forEach(function (c) {
+              var hit = !q || c.getAttribute('data-search').indexOf(q) !== -1;
+              c.hidden = !hit;
+              if (hit) visible++;
+            });
+            groups.forEach(function (g) {
+              g.hidden = !g.querySelector('[data-card]:not([hidden])');
+            });
+            none.hidden = visible > 0;
+          });
+        })();
+      </script>
     </div>
   </section>
 
@@ -113,7 +207,7 @@ const webSite = {
 
 <style>
   .hero {
-    padding-block: var(--space-6) var(--space-5);
+    padding-block: var(--space-4) var(--space-4);
     background:
       radial-gradient(
         60% 80% at 85% 10%,
@@ -151,43 +245,121 @@ const webSite = {
       display: block;
     }
   }
-  .btn-primary {
-    display: inline-block;
-    margin-top: var(--space-4);
-    padding: 0.85rem 1.5rem;
-    background: var(--color-accent);
-    color: var(--color-on-accent);
-    border-radius: var(--radius);
-    font-weight: var(--weight-bold);
-    text-decoration: none;
-    box-shadow: var(--shadow-soft);
-    transition:
-      transform var(--duration-fast) var(--ease-out-expo),
-      background var(--duration-fast) var(--ease-out-expo);
-  }
-  .btn-primary:hover {
-    background: var(--color-accent-strong);
-    color: var(--color-on-accent);
-    transform: translateY(-2px);
-  }
-  .hero-secondary {
-    display: inline-block;
+
+  /* Triaj — cele 3 căi de intrare */
+  .triage {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
     margin-top: var(--space-3);
-    margin-left: var(--space-3);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-muted);
+  }
+  @media (min-width: 40rem) {
+    .triage {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .triage-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
     text-decoration: none;
+    color: var(--color-text);
+    transition:
+      transform var(--duration-normal) var(--ease-out-expo),
+      box-shadow var(--duration-normal) var(--ease-out-expo),
+      border-color var(--duration-normal) var(--ease-out-expo);
   }
-  .hero-secondary:hover {
-    color: var(--color-accent-strong);
-    text-decoration: underline;
+  .triage-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-accent);
   }
+  .triage-crisis {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+  .triage-t {
+    font-weight: var(--weight-bold);
+    font-size: var(--text-md);
+    letter-spacing: -0.01em;
+  }
+  .triage-d {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
   .section-head {
     max-width: 46ch;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
   }
   .section-head .lead {
     margin-top: var(--space-2);
+  }
+
+  /* Filtru */
+  .filter {
+    position: relative;
+    max-width: 34rem;
+    margin-bottom: var(--space-4);
+  }
+  .filter-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+  .filter input {
+    width: 100%;
+    padding: 1rem 1.1rem 1rem 2.9rem;
+    font: inherit;
+    font-size: var(--text-md);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+  }
+  .filter input::placeholder {
+    color: var(--color-text-muted);
+  }
+  .filter input:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .filter-none {
+    color: var(--color-text-muted);
+    padding-block: var(--space-3);
+  }
+
+  /* Grupuri de categorie */
+  .cat-group {
+    margin-bottom: var(--space-5);
+  }
+  .cat-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--text-lg);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .cat-icon {
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: var(--radius);
+    background: var(--color-accent-soft);
+    color: var(--color-accent-strong);
   }
   .cards {
     display: grid;
@@ -199,6 +371,10 @@ const webSite = {
       grid-template-columns: repeat(2, 1fr);
     }
   }
+  .cards > div[hidden] {
+    display: none;
+  }
+
   .why {
     background: var(--color-surface-2);
     border-top: 1px solid var(--color-border);

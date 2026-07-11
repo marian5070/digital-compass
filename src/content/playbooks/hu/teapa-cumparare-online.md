@@ -5,6 +5,7 @@ situation: Fizettem online, de a termék nem jön, vagy az eladó eltűnt
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "2026. július 9."
 steps:
   - "<strong>Gyűjtsd össze a bizonyítékokat most:</strong> képernyőképek a hirdetésről, a beszélgetésről, a fizetési oldalról, az átutalás visszaigazolásáról és az eladó adatairól. Ne törölj semmit."

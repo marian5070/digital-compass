@@ -5,6 +5,7 @@ situation: Nem találom a telefonom, vagy ellopták
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "2026. július 10."
 steps:
   - "Egy másik eszközről (másik telefon, egy számítógép) lépj be a <strong>„Készülékkereső”</strong> szolgáltatásba: iPhone-on ez a „Find My” (Lokátor), Androidon a Google „Készülékkereső” funkciója. Láthatod, hol van, megcsörgetheted, letilthatod vagy távolról törölheted."

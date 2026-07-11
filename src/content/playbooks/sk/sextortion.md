@@ -5,6 +5,7 @@ situation: Niekto sa mi vyhráža zverejnením intímnych fotiek či videí
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Zastav sa a nadýchni sa.</strong> Nie si vinný a nie si jediný — stáva sa to mnohým ľuďom všetkých vekových kategórií. Panika je presne to, čo vydierači chcú."

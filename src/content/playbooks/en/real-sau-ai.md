@@ -5,6 +5,7 @@ situation: I received something that seems fake or made with AI
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "9 July 2026"
 steps:
   - "<strong>Don't react in the heat of the moment.</strong> Don't send money, don't give out details and don't share it before checking. That rush is exactly what the people behind this want."

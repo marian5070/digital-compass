@@ -5,6 +5,8 @@ situation: Túl jó állásajánlatot / „fizetett feladatokat” kaptam
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "2026. július 10."
 steps:
   - "<strong>Állíts le minden fizetést.</strong> Az egyszerű szabály: egy igazi munka soha nem kér tőled pénzt azért, hogy dolgozhass, vagy hogy megkapd a megkeresett pénzedet."

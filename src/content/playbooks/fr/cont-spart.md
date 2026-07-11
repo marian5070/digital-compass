@@ -5,6 +5,8 @@ situation: Je ne peux plus accéder à un compte ou quelqu'un en a pris le contr
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "10 juillet 2026"
 steps:
   - "Essayez tout de suite <strong>« Mot de passe oublié ? »</strong> sur l'application ou le site officiel. Si vous avez encore accès à l'adresse e-mail ou au numéro de téléphone associés, vous pouvez souvent récupérer le compte en quelques minutes."

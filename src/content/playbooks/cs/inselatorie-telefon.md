@@ -5,6 +5,7 @@ situation: Volal mi někdo, kdo naléhavě chce peníze nebo údaje
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "10. července 2026"
 steps:
   - "<strong>Zastav se. Zavěs.</strong> Není to neslušné — je to přesně to, co radí policie pravidlem <strong>3Z: Zastav. Zavěs. Zkontroluj.</strong> Žádná skutečná banka ani policista tě nepotrestá za to, že jsi zavěsil a ověřil si to."

@@ -5,6 +5,7 @@ situation: Ich buche eine Unterkunft (Booking/Airbnb) oder miete eine Wohnung, u
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Geben Sie Ihre Kartendaten nie über einen Link neu ein</strong>, der per Nachricht, E-Mail oder WhatsApp kommt — auch wenn er von Booking oder vom Gastgeber zu stammen scheint. Booking.com fragt Ihre Kartendaten niemals per WhatsApp, SMS oder Telefon ab; solche Nachrichten kommen vom gehackten Konto eines Hotels."

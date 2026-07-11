@@ -3,6 +3,7 @@ title: "Přišlo ti do pracovního e-mailu něco podezřelého? Nahlas to"
 summary: "Když ti v práci přijde zpráva, která vypadá podezřele, to nejcennější je jednoduché — nereaguj na ni a dej někomu vědět. Tady jsou kroky."
 topic: Co dělat, když ti v pracovním e-mailu něco přijde podezřelé
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10. července 2026"

@@ -5,6 +5,7 @@ situation: Ich habe online bezahlt und die Ware kommt nicht oder der Verkäufer 
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Sichern Sie jetzt die Beweise:</strong> Screenshots der Anzeige oder des Shops, der Unterhaltung, der Bezahlseite, der Überweisungsbestätigung und der Verkäuferdaten. Löschen Sie nichts."

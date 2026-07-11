@@ -3,6 +3,7 @@ title: "Cosa NON mettere negli strumenti AI (ChatGPT & co.)"
 summary: "Gli strumenti AI sono utili, ma tutto quello che ci scrivi finisce a un'azienda esterna. Ecco perché conta — e cosa non incollarci mai."
 topic: Perché i dati riservati non devono finire lì
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 luglio 2026"

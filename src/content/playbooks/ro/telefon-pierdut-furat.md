@@ -5,6 +5,7 @@ situation: Nu-mi mai găsesc telefonul sau mi-a fost furat
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10 iulie 2026"
 steps:
   - "De pe alt dispozitiv (alt telefon, un calculator), intră pe <strong>„Găsește-mi dispozitivul”</strong>: la iPhone e „Find My”, la Android e „Găsește-mi dispozitivul” de la Google. Poți vedea unde e, îl poți suna, bloca sau șterge de la distanță."

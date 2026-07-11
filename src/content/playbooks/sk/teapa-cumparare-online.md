@@ -5,6 +5,7 @@ situation: Zaplatil som online a tovar neprichádza alebo predajca zmizol
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Zozbieraj dôkazy hneď teraz:</strong> snímky obrazovky s inzerátom, konverzáciou, platobnou stránkou, potvrdením prevodu a údajmi predajcu. Nič nemaž."

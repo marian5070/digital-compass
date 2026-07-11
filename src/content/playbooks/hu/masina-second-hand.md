@@ -5,6 +5,7 @@ situation: Autót szeretnék venni (főleg importból), és előleget kérnek
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "2026. július 10."
 steps:
   - "<strong>Ne küldj semmilyen előleget, mielőtt élőben látnád az autót.</strong> Az „előleggel való lefoglalás” egy olyan autóra, amit nem tudsz megnézni, a klasszikus átverésjel — az autó sokszor nem is létezik."

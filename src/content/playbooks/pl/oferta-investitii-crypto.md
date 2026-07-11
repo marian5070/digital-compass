@@ -5,6 +5,7 @@ situation: Wpłaciłem pieniądze w „inwestycję”/krypto i coś jest nie tak
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Zatrzymaj każdą kolejną wpłatę, teraz.</strong> Zwłaszcza jeśli żądają „podatku” albo „opłaty”, żebyś mógł wypłacić pieniądze — coś takiego nie istnieje, to ciąg dalszy oszustwa."

@@ -5,6 +5,7 @@ situation: Cineva drag mie a fost păgubit și nu știu cum să-l ajut
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "9 iulie 2026"
 steps:
   - "<strong>Nu-l certa și nu-l rușina.</strong> Escrocii sunt profesioniști; oricine poate păți. Dacă se simte judecat, se va închide și va ascunde detalii care contează."

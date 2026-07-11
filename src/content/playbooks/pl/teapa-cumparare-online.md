@@ -5,6 +5,7 @@ situation: Zapłaciłem w internecie, a towar nie przychodzi albo sprzedawca zni
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Zbierz dowody już teraz:</strong> zrzuty ekranu ogłoszenia, rozmowy, strony płatności, potwierdzenia przelewu i danych sprzedawcy. Niczego nie kasuj."

@@ -5,6 +5,8 @@ situation: Dostałem podejrzaną wiadomość albo kliknąłem w link
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Nie wpisuj już niczego</strong> na stronie, która się otworzyła. Zamknij ją. Jeśli zdążyłeś podać jakieś dane, przejdź od razu do następnego kroku."

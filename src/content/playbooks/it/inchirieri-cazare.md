@@ -5,6 +5,7 @@ situation: Prenoto un alloggio (Booking/Airbnb) o affitto un appartamento e qual
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Non reinserire i dati della carta da un link</strong> ricevuto per messaggio, e-mail o WhatsApp, anche se sembra arrivare da Booking o dal proprietario. Booking.com non ti chiede mai i dati della carta via WhatsApp, SMS o telefono — il messaggio parte dall'account violato di un hotel."

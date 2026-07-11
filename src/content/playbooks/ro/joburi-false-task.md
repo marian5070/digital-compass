@@ -5,6 +5,8 @@ situation: Am primit o ofertă de job/„task-uri plătite” prea bună
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10 iulie 2026"
 steps:
   - "<strong>Oprește orice plată.</strong> Regula simplă: un job adevărat nu-ți cere niciodată bani ca să lucrezi sau ca să-ți primești banii câștigați."

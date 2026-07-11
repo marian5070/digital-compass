@@ -5,6 +5,7 @@ situation: Dostałem coś, co wygląda na fałszywe albo zrobione przez AI
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Nie reaguj na gorąco.</strong> Nie wysyłaj pieniędzy, nie podawaj danych i nie udostępniaj dalej, zanim nie sprawdzisz. Pośpiech to dokładnie to, na czym zależy oszustom."

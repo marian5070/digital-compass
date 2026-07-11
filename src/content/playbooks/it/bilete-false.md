@@ -5,6 +5,7 @@ situation: Ho pagato un biglietto di seconda mano e non sono sicuro che sia vero
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Verifica il biglietto alla fonte:</strong> entra sulla piattaforma ufficiale di biglietteria e controlla se quel codice o quell'ordine è valido. Un codice QR può essere venduto più volte — la verità si vede alla scansione, all'ingresso."

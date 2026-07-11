@@ -5,6 +5,7 @@ situation: J'ai reçu quelque chose qui semble faux ou fait par l'IA
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Ne réagissez pas à chaud.</strong> N'envoyez pas d'argent, ne donnez pas de données et ne partagez pas avant d'avoir vérifié. Cette précipitation est exactement ce que recherchent les fraudeurs."

@@ -5,6 +5,8 @@ situation: Gyanús üzenetet kaptam, vagy rákattintottam egy linkre
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "2026. július 9."
 steps:
   - "<strong>Ne írj be semmit</strong> a megnyílt oldalra. Zárd be. Ha már beírtál adatokat, ugorj azonnal a következő lépésre."

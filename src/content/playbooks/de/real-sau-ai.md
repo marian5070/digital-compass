@@ -5,6 +5,7 @@ situation: Ich habe etwas erhalten, das gefälscht oder mit KI gemacht wirkt
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Reagieren Sie nicht im Affekt.</strong> Überweisen Sie kein Geld, geben Sie keine Daten preis und teilen Sie nichts weiter, bevor Sie es geprüft haben. Genau auf Ihre Eile setzen die Täter."

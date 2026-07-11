@@ -1,5 +1,6 @@
 ---
-import { pageAlternates } from '../../i18n/routes';
+import { pageAlternates, r } from '../../i18n/routes';
+import { t } from '../../i18n/ui';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Traseu curat, în ordinea recomandată — oglinda HU a paginii /incepe-aici.
@@ -54,6 +55,9 @@ const path = [
     ],
   },
 ];
+
+const T = t('hu');
+const R = r('hu');
 ---
 
 <BaseLayout
@@ -72,6 +76,11 @@ const path = [
           megvannak az alapok, amelyek a legtöbb csapdától megvédenek. Se
           szakzsargon, se tesztek.
         </p>
+
+        <nav class="aud-switch" aria-label="audience">
+          <span class="aud-chip active" aria-current="page">{T('start.you')}</span>
+          <a href={R.org} class="aud-chip">{T('start.org')}</a>
+        </nav>
       </div>
 
       <ol class="path">
@@ -191,5 +200,30 @@ const path = [
   .org p {
     margin-top: var(--space-2);
     font-size: var(--text-sm);
+  }
+
+  .aud-switch {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-top: var(--space-4);
+  }
+  .aud-chip {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    background: var(--color-surface);
+  }
+  a.aud-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-strong);
+  }
+  .aud-chip.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
   }
 </style>

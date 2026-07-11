@@ -5,6 +5,7 @@ situation: Am primit ceva ce pare fals sau făcut cu AI
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "9 iulie 2026"
 steps:
   - "<strong>Nu reacționa la cald.</strong> Nu trimite bani, nu da date și nu redistribui înainte să verifici. Exact graba e ce vor cei care fac asta."

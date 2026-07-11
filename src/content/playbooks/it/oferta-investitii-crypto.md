@@ -5,6 +5,7 @@ situation: Ho messo soldi in un investimento/cripto e qualcosa non torna
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Ferma qualsiasi altro pagamento, adesso.</strong> Soprattutto se ti chiedono «tasse» per prelevare i tuoi soldi — non esistono, è la continuazione della truffa."

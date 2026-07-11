@@ -1,0 +1,156 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaybookCard from '../components/PlaybookCard.astro';
+import { entrySlug, type Lang } from '../lib/i18n-content';
+import { t } from '../i18n/ui';
+import { r, pageAlternates } from '../i18n/routes';
+
+// Hub „Pentru firma ta" — agregă (data-driven, din taxonomie) ghidurile pentru
+// birou și situațiile care lovesc și firmele. Publicul: angajatul/echipa mică,
+// nu departamentul de securitate.
+interface Props {
+  lang: Lang;
+  playbooks: CollectionEntry<'playbooks'>[];
+  ghiduri: CollectionEntry<'ghiduri'>[];
+}
+const { lang, playbooks, ghiduri } = Astro.props;
+const T = t(lang);
+const R = r(lang);
+
+const orgGuides = ghiduri
+  .filter((g) => g.data.audience !== 'individ' || g.data.category === 'la-birou')
+  .sort((a, b) => a.data.order - b.data.order);
+const orgPlaybooks = playbooks
+  .filter((p) => p.data.audience !== 'individ')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title={T('org.title')}
+  description={T('org.desc')}
+  alternates={pageAlternates('org')}
+>
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">{T('org.eyebrow')}</span>
+        <h1>{T('org.h1')}</h1>
+        <p class="lead">{T('org.lead')}</p>
+        <nav class="aud-switch" aria-label={T('org.eyebrow')}>
+          <a href={R.home} class="aud-chip">{T('start.you')}</a>
+          <span class="aud-chip active" aria-current="page">{T('start.org')}</span>
+        </nav>
+      </div>
+
+      <h2 class="group-head">{T('org.guides.h2')}</h2>
+      <div class="cards">
+        {
+          orgGuides.map((g) => (
+            <PlaybookCard
+              href={R.guide(entrySlug(g.id))}
+              title={g.data.title}
+              situation={g.data.topic}
+              icon={g.data.icon}
+            />
+          ))
+        }
+      </div>
+
+      <h2 class="group-head">{T('org.playbooks.h2')}</h2>
+      <div class="cards">
+        {
+          orgPlaybooks.map((pb) => (
+            <PlaybookCard
+              href={R.playbook(entrySlug(pb.id))}
+              title={pb.data.title}
+              situation={pb.data.situation}
+              icon={pb.data.icon}
+              severity={pb.data.severity}
+            />
+          ))
+        }
+      </div>
+
+      <aside class="start-cta">
+        <a href={R.start} class="btn-ghost">{T('org.start.cta')}</a>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .head {
+    max-width: 52ch;
+    margin-bottom: var(--space-5);
+  }
+  .head h1 {
+    margin-top: var(--space-2);
+  }
+  .head .lead {
+    margin-top: var(--space-3);
+  }
+  .aud-switch {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-top: var(--space-4);
+  }
+  .aud-chip {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    background: var(--color-surface);
+  }
+  a.aud-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent-strong);
+  }
+  .aud-chip.active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+  .group-head {
+    font-size: var(--text-lg);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .group-head + .cards {
+    margin-bottom: var(--space-5);
+  }
+  .cards {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .start-cta {
+    margin-top: var(--space-2);
+  }
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius);
+    color: var(--color-accent-strong);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+    transition:
+      background var(--duration-fast) var(--ease-out-expo),
+      color var(--duration-fast) var(--ease-out-expo);
+  }
+  .btn-ghost:hover {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+</style>

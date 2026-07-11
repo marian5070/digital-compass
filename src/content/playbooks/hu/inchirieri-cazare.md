@@ -5,6 +5,7 @@ situation: Szállást foglalok (Booking/Airbnb) vagy lakást bérelnék, és val
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "2026. július 10."
 steps:
   - "<strong>Ne add meg újra a kártyaadataidat egy linkről</strong>, amit üzenetben, e-mailben vagy WhatsAppon kaptál, még akkor sem, ha úgy tűnik, a Bookingtól vagy a szállásadótól jön. A Booking.com soha nem kéri a kártyaadataidat WhatsAppon, SMS-ben vagy telefonon — az ilyen üzenet egy feltört szállodai fiókból érkezik."

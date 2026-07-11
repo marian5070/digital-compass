@@ -3,6 +3,7 @@ title: "Coś podejrzanego na służbowej skrzynce? Zgłoś to"
 summary: "Jeśli w pracy dostajesz wiadomość, która wygląda podejrzanie, najcenniejsza rzecz jest prosta — nie wchodź z nią w interakcję i powiadom kogoś. Oto kroki."
 topic: Co robić, gdy coś na służbowej poczcie wygląda podejrzanie
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10 lipca 2026"

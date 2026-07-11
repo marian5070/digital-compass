@@ -3,6 +3,7 @@ title: "Data firmy a klientů — základní pravidla"
 summary: Když pracuješ s daty firmy a jejích klientů, pár jednoduchých návyků udělá skoro celý rozdíl. Tady jsou.
 topic: Jednoduché návyky, jak chránit data v práci
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10. července 2026"

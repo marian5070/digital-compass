@@ -5,6 +5,7 @@ situation: Mi ha chiamato qualcuno che chiede soldi o dati con urgenza
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Riattacca.</strong> Non è maleducazione — è la cosa più sicura. Nessuna istituzione vera ti punisce perché hai riattaccato e hai richiamato tu."

@@ -5,6 +5,7 @@ situation: Valakit, aki fontos nekem, megkárosítottak, és nem tudom, hogyan s
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "2026. július 9."
 steps:
   - "<strong>Ne szidd és ne szégyenítsd meg.</strong> A csalók profik; bárkivel megtörténhet. Ha úgy érzi, hogy ítélkeznek felette, bezárkózik, és eltitkolja a fontos részleteket."

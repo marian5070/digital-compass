@@ -3,6 +3,7 @@ title: "A cég és az ügyfelek adatai — alapszabályok"
 summary: Amikor egy cég és az ügyfelei adataival dolgozol, néhány egyszerű szokás szinte mindent eldönt. Íme.
 topic: Egyszerű szokások az adatok védelmére a munkahelyen
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "2026. július 10."

@@ -3,6 +3,7 @@ title: "Vous avez reçu quelque chose de suspect sur votre e-mail de travail ? S
 summary: "Si au travail vous recevez un message qui semble suspect, la chose la plus précieuse à faire est simple — ne pas interagir et prévenir quelqu'un. Voici les étapes."
 topic: Quoi faire quand quelque chose semble suspect sur l'e-mail du travail
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10 juillet 2026"

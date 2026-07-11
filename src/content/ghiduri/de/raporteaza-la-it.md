@@ -3,6 +3,7 @@ title: "Etwas Verdächtiges im dienstlichen Postfach? Melden Sie es"
 summary: "Wenn Sie bei der Arbeit eine Nachricht erhalten, die verdächtig wirkt, ist das Wertvollste ganz einfach — nicht damit interagieren und jemandem Bescheid geben. Hier sind die Schritte."
 topic: Was Sie tun, wenn etwas in der dienstlichen E-Mail verdächtig wirkt
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10. Juli 2026"

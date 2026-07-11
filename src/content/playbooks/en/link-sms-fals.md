@@ -5,6 +5,8 @@ situation: I received a suspicious message or clicked on a link
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "9 July 2026"
 steps:
   - "<strong>Don't type anything else</strong> into the page that opened. Close it. If you already entered any details, go straight to the next step."

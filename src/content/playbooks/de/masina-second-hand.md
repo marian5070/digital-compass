@@ -5,6 +5,7 @@ situation: Ich will ein Auto kaufen (angeblich im Ausland) und soll vorab zahlen
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Überweisen Sie keine Anzahlung, bevor Sie das Auto nicht real gesehen haben.</strong> „Mit einer Anzahlung reservieren“ für ein Auto, das Sie nicht besichtigen können, ist das klassische Betrugsmuster — oft existiert das Auto gar nicht. Der Rat der Polizei: Vorkasse ganz vermeiden."

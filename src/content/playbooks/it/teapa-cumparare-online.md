@@ -5,6 +5,7 @@ situation: Ho pagato online e il prodotto non arriva o il venditore è sparito
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Raccogli le prove adesso:</strong> screenshot dell'annuncio, della conversazione, della pagina di pagamento, della conferma del bonifico e dei dati del venditore. Non cancellare niente."

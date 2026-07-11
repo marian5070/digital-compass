@@ -3,6 +3,7 @@ title: "Ce qu'il ne faut PAS mettre dans les outils d'IA (ChatGPT & co.)"
 summary: "Les outils d'IA sont utiles, mais tout ce que vous y écrivez part chez une entreprise extérieure. Voici pourquoi cela compte — et ce qu'il ne faut jamais y coller."
 topic: Pourquoi les données confidentielles n'ont rien à faire là-dedans
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 juillet 2026"

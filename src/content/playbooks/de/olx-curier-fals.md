@@ -5,6 +5,7 @@ situation: Jemand hat mir beim Verkaufen einen Link geschickt, um „das Geld zu
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Öffnen Sie den Link nicht und geben Sie keine Kartendaten ein.</strong> Merken Sie sich die goldene Regel: Um Geld zu ERHALTEN, brauchen Sie niemals Kartennummer, PIN oder einen Code. Nur, um Geld zu SENDEN."

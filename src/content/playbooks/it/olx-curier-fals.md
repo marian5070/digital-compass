@@ -5,6 +5,7 @@ situation: Un «compratore» vuole farmi «ricevere» i soldi al bancomat o con 
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Fermati: nessun pagamento vero si «riceve» al bancomat o con un link.</strong> Ricorda la regola d'oro: per RICEVERE soldi non servono mai il numero della carta, il PIN, un codice o un'operazione al bancomat. Servono solo per MANDARE soldi."

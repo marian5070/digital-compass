@@ -5,6 +5,7 @@ situation: Zapłaciłem za bilet z drugiej ręki i nie mam pewności, czy jest p
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Sprawdź bilet u źródła:</strong> wejdź na oficjalną platformę biletową i zobacz, czy ten kod lub zamówienie są ważne. Kod QR można sprzedać kilku osobom naraz — prawda wychodzi na jaw przy skanowaniu, na bramce."

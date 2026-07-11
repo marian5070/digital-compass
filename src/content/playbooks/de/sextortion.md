@@ -5,6 +5,7 @@ situation: Jemand droht, intime Fotos/Videos von mir zu veröffentlichen
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Halten Sie inne und atmen Sie durch.</strong> Sie tragen keine Schuld und sind nicht allein — das passiert vielen Menschen, in jedem Alter. Panik ist genau das, was die Täter wollen."

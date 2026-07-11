@@ -5,6 +5,7 @@ situation: Dostal jsem něco, co vypadá falešně nebo vytvořené AI
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "10. července 2026"
 steps:
   - "<strong>Nereaguj v návalu emocí.</strong> Neposílej peníze, nedávej údaje a nesdílej dál, dokud si věc neověříš. Přesně na spěch tihle lidé sázejí."

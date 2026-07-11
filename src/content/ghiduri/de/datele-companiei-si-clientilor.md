@@ -3,6 +3,7 @@ title: "Firmen- und Kundendaten — Grundregeln"
 summary: Wenn Sie mit den Daten einer Firma und ihrer Kunden arbeiten, machen ein paar einfache Gewohnheiten fast den ganzen Unterschied. Hier sind sie.
 topic: Einfache Gewohnheiten, um Daten bei der Arbeit zu schützen
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10. Juli 2026"

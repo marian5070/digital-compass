@@ -5,6 +5,7 @@ situation: I'm booking a stay (Booking/Airbnb) or renting a flat and something f
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 July 2026"
 steps:
   - "<strong>Don't re-enter your card details through a link</strong> received by message, email or WhatsApp, even if it looks like it's from Booking or from the host. Booking.com never asks for your card details via WhatsApp, SMS or phone — the message comes from a hotel's account that has been hacked."

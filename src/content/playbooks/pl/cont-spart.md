@@ -5,6 +5,8 @@ situation: Nie mogę zalogować się na konto albo ktoś je przejął
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "10 lipca 2026"
 steps:
   - "Spróbuj teraz opcji <strong>„Nie pamiętasz hasła?”</strong> w oficjalnej aplikacji lub na oficjalnej stronie. Jeśli masz jeszcze dostęp do powiązanego adresu e-mail lub numeru telefonu, często odzyskasz konto w kilka minut."

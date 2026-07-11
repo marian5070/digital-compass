@@ -3,6 +3,7 @@ title: "Got something suspicious on your work email? Report it"
 summary: "If you receive a message at work that looks suspicious, the most valuable thing you can do is simple — don't interact with it and tell someone. Here are the steps."
 topic: What to do when something looks suspicious on your work email
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10 July 2026"

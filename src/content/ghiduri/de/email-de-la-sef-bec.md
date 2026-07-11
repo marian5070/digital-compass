@@ -3,6 +3,7 @@ title: "E-Mail vom „Chef“ oder „Lieferanten“ mit dringender Zahlungsauff
 summary: Im Büro knackt eine der teuersten Betrugsmaschen nichts Technisches — sie bringt Sie dazu, selbst und freiwillig eine Zahlung auszuführen oder eine Kontoverbindung zu ändern. In Deutschland heißt sie „CEO-Fraud“. So erkennen Sie sie, und so reagieren Sie.
 topic: Dringende Zahlungs- oder Datenanfragen — „von der Geschäftsführung“ oder von Lieferanten
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10. Juli 2026"

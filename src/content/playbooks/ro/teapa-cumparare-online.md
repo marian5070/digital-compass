@@ -5,6 +5,7 @@ situation: Am plătit online și produsul nu vine sau vânzătorul a dispărut
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "9 iulie 2026"
 steps:
   - "<strong>Adună dovezile acum:</strong> capturi de ecran cu anunțul, conversația, pagina de plată, confirmarea transferului și datele vânzătorului. Nu șterge nimic."

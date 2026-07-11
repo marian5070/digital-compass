@@ -3,6 +3,7 @@ title: "Hai ricevuto qualcosa di sospetto sull'email di lavoro? Segnalalo"
 summary: "Se al lavoro ricevi un messaggio che sembra sospetto, la cosa più preziosa da fare è semplice — non interagire e avvisare qualcuno. Ecco i passaggi."
 topic: Cosa fare quando qualcosa sembra sospetto sull'email di lavoro
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10 luglio 2026"

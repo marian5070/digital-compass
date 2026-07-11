@@ -3,6 +3,7 @@ title: "What NOT to put into AI tools (ChatGPT & co.)"
 summary: "AI tools are useful, but everything you type into them goes to an outside company. Here's why that matters — and what you should never paste in there."
 topic: Why confidential data has no place in there
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 July 2026"

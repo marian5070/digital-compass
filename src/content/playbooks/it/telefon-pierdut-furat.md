@@ -5,6 +5,7 @@ situation: Non trovo più il telefono o me l'hanno rubato
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10 luglio 2026"
 steps:
   - "Da un altro dispositivo (un altro telefono, un computer), entra in <strong>«Trova il dispositivo»</strong>: su iPhone è «Dov'è» (Find My), su Android è «Trova il dispositivo» di Google. Puoi vedere dov'è, farlo squillare, bloccarlo o cancellarlo a distanza."

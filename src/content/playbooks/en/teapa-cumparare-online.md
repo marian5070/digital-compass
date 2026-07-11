@@ -5,6 +5,7 @@ situation: I paid online and the product isn't coming or the seller has disappea
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "9 July 2026"
 steps:
   - "<strong>Gather the evidence now:</strong> screenshots of the listing, the conversation, the payment page, the transfer confirmation and the seller's details. Don't delete anything."

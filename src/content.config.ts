@@ -13,6 +13,16 @@ const playbooks = defineCollection({
     icon: z.string().default('•'),
     order: z.number().default(0),
     severity: z.enum(['urgent', 'important']).default('important'),
+    // Categoria de use case — grupează situațiile pe Home (triaj, nu listă plată).
+    // Valorile sunt slug-uri stabile, identice în toate limbile; etichetele UI se traduc.
+    category: z.enum([
+      'cumparaturi-bani',
+      'conturi-dispozitive',
+      'mesaje-apeluri',
+      'oameni-manipulare',
+    ]),
+    // Cui i se adresează: individ (default), organizație, sau ambele.
+    audience: z.enum(['individ', 'organizatie', 'ambele']).default('individ'),
     lastReviewed: z.string(),
 
     // Primii pași (acum) — acționabili, în ordine.
@@ -59,6 +69,8 @@ const ghiduri = defineCollection({
     ]),
     icon: z.string().default('•'),
     order: z.number().default(0),
+    // Cui i se adresează: individ (default), organizație, sau ambele.
+    audience: z.enum(['individ', 'organizatie', 'ambele']).default('individ'),
     lastReviewed: z.string(),
     // Semne bune / de încredere.
     greenFlags: z.array(z.string()).default([]),

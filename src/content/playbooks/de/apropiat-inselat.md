@@ -5,6 +5,7 @@ situation: Ein Mensch, der mir nahesteht, wurde betrogen, und ich weiß nicht, w
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Keine Vorwürfe, keine Beschämung.</strong> Betrüger sind Profis — der Enkeltrick und die „Hallo Mama“-Masche funktionieren seit Jahren, weil jedes Detail einstudiert ist. Wer sich verurteilt fühlt, zieht sich zurück und verschweigt genau die Einzelheiten, auf die es jetzt ankommt."

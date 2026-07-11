@@ -5,6 +5,7 @@ situation: J'ai mis de l'argent dans un placement/des cryptos et quelque chose c
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Arrêtez tout nouveau paiement, maintenant.</strong> Surtout si on vous réclame des « frais » ou un « impôt sur les gains » pour retirer votre argent — cela n'existe pas, c'est la suite de l'arnaque."

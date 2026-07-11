@@ -5,6 +5,7 @@ situation: Volal mi niekto, kto súrne chce peniaze alebo údaje
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Zaves.</strong> Nie je to neslušné — je to najbezpečnejšia vec. Žiadna skutočná inštitúcia ťa nepotrestá za to, že si zavesil a zavolal späť sám."

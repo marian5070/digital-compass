@@ -5,6 +5,7 @@ situation: Je veux acheter une voiture (surtout de l'étranger) et on me demande
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>N'envoyez aucun acompte avant d'avoir vu la voiture physiquement.</strong> « Réserver avec un acompte » une voiture que vous ne pouvez pas voir est le signe classique de l'arnaque — souvent, la voiture n'existe même pas."

@@ -5,6 +5,8 @@ situation: Ho ricevuto un'offerta di lavoro/«task pagati» troppo bella
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Ferma qualsiasi pagamento.</strong> La regola semplice: un lavoro vero non ti chiede mai soldi per lavorare o per ricevere i soldi che hai guadagnato."

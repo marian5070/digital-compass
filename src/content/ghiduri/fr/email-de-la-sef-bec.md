@@ -3,6 +3,7 @@ title: "Un e-mail du « chef » ou d'un « fournisseur » qui demande un paiemen
 summary: Au bureau, l'une des arnaques les plus coûteuses ne pirate rien de technique — elle vous piège pour que vous fassiez vous-même, de plein gré, un paiement ou un changement de coordonnées bancaires. On l'appelle la « fraude au président ». Voici comment la reconnaître et quoi faire.
 topic: Demandes de paiement ou de données « urgentes », de la direction ou de fournisseurs
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10 juillet 2026"

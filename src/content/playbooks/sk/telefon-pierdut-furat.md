@@ -5,6 +5,7 @@ situation: Neviem nájsť svoj telefón alebo mi ho ukradli
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10. júla 2026"
 steps:
   - "Z iného zariadenia (iný telefón, počítač) otvor <strong>„Nájsť zariadenie“</strong>: pri iPhone je to „Find My“ (Nájsť), pri Androide „Nájsť môj telefón“ / Find Hub od Googlu. Uvidíš, kde telefón je, môžeš naň zazvoniť, zablokovať ho alebo vymazať na diaľku."

@@ -3,6 +3,7 @@ title: "Prišlo ti niečo podozrivé na pracovný e-mail? Nahlás to"
 summary: "Ak ti v práci príde správa, ktorá vyzerá podozrivo, to najcennejšie, čo môžeš urobiť, je jednoduché — nereaguj na ňu a niekomu to povedz. Tu sú kroky."
 topic: Čo robiť, keď na pracovnom e-maile niečo vyzerá podozrivo
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "10. júla 2026"

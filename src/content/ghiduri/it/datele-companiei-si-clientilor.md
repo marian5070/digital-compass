@@ -3,6 +3,7 @@ title: "I dati dell'azienda e dei clienti — regole di base"
 summary: "Quando lavori con i dati di un'azienda e dei suoi clienti, poche abitudini semplici fanno quasi tutta la differenza. Eccole."
 topic: Abitudini semplici per proteggere i dati al lavoro
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10 luglio 2026"

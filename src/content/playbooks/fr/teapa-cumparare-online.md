@@ -5,6 +5,7 @@ situation: J'ai payé en ligne et le produit n'arrive pas ou le vendeur a dispar
 icon: "🛒"
 order: 3
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Rassemblez les preuves maintenant :</strong> captures d'écran de l'annonce, de la conversation, de la page de paiement, de la confirmation du paiement et des coordonnées du vendeur. Ne supprimez rien."

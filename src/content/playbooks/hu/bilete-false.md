@@ -5,6 +5,7 @@ situation: Pénzt adtam egy másodkezes jegyért, és nem vagyok biztos benne, h
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "2026. július 10."
 steps:
   - "<strong>Ellenőrizd a jegyet a forrásnál:</strong> lépj be a hivatalos jegyértékesítő platformra, és nézd meg, hogy az a kód vagy rendelés érvényes-e. Egy QR-kódot többször is eladhatnak — az igazság a beolvasáskor, a bejáratnál derül ki."

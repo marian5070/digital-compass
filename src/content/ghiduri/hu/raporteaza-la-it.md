@@ -3,6 +3,7 @@ title: "Gyanús üzenet érkezett a munkahelyi e-mailedre? Jelentsd"
 summary: "Ha a munkahelyeden gyanúsnak tűnő üzenetet kapsz, a legértékesebb, amit tehetsz, egyszerű — ne lépj vele kapcsolatba, és szólj valakinek. Íme a lépések."
 topic: "Mit tegyél, ha valami gyanúsnak tűnik a munkahelyi e-mailben"
 category: la-birou
+audience: organizatie
 icon: "🚩"
 order: 2
 lastReviewed: "2026. július 10."

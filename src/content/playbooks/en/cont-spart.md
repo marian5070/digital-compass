@@ -5,6 +5,8 @@ situation: I can no longer log in to an account, or someone has taken it over
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "9 July 2026"
 steps:
   - "Try <strong>\"Forgot password?\"</strong> now, on the official app or website. If you still have access to the email address or phone number linked to the account, you can often recover it in a few minutes."

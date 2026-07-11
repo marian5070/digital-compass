@@ -5,6 +5,7 @@ situation: I can't find my phone or it was stolen
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10 July 2026"
 steps:
   - "From another device (another phone, a computer), go to <strong>\"Find My Device\"</strong>: on iPhone it's \"Find My\", on Android it's Google's \"Find My Device\". You can see where it is, make it ring, lock it or wipe it remotely."

@@ -3,6 +3,7 @@ title: "Email de la „șef” sau „furnizor” care cere o plată urgentă"
 summary: La birou, una dintre cele mai costisitoare țepe nu sparge nimic tehnic — te păcălește să faci tu, de bunăvoie, o plată sau o schimbare de cont. Iată cum o recunoști și ce faci.
 topic: Cereri de plată sau de date „urgente”, de la conducere sau furnizori
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10 iulie 2026"

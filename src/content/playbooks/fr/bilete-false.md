@@ -5,6 +5,7 @@ situation: J'ai payé un billet de seconde main et je ne suis pas sûr qu'il soi
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Vérifiez le billet à la source :</strong> allez sur la billetterie officielle de l'événement et vérifiez si ce code ou cette commande est valide. Un code QR peut être vendu plusieurs fois — la vérité se voit au scan, à l'entrée."

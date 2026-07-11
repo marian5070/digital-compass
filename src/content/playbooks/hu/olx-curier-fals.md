@@ -5,6 +5,7 @@ situation: Valaki linket küldött, hogy „megkapjam” a pénzt az OLX-en
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "2026. július 10."
 steps:
   - "<strong>Ne nyisd meg a linket, és ne írd be a bankkártya adatait.</strong> Jegyezd meg az aranyszabályt: ahhoz, hogy pénzt KAPJ, soha nincs szükség a kártyaszámra, a PIN-kódra vagy bármilyen kódra. Csak ahhoz, hogy pénzt ADJ."

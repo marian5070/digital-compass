@@ -5,6 +5,7 @@ situation: Rezervuju ubytování (Booking/Airbnb) nebo si pronajímám byt a ně
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10. července 2026"
 steps:
   - "<strong>Nezadávej znovu údaje karty přes odkaz</strong> ze zprávy, e-mailu nebo WhatsAppu, i když vypadá jako od Bookingu nebo od hostitele. Booking po tobě nikdy nechce údaje karty přes WhatsApp, SMS nebo telefon — taková zpráva chodí z hacknutého účtu hotelu."

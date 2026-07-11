@@ -5,6 +5,7 @@ situation: Dostal som niečo, čo pôsobí falošne alebo ako výtvor AI
 icon: "🎭"
 order: 7
 severity: important
+category: oameni-manipulare
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Nereaguj v prvom hnutí mysle.</strong> Neposielaj peniaze, nezadávaj údaje a nezdieľaj, kým si to neoveríš. Presne ten zhon je to, čo podvodníci potrebujú."

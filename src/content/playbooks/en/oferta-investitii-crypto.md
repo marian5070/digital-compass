@@ -5,6 +5,7 @@ situation: I put money into an investment/crypto and something's wrong
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "9 July 2026"
 steps:
   - "<strong>Stop any further payment, now.</strong> Especially if you're being asked for \"fees\" to withdraw your money — no such thing exists, it's the scam continuing."

@@ -5,6 +5,7 @@ situation: On m'a envoyé un lien pour « recevoir l'argent » de ma vente
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>N'ouvrez pas le lien et ne saisissez ni vos données de carte bancaire, ni vos identifiants bancaires.</strong> Retenez la règle d'or : pour RECEVOIR de l'argent, vous n'avez jamais besoin de donner votre numéro de carte, un code ou votre connexion bancaire. La plateforme ne vous demande jamais de vous connecter à votre banque pour être payé."

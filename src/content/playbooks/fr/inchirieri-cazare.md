@@ -5,6 +5,7 @@ situation: Je réserve un hébergement (Booking/Airbnb) ou je loue un appartemen
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Ne ressaisissez pas les données de votre carte via un lien</strong> reçu par message, e-mail ou WhatsApp, même s'il semble venir de Booking ou de l'hôte. Booking.com ne vous demande jamais vos données de carte par WhatsApp, SMS ou téléphone — ce message vient du compte piraté d'un hôtel."

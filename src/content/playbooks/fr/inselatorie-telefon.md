@@ -5,6 +5,7 @@ situation: On m'a appelé pour me demander de l'argent ou des données en urgenc
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Raccrochez.</strong> Ce n'est pas impoli — c'est le geste le plus sûr. Aucune institution réelle ne vous reprochera d'avoir raccroché pour rappeler vous-même."

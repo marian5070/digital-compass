@@ -3,6 +3,7 @@ title: "Les données de l'entreprise et des clients — règles de base"
 summary: Quand vous travaillez avec les données d'une entreprise et de ses clients, quelques habitudes simples font presque toute la différence. Les voici.
 topic: Des habitudes simples pour protéger les données au travail
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10 juillet 2026"

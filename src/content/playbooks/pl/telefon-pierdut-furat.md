@@ -5,6 +5,7 @@ situation: Nie mogę znaleźć telefonu albo został mi ukradziony
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10 lipca 2026"
 steps:
   - "Z innego urządzenia (drugi telefon, komputer) wejdź w <strong>„Znajdź urządzenie”</strong>: na iPhonie to aplikacja „Znajdź” (Find My), na Androidzie — „Znajdź urządzenie” od Google (Find Hub). Zobaczysz, gdzie jest telefon; możesz włączyć na nim dźwięk, zablokować go albo zdalnie wymazać."

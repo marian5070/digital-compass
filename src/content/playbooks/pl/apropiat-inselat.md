@@ -5,6 +5,7 @@ situation: Ktoś mi bliski został oszukany i nie wiem, jak mu pomóc
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Nie krzycz i nie zawstydzaj.</strong> Oszuści to zawodowcy — metody „na wnuczka” czy „na policjanta” działają od lat, bo są dopracowane w każdym szczególe. Osoba, która czuje się oceniana, zamyka się i przemilcza szczegóły, które teraz są najważniejsze."

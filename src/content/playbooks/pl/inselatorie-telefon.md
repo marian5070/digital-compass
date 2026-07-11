@@ -5,6 +5,7 @@ situation: Zadzwonił ktoś, kto pilnie żąda pieniędzy albo danych
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Rozłącz się.</strong> To nie jest niegrzeczne — to najbezpieczniejsze, co możesz zrobić. Żadna prawdziwa instytucja nie ukarze cię za to, że się rozłączyłeś i sam oddzwoniłeś."

@@ -5,6 +5,7 @@ situation: Am pus bani într-o investiție/crypto și ceva e în neregulă
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "9 iulie 2026"
 steps:
   - "<strong>Oprește orice altă plată, acum.</strong> Mai ales dacă ți se cer „taxe” ca să-ți retragi banii — nu există așa ceva, e continuarea țepei."

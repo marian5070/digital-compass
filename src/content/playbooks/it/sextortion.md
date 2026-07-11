@@ -5,6 +5,7 @@ situation: Qualcuno minaccia di pubblicare mie foto o video intimi
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Fermati e respira.</strong> Non è colpa tua e non sei il solo — succede a tante persone, di tutte le età. Il panico è esattamente ciò che vogliono."

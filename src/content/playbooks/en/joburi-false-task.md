@@ -5,6 +5,8 @@ situation: I received a job offer / "paid tasks" offer that's too good
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10 July 2026"
 steps:
   - "<strong>Stop all payments.</strong> The simple rule: a real job never asks you for money to work or to receive the money you've earned."

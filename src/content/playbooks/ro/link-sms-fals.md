@@ -5,6 +5,8 @@ situation: Am primit un mesaj suspect sau am dat click pe un link
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "9 iulie 2026"
 steps:
   - "<strong>Nu mai introduce nimic</strong> pe pagina care s-a deschis. Închide-o. Dacă ai apucat să scrii date, treci imediat la pasul următor."

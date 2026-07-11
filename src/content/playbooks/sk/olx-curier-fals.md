@@ -5,6 +5,7 @@ situation: Niekto mi poslal odkaz, aby som „prijal“ peniaze z predaja
 icon: "📦"
 order: 8
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Neotváraj odkaz a nezadávaj údaje svojej karty.</strong> Zapamätaj si zlaté pravidlo: na to, aby si peniaze PRIJAL, nikdy nepotrebuješ číslo karty, PIN ani žiadny kód — stačí IBAN. Karta slúži na platenie."

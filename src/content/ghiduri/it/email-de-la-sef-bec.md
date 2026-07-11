@@ -3,6 +3,7 @@ title: "Email dal “capo” o da un “fornitore” che chiede un pagamento urg
 summary: "In ufficio, una delle truffe più costose non viola niente di tecnico — convince te a fare, di tua volontà, un pagamento o un cambio di conto. Ecco come riconoscerla e cosa fare."
 topic: Richieste di pagamenti o dati “urgenti”, dalla direzione o dai fornitori
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10 luglio 2026"

@@ -5,6 +5,8 @@ situation: J'ai reçu une offre d'emploi / de « missions rémunérées » trop 
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10 juillet 2026"
 steps:
   - "<strong>Arrêtez tout paiement.</strong> La règle simple : un vrai employeur ne vous demande jamais d'argent pour travailler ou pour toucher l'argent que vous avez gagné."

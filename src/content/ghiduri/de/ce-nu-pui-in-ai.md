@@ -3,6 +3,7 @@ title: "Was Sie NICHT in KI-Tools eingeben sollten (ChatGPT & Co.)"
 summary: "KI-Tools sind nützlich, aber alles, was Sie dort eintippen, geht an eine fremde Firma. Warum das wichtig ist — und was Sie dort niemals einfügen sollten."
 topic: Warum vertrauliche Daten dort nichts zu suchen haben
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10. Juli 2026"

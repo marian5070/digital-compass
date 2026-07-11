@@ -5,6 +5,7 @@ situation: Rezerwuję nocleg (Booking/Airbnb) albo wynajmuję mieszkanie i coś 
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Nie wpisuj ponownie danych karty z linku</strong> otrzymanego w wiadomości, e-mailu czy na WhatsAppie, nawet jeśli wygląda, że to Booking albo gospodarz. Booking.com nigdy nie prosi o dane karty przez WhatsApp, SMS ani telefon — taka wiadomość pochodzi z przejętego konta hotelu."

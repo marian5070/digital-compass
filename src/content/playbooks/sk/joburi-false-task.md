@@ -5,6 +5,8 @@ situation: Dostal som až príliš výhodnú ponuku práce / „platených úloh
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Zastav akúkoľvek platbu.</strong> Jednoduché pravidlo: za skutočnú prácu nikdy neplatíš vopred — ani za to, aby si mohol pracovať, ani za to, aby ti vyplatili, čo si „zarobil“."

@@ -5,6 +5,7 @@ situation: Je ne retrouve plus mon téléphone ou on me l'a volé
 icon: "📱"
 order: 15
 severity: urgent
+category: conturi-dispozitive
 lastReviewed: "10 juillet 2026"
 steps:
   - "Depuis un autre appareil (un autre téléphone, un ordinateur), ouvrez <strong>« Localiser »</strong> : sur iPhone c'est l'app « Localiser » (Find My), sur Android c'est « Localiser mon appareil » de Google. Vous pouvez voir où il est, le faire sonner, le verrouiller ou l'effacer à distance."

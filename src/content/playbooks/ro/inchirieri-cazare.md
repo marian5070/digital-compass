@@ -5,6 +5,7 @@ situation: Rezerv o cazare (Booking/Airbnb) sau închiriez un apartament și cev
 icon: "🏠"
 order: 11
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10 iulie 2026"
 steps:
   - "<strong>Nu reintroduce datele cardului dintr-un link</strong> primit pe mesaj, email sau WhatsApp, chiar dacă pare de la Booking sau de la gazdă. Booking.com nu-ți cere niciodată datele cardului prin WhatsApp, SMS sau telefon — mesajul vine de la contul unui hotel care a fost spart."

@@ -5,6 +5,8 @@ situation: Prišla mi podozrivá správa alebo som klikol na odkaz
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "10. júla 2026"
 steps:
   - "<strong>Už nič nezadávaj</strong> na stránke, ktorá sa otvorila. Zavri ju. Ak si už stihol niečo vyplniť, prejdi hneď na ďalší krok."

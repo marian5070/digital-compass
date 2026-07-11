@@ -5,6 +5,7 @@ situation: I paid for a second-hand ticket and I'm not sure it's real
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 July 2026"
 steps:
   - "<strong>Check the ticket at the source:</strong> go to the official ticketing platform and see whether that code or order is valid. A QR code can be sold multiple times — the truth only shows at the scan, at the entrance."

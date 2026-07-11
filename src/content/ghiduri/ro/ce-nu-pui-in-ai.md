@@ -3,6 +3,7 @@ title: "Ce să NU pui în instrumentele AI (ChatGPT & co.)"
 summary: "Instrumentele AI sunt utile, dar tot ce scrii în ele pleacă la o firmă din afară. Iată de ce contează — și ce să nu lipești niciodată acolo."
 topic: De ce datele confidențiale nu au ce căuta acolo
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 iulie 2026"

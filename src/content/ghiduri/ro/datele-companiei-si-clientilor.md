@@ -3,6 +3,7 @@ title: "Datele companiei și ale clienților — reguli de bază"
 summary: Când lucrezi cu datele unei firme și ale clienților ei, câteva obiceiuri simple fac aproape toată diferența. Iată-le.
 topic: Obiceiuri simple ca să protejezi datele la muncă
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10 iulie 2026"

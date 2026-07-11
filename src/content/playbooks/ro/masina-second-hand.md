@@ -5,6 +5,7 @@ situation: Vreau să cumpăr o mașină (mai ales din import) și mi se cere ava
 icon: "🚗"
 order: 13
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 iulie 2026"
 steps:
   - "<strong>Nu trimite niciun avans înainte să vezi mașina fizic.</strong> „Rezervă cu un avans” pentru o mașină pe care n-o poți vedea e semnul clasic de țeapă — de multe ori mașina nici nu există."

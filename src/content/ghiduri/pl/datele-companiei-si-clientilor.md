@@ -3,6 +3,7 @@ title: "Dane firmy i klientów — podstawowe zasady"
 summary: Gdy pracujesz z danymi firmy i jej klientów, kilka prostych nawyków robi prawie całą różnicę. Oto one.
 topic: Proste nawyki, żeby chronić dane w pracy
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10 lipca 2026"

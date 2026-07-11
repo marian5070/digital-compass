@@ -5,6 +5,8 @@ situation: Nem tudok belépni egy fiókomba, vagy valaki átvette
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "2026. július 9."
 steps:
   - "Próbáld ki most az <strong>„Elfelejtetted a jelszavad?”</strong> lehetőséget a hivatalos alkalmazásban vagy weboldalon. Ha még hozzáférsz a fiókhoz tartozó e-mail-címhez vagy telefonszámhoz, gyakran pár perc alatt visszaszerezheted a fiókot."

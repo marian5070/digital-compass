@@ -5,6 +5,7 @@ situation: Ich habe Geld in eine Anlage/Krypto gesteckt und etwas stimmt nicht
 icon: "💸"
 order: 6
 severity: urgent
+category: cumparaturi-bani
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Stoppen Sie jede weitere Zahlung, sofort.</strong> Vor allem, wenn man „Gebühren“ oder „Steuern“ verlangt, damit Sie Ihr Geld abheben können — so etwas gibt es nicht, das ist die Fortsetzung des Betrugs."

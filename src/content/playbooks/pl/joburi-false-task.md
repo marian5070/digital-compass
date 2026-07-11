@@ -5,6 +5,8 @@ situation: Dostałem zbyt dobrą ofertę pracy / „płatnych zadań”
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10 lipca 2026"
 steps:
   - "<strong>Zatrzymaj każdą wpłatę.</strong> Prosta zasada: prawdziwa praca nigdy nie każe ci płacić za to, żeby pracować albo żeby wypłacić zarobione pieniądze."

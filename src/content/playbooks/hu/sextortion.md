@@ -5,6 +5,7 @@ situation: Valaki azzal fenyeget, hogy intim képeket/videókat tesz közzé ró
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "2026. július 10."
 steps:
   - "<strong>Állj meg, és lélegezz.</strong> Nem vagy bűnös, és nem vagy egyedül — sok emberrel megtörténik, minden korosztályban. Pont a pánik az, amit el akarnak érni."

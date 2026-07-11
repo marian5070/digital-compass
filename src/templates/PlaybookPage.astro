@@ -6,9 +6,10 @@ import StepList from '../components/StepList.astro';
 import DontList from '../components/DontList.astro';
 import ReportBox from '../components/ReportBox.astro';
 import SourceList from '../components/SourceList.astro';
-import { entryLang, entrySlug } from '../lib/i18n-content';
-import { t } from '../i18n/ui';
+import { entryLang, entrySlug, getPlaybooks } from '../lib/i18n-content';
+import { t, type UiKey } from '../i18n/ui';
 import { r, contentAlternates } from '../i18n/routes';
+import PlaybookCard from '../components/PlaybookCard.astro';
 
 // Corpul unei pagini de playbook, comun ambelor limbi.
 interface Props {
@@ -21,6 +22,13 @@ const slug = entrySlug(entry.id);
 const T = t(lang);
 const R = r(lang);
 const { Content } = await render(entry);
+
+// Situații înrudite: aceeași categorie de use case, maxim 3.
+const related = (await getPlaybooks(lang))
+  .filter((p) => p.data.category === data.category && entrySlug(p.id) !== slug)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+const catLabel = T(('cat.' + data.category) as UiKey);
 
 // Structured data HowTo — ajută Google să afișeze pașii ca rezultat bogat,
 // exact felul în care publicul nostru caută („ce fac dacă...").
@@ -52,7 +60,11 @@ const howTo = {
   />
   <article class="playbook">
     <div class="container">
-      <a href={R.home} class="back">{T('pb.back')}</a>
+      <nav class="crumbs" aria-label="breadcrumb">
+        <a href={R.home} class="back">{T('pb.back')}</a>
+        <span class="crumb-sep" aria-hidden="true">·</span>
+        <a href={`${R.home}#cat-${data.category}`} class="back crumb-cat">{catLabel}</a>
+      </nav>
 
       <header class="pb-header">
         {
@@ -121,6 +133,25 @@ const howTo = {
       </div>
 
       <p class="disclaimer">{T('pb.disclaimer')}</p>
+
+      {
+        related.length > 0 && (
+          <aside class="related" aria-labelledby="inrudite">
+            <h2 id="inrudite" class="h-small">{T('pb.related.h2')}</h2>
+            <div class="related-cards">
+              {related.map((p) => (
+                <PlaybookCard
+                  href={R.playbook(entrySlug(p.id))}
+                  title={p.data.title}
+                  situation={p.data.situation}
+                  icon={p.data.icon}
+                  severity={p.data.severity}
+                />
+              ))}
+            </div>
+          </aside>
+        )
+      }
     </div>
   </article>
 </BaseLayout>
@@ -211,6 +242,31 @@ const howTo = {
     background: var(--color-surface-2);
     border-radius: var(--radius);
     border: 1px solid var(--color-border);
+  }
+  .crumbs {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .crumb-sep {
+    color: var(--color-text-muted);
+  }
+  .related {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .related-cards {
+    display: grid;
+    gap: var(--space-3);
+    grid-template-columns: 1fr;
+    margin-top: var(--space-3);
+  }
+  @media (min-width: 48rem) {
+    .related-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   .disclaimer {
     margin-top: var(--space-4);

@@ -5,6 +5,7 @@ situation: Someone is threatening to publish intimate photos/videos of me
 icon: "🛑"
 order: 9
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 July 2026"
 steps:
   - "<strong>Stop and breathe.</strong> You are not to blame and you are not the only one — this happens to many people, of all ages. Panic is exactly what they want."

@@ -5,6 +5,7 @@ situation: I got a call from someone urgently demanding money or personal detail
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "9 July 2026"
 steps:
   - "<strong>Hang up.</strong> It's not rude — it's the safest thing to do. No real institution punishes you for hanging up and calling back yourself."

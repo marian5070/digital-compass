@@ -3,6 +3,7 @@ title: "E-mail od „szefa” lub „dostawcy” z pilnym poleceniem zapłaty"
 summary: W pracy jedno z najkosztowniejszych oszustw niczego nie łamie technicznie — nakłania Cię, żebyś to Ty, w dobrej wierze, wykonał przelew albo zmienił numer konta. Oto jak je rozpoznać i co robić.
 topic: Pilne prośby o przelew lub dane — „od kierownictwa” albo od dostawców
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10 lipca 2026"

@@ -5,6 +5,7 @@ situation: Někdo blízký přišel o peníze a nevím, jak mu pomoct
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10. července 2026"
 steps:
   - "<strong>Nevyčítej mu nic a nezahanbuj ho.</strong> Podvodníci jsou profesionálové; naletět může každý. Kdo se cítí souzený, uzavře se a zamlčí detaily, na kterých záleží."

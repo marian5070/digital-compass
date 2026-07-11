@@ -5,6 +5,8 @@ situation: Ich habe ein zu gutes Job-/„Task“-Angebot bekommen
 icon: "💼"
 order: 10
 severity: important
+category: oameni-manipulare
+audience: ambele
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Stoppen Sie jede Zahlung.</strong> Die einfache Regel: Ein echter Job verlangt niemals Geld von Ihnen — weder damit Sie arbeiten dürfen noch damit Sie Ihren Lohn ausgezahlt bekommen."

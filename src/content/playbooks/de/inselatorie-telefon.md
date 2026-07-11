@@ -5,6 +5,7 @@ situation: Ich wurde angerufen, und jemand verlangt dringend Geld oder Daten
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Legen Sie auf.</strong> Das ist nicht unhöflich — es ist das Sicherste. Keine echte Behörde und keine echte Bank nimmt es Ihnen übel, dass Sie auflegen und selbst zurückrufen."

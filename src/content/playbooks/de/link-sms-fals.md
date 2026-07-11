@@ -5,6 +5,8 @@ situation: Ich habe eine verdächtige Nachricht bekommen oder auf einen Link gek
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "10. Juli 2026"
 steps:
   - "<strong>Geben Sie nichts mehr ein</strong> auf der Seite, die sich geöffnet hat. Schließen Sie sie. Falls Sie schon Daten eingegeben haben, gehen Sie sofort zum nächsten Schritt."

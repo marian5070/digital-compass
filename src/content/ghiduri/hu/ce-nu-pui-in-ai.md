@@ -3,6 +3,7 @@ title: "Mit NE írj be az AI-eszközökbe (ChatGPT és társai)"
 summary: "Az AI-eszközök hasznosak, de minden, amit beírsz, egy külső céghez kerül. Íme, miért számít ez — és mit ne másolj be oda soha."
 topic: Miért nincs ott helye a bizalmas adatoknak
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "2026. július 10."

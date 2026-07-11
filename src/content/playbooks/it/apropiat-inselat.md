@@ -5,6 +5,7 @@ situation: Una persona cara è stata truffata e non so come aiutarla
 icon: "🫂"
 order: 5
 severity: urgent
+category: oameni-manipulare
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Non sgridarla e non farla vergognare.</strong> I truffatori sono professionisti: il «finto carabiniere» e il «finto nipote» funzionano da anni perché sono studiati in ogni dettaglio. Chi si sente giudicato si chiude e tace proprio i dettagli che adesso contano di più."

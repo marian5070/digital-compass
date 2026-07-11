@@ -3,6 +3,7 @@ title: "Co NEDÁVAT do AI nástrojů (ChatGPT a spol.)"
 summary: "AI nástroje jsou užitečné, ale všechno, co do nich napíšeš, odchází k cizí firmě. Tady je proč na tom záleží — a co tam nikdy nevkládat."
 topic: Proč tam důvěrné údaje nemají co dělat
 category: la-birou
+audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10. července 2026"

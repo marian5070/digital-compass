@@ -3,6 +3,7 @@ title: "E-mail od „šéfa“ alebo „dodávateľa“, ktorý žiada urgentnú
 summary: Jeden z najdrahších podvodov v práci nič technicky neprelamuje — presvedčí ťa, aby si sám, dobrovoľne, urobil platbu alebo zmenil číslo účtu. Tu je, ako ho spoznáš a čo robiť.
 topic: „Urgentné“ žiadosti o platbu alebo o údaje, od vedenia alebo od dodávateľov
 category: la-birou
+audience: organizatie
 icon: "🏢"
 order: 1
 lastReviewed: "10. júla 2026"

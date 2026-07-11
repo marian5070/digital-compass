@@ -5,6 +5,8 @@ situation: Non riesco più a entrare in un account, o qualcuno me l'ha rubato
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "10 luglio 2026"
 steps:
   - "Prova subito <strong>«Password dimenticata?»</strong> sull'app o sul sito ufficiale. Se hai ancora accesso all'e-mail o al numero di telefono associato, spesso recuperi l'account in pochi minuti."

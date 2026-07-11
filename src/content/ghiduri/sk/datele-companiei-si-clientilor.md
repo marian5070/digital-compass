@@ -3,6 +3,7 @@ title: "Firemné údaje a údaje klientov — základné pravidlá"
 summary: Keď pracuješ s údajmi firmy a jej klientov, pár jednoduchých návykov urobí takmer celý rozdiel. Tu sú.
 topic: Jednoduché návyky na ochranu údajov v práci
 category: la-birou
+audience: organizatie
 icon: "🔏"
 order: 3
 lastReviewed: "10. júla 2026"

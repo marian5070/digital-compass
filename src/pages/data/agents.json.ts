@@ -22,6 +22,9 @@ export const GET: APIRoute = async () => {
         titlu: p.data.title,
         rezumat: p.data.summary,
         severitate: p.data.severity,
+        // Aditive (taxonomia UX 2.0) — consumatorii existenți le ignoră.
+        categorie: p.data.category,
+        audienta: p.data.audience,
         verificat: p.data.lastReviewed,
         raportare: p.data.report,
         url: `${SITE}${routes[lang].playbook(slug)}`,
@@ -36,6 +39,8 @@ export const GET: APIRoute = async () => {
         titlu: g.data.title,
         tema: g.data.topic,
         rezumat: g.data.summary,
+        categorie: g.data.category,
+        audienta: g.data.audience,
         verificat: g.data.lastReviewed,
         url: `${SITE}${routes[lang].guide(slug)}`,
         markdown: `${SITE}${routes[lang].guide(slug)}.md`,

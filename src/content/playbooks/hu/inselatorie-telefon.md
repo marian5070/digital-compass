@@ -5,6 +5,7 @@ situation: Felhívott valaki, aki sürgősen pénzt vagy adatokat kér
 icon: "📞"
 order: 4
 severity: urgent
+category: mesaje-apeluri
 lastReviewed: "2026. július 9."
 steps:
   - "<strong>Tedd le a telefont.</strong> Nem udvariatlanság — ez a legbiztonságosabb lépés. Egyetlen valódi intézmény sem büntet meg azért, mert letetted, és te hívtad vissza."

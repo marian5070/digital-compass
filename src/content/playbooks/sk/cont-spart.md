@@ -5,6 +5,8 @@ situation: Neviem sa dostať do svojho účtu, alebo ho prevzal niekto iný
 icon: "🔒"
 order: 2
 severity: urgent
+category: conturi-dispozitive
+audience: ambele
 lastReviewed: "10. júla 2026"
 steps:
   - "Skús hneď <strong>„Zabudli ste heslo?“</strong> v oficiálnej aplikácii alebo na webe. Ak máš stále prístup k e-mailu alebo telefónnemu číslu spojenému s účtom, často ho obnovíš za pár minút."

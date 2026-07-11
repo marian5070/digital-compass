@@ -5,6 +5,7 @@ situation: Am dat bani pe un bilet second-hand și nu sunt sigur că e real
 icon: "🎫"
 order: 12
 severity: important
+category: cumparaturi-bani
 lastReviewed: "10 iulie 2026"
 steps:
   - "<strong>Verifică biletul la sursă:</strong> intră pe platforma oficială de bilete și vezi dacă acel cod sau comandă e valid(ă). Un cod QR poate fi vândut de mai multe ori — adevărul se vede la scanare, la intrare."

@@ -5,6 +5,8 @@ situation: Ho ricevuto un messaggio sospetto o ho cliccato su un link
 icon: "✉️"
 order: 1
 severity: urgent
+category: mesaje-apeluri
+audience: ambele
 lastReviewed: "10 luglio 2026"
 steps:
   - "<strong>Non inserire più niente</strong> nella pagina che si è aperta. Chiudila. Se hai fatto in tempo a scrivere dei dati, passa subito al punto successivo."
