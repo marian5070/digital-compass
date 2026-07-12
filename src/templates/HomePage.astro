@@ -2,15 +2,15 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PlaybookCard from '../components/PlaybookCard.astro';
-import CompassMark from '../components/CompassMark.astro';
 import CategoryIcon from '../components/CategoryIcon.astro';
 import { entrySlug, type Lang } from '../lib/i18n-content';
 import { t, type UiKey } from '../i18n/ui';
 import { r, pageAlternates } from '../i18n/routes';
 
 // Corpul homepage-ului, comun tuturor limbilor; paginile per-limbă sunt wrappere subțiri.
-// UX 2.0: triaj (criză / prevenție / firmă) + situațiile grupate pe categorii de use case
-// + filtru client-side minimal (progressive enhancement — fără JS totul rămâne vizibil).
+// Hero v2: căutarea e CTA-ul principal (deasupra fold-ului), cu chips-uri care duc
+// direct la playbook-urile frecvente și triajul (criză / prevenție / firmă) inline.
+// Filtrul rămâne progressive enhancement — fără JS, submit-ul sare la #situatii.
 interface Props {
   lang: Lang;
   playbooks: CollectionEntry<'playbooks'>[];
@@ -35,6 +35,15 @@ const grouped = CATEGORY_ORDER.map((cat) => ({
     .filter((p) => p.data.category === cat)
     .sort((a, b) => a.data.order - b.data.order),
 })).filter((g) => g.items.length > 0);
+
+// Chips: situațiile cel mai des căutate, ca linkuri directe către pași
+// (nu doar sugestii de căutare — funcționează și fără JS).
+const chips: Array<{ key: UiKey; slug: string }> = [
+  { key: 'home.chip.link', slug: 'link-sms-fals' },
+  { key: 'home.chip.hacked', slug: 'cont-spart' },
+  { key: 'home.chip.parcel', slug: 'teapa-cumparare-online' },
+  { key: 'home.chip.call', slug: 'inselatorie-telefon' },
+];
 
 // Structured data WebSite — identitatea site-ului în knowledge graph,
 // cu publisher consecvent cu restul proprietăților (mmatinca.eu).
@@ -67,56 +76,139 @@ const webSite = {
     set:html={JSON.stringify(webSite)}
     is:inline
   />
-  <!-- Hero + triaj -->
+  <!-- Hero: căutare-ca-CTA + triaj, cu busole decorative discrete în colțuri -->
   <section class="hero">
+    <svg
+      class="hero-compass compass-tr"
+      viewBox="0 0 200 200"
+      fill="none"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <circle cx="100" cy="100" r="92" stroke-width="1"></circle>
+      <circle cx="100" cy="100" r="70" stroke-width="0.6"></circle>
+      <g stroke-width="1">
+        <line x1="100" y1="8" x2="100" y2="20"></line>
+        <line x1="100" y1="180" x2="100" y2="192"></line>
+        <line x1="8" y1="100" x2="20" y2="100"></line>
+        <line x1="180" y1="100" x2="192" y2="100"></line>
+        <line x1="30" y1="30" x2="38" y2="38"></line>
+        <line x1="170" y1="30" x2="162" y2="38"></line>
+        <line x1="30" y1="170" x2="38" y2="162"></line>
+        <line x1="170" y1="170" x2="162" y2="162"></line>
+      </g>
+      <polygon points="100,45 112,100 100,155 88,100" fill="currentColor" stroke="none" opacity="0.6"
+      ></polygon>
+      <circle cx="100" cy="100" r="4" fill="currentColor" stroke="none"></circle>
+    </svg>
+    <svg
+      class="hero-compass compass-bl"
+      viewBox="0 0 200 200"
+      fill="none"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <circle cx="100" cy="100" r="92" stroke-width="1"></circle>
+      <line x1="100" y1="8" x2="100" y2="20"></line>
+      <line x1="100" y1="180" x2="100" y2="192"></line>
+      <line x1="8" y1="100" x2="20" y2="100"></line>
+      <line x1="180" y1="100" x2="192" y2="100"></line>
+      <polygon points="100,45 112,100 100,155 88,100" fill="currentColor" stroke="none" opacity="0.6"
+      ></polygon>
+    </svg>
+
     <div class="container hero-inner">
-      <div class="hero-text">
+      <div class="hero-top">
         <span class="eyebrow">{T('home.eyebrow')}</span>
-        <h1>{T('home.h1')}</h1>
-        <p class="lead">{T('home.lead')}</p>
+        <span class="pill">{T('home.pill')}</span>
       </div>
-      <div class="hero-mark" aria-hidden="true">
-        <CompassMark size={160} />
-      </div>
-    </div>
-    <div class="container">
+      <h1>
+        {T('home.h1a')}
+        <span class="h1-accent">{T('home.h1b')}</span>
+      </h1>
+      <p class="lead">{T('home.lead')}</p>
+
+      <form class="search-shell" role="search" action="#situatii" data-hero-search>
+        <svg
+          class="search-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.8-3.8"></path>
+        </svg>
+        <input
+          type="search"
+          id="situation-filter"
+          name="q"
+          placeholder={T('home.search.placeholder')}
+          aria-label={T('home.search.placeholder')}
+          autocomplete="off"
+        />
+        <button type="submit" class="search-btn" aria-label={T('home.search.button')}>
+          <span class="search-btn-label">{T('home.search.button')}</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6"></path>
+          </svg>
+        </button>
+      </form>
+
+      <p class="chips">
+        <span class="chips-label">{T('home.chips.label')}</span>
+        {chips.map(({ key, slug }) => <a class="chip" href={R.playbook(slug)}>{T(key)}</a>)}
+      </p>
+
       <nav class="triage" aria-label={T('home.cta')}>
-        <a href="#situatii" class="triage-card triage-crisis">
-          <span class="triage-t">{T('home.path.crisis.t')}</span>
+        <a href="#situatii" class="triage-link triage-crisis">
+          <span class="triage-row">
+            <span class="triage-n">01</span>
+            <span class="triage-t">{T('home.path.crisis.t')}</span>
+            <span class="triage-arrow" aria-hidden="true">→</span>
+          </span>
           <span class="triage-d">{T('home.path.crisis.d')}</span>
         </a>
-        <a href={R.guidesIndex} class="triage-card">
-          <span class="triage-t">{T('home.path.prevent.t')}</span>
+        <a href={R.guidesIndex} class="triage-link">
+          <span class="triage-row">
+            <span class="triage-n">02</span>
+            <span class="triage-t">{T('home.path.prevent.t')}</span>
+            <span class="triage-arrow" aria-hidden="true">→</span>
+          </span>
           <span class="triage-d">{T('home.path.prevent.d')}</span>
         </a>
-        <a href={R.org} class="triage-card">
-          <span class="triage-t">{T('home.path.org.t')}</span>
+        <a href={R.org} class="triage-link">
+          <span class="triage-row">
+            <span class="triage-n">03</span>
+            <span class="triage-t">{T('home.path.org.t')}</span>
+            <span class="triage-arrow" aria-hidden="true">→</span>
+          </span>
           <span class="triage-d">{T('home.path.org.d')}</span>
         </a>
       </nav>
     </div>
   </section>
 
-  <!-- Situații, grupate pe categorii + filtru -->
+  <!-- Situații, grupate pe categorii; filtrate de căutarea din hero -->
   <section id="situatii" class="section">
     <div class="container">
       <div class="section-head">
         <h2>{T('home.situations.h2')}</h2>
         <p class="lead">{T('home.situations.lead')}</p>
-      </div>
-
-      <div class="filter" hidden data-filter-wrap>
-        <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="7" />
-          <path d="m20 20-3.8-3.8" />
-        </svg>
-        <input
-          type="search"
-          id="situation-filter"
-          placeholder={T('home.search.placeholder')}
-          aria-label={T('home.search.placeholder')}
-          autocomplete="off"
-        />
       </div>
 
       {
@@ -152,17 +244,17 @@ const webSite = {
       <p class="filter-none" hidden data-filter-none>{T('home.search.none')}</p>
 
       <script is:inline>
-        // Filtru minimal: ascunde cardurile care nu conțin textul căutat.
-        // Progressive enhancement — inputul apare doar dacă JS rulează.
+        // Filtru minimal legat de căutarea din hero: ascunde cardurile care nu
+        // conțin textul căutat. Progressive enhancement — fără JS, formularul
+        // sare la #situatii (toate cardurile rămân vizibile).
         (function () {
-          var wrap = document.querySelector('[data-filter-wrap]');
+          var form = document.querySelector('[data-hero-search]');
           var input = document.getElementById('situation-filter');
           var none = document.querySelector('[data-filter-none]');
-          if (!wrap || !input || !none) return;
-          wrap.hidden = false;
+          if (!form || !input || !none) return;
           var cards = [].slice.call(document.querySelectorAll('[data-card]'));
           var groups = [].slice.call(document.querySelectorAll('[data-cat-group]'));
-          input.addEventListener('input', function () {
+          function apply() {
             var q = input.value.trim().toLowerCase();
             var visible = 0;
             cards.forEach(function (c) {
@@ -174,6 +266,16 @@ const webSite = {
               g.hidden = !g.querySelector('[data-card]:not([hidden])');
             });
             none.hidden = visible > 0;
+          }
+          input.addEventListener('input', apply);
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            apply();
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            document.getElementById('situatii').scrollIntoView({
+              behavior: reduce ? 'auto' : 'smooth',
+              block: 'start',
+            });
           });
         })();
       </script>
@@ -207,7 +309,9 @@ const webSite = {
 
 <style>
   .hero {
-    padding-block: var(--space-4) var(--space-4);
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-4) var(--space-5);
     background:
       radial-gradient(
         60% 80% at 85% 10%,
@@ -216,81 +320,270 @@ const webSite = {
       );
   }
   .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-    align-items: center;
+    position: relative;
   }
-  @media (min-width: 56rem) {
-    .hero-inner {
-      grid-template-columns: 1.5fr 1fr;
-      gap: var(--space-6);
+
+  /* Busolele decorative din colțuri (calmul din Take 2) */
+  .hero-compass {
+    position: absolute;
+    color: var(--color-accent);
+    pointer-events: none;
+    user-select: none;
+  }
+  .compass-tr {
+    top: 50%;
+    right: 4rem;
+    transform: translateY(-50%);
+    width: 21rem;
+    height: 21rem;
+    opacity: 0.16;
+  }
+  .compass-bl {
+    bottom: -9rem;
+    left: -9rem;
+    width: 20rem;
+    height: 20rem;
+    opacity: 0.05;
+    transform: rotate(45deg);
+  }
+  @media (max-width: 72rem) {
+    /* pe ecrane înguste conținutul ocupă lățimea — busola redevine motiv de colț */
+    .compass-tr {
+      top: -6rem;
+      right: -6rem;
+      transform: none;
+      width: 18rem;
+      height: 18rem;
+      opacity: 0.08;
     }
   }
-  .hero-text h1 {
-    margin-top: var(--space-2);
-    max-width: 18ch;
-  }
-  .hero-text .lead {
-    margin-top: var(--space-3);
-    max-width: 52ch;
-  }
-  .hero-mark {
-    display: none;
-    color: var(--color-text-muted);
-    justify-self: center;
-  }
-  @media (min-width: 56rem) {
-    .hero-mark {
-      display: block;
+  @media (max-width: 40rem) {
+    .compass-tr {
+      width: 15rem;
+      height: 15rem;
+      top: -5rem;
+      right: -5rem;
+    }
+    .compass-bl {
+      display: none;
     }
   }
 
-  /* Triaj — cele 3 căi de intrare */
+  .hero-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.25rem 0.8rem;
+  }
+  .pill::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .hero h1 {
+    margin-top: var(--space-3);
+    max-width: 24ch;
+  }
+  .h1-accent {
+    display: block;
+    color: var(--color-accent-strong);
+  }
+  .hero .lead {
+    margin-top: var(--space-3);
+    max-width: 52ch;
+  }
+
+  /* Căutarea — CTA-ul principal */
+  .search-shell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    max-width: 40rem;
+    margin-top: var(--space-4);
+    padding: 0.45rem 0.45rem 0.45rem 1rem;
+    background: var(--color-surface);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+  }
+  .search-shell:focus-within {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+    box-shadow: var(--shadow-lift);
+  }
+  .search-icon {
+    flex: none;
+    color: var(--color-text-muted);
+  }
+  .search-shell input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: var(--text-md);
+    color: var(--color-text);
+    padding-block: 0.6rem;
+  }
+  .search-shell input:focus {
+    outline: none;
+  }
+  .search-shell input::placeholder {
+    color: var(--color-text-muted);
+  }
+  .search-btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7rem 1.1rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    border: 0;
+    border-radius: var(--radius);
+    font: inherit;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out-expo);
+  }
+  .search-btn:hover {
+    background: var(--color-accent-strong);
+  }
+  .search-btn:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  @media (max-width: 30rem) {
+    .search-btn-label {
+      display: none;
+    }
+    .search-btn {
+      padding: 0.7rem 0.9rem;
+    }
+  }
+
+  /* Chips — scurtături către situațiile frecvente */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: var(--space-3);
+    max-width: 44rem;
+  }
+  .chips-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-right: 0.25rem;
+  }
+  .chip {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    transition:
+      border-color var(--duration-fast) var(--ease-out-expo),
+      background var(--duration-fast) var(--ease-out-expo),
+      color var(--duration-fast) var(--ease-out-expo);
+  }
+  .chip:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+    color: var(--color-accent-strong);
+  }
+  .chip:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Triaj — cele 3 căi, inline, numerotate */
   .triage {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-3);
-    margin-top: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
   }
   @media (min-width: 40rem) {
     .triage {
       grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+    .triage-link + .triage-link {
+      border-left: 1px solid var(--color-border);
+      padding-left: var(--space-4);
     }
   }
-  .triage-card {
+  .triage-link {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    padding: var(--space-3) var(--space-4);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-soft);
     text-decoration: none;
     color: var(--color-text);
-    transition:
-      transform var(--duration-normal) var(--ease-out-expo),
-      box-shadow var(--duration-normal) var(--ease-out-expo),
-      border-color var(--duration-normal) var(--ease-out-expo);
   }
-  .triage-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lift);
-    border-color: var(--color-accent);
+  .triage-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
   }
-  .triage-crisis {
-    border-color: var(--color-accent);
-    background: var(--color-accent-soft);
+  .triage-n {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+  }
+  .triage-crisis .triage-n {
+    color: var(--color-accent-strong);
   }
   .triage-t {
     font-weight: var(--weight-bold);
     font-size: var(--text-md);
     letter-spacing: -0.01em;
   }
+  .triage-arrow {
+    color: var(--color-accent-strong);
+    transition: transform var(--duration-fast) var(--ease-out-expo);
+  }
+  .triage-link:hover .triage-arrow {
+    transform: translateX(3px);
+  }
+  .triage-link:hover .triage-t {
+    color: var(--color-accent-strong);
+  }
+  .triage-link:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: var(--radius);
+  }
   .triage-d {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .triage-arrow,
+    .chip,
+    .search-btn {
+      transition: none;
+    }
   }
 
   .section-head {
@@ -299,39 +592,6 @@ const webSite = {
   }
   .section-head .lead {
     margin-top: var(--space-2);
-  }
-
-  /* Filtru */
-  .filter {
-    position: relative;
-    max-width: 34rem;
-    margin-bottom: var(--space-4);
-  }
-  .filter-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-text-muted);
-    pointer-events: none;
-  }
-  .filter input {
-    width: 100%;
-    padding: 1rem 1.1rem 1rem 2.9rem;
-    font: inherit;
-    font-size: var(--text-md);
-    color: var(--color-text);
-    background: var(--color-surface);
-    border: 2px solid var(--color-accent);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-soft);
-  }
-  .filter input::placeholder {
-    color: var(--color-text-muted);
-  }
-  .filter input:focus-visible {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 2px;
   }
   .filter-none {
     color: var(--color-text-muted);
