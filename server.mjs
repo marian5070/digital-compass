@@ -14,6 +14,25 @@ const PORT = Number(process.env.PORT) || 3040;
 const app = express();
 app.disable('x-powered-by');
 
+// CSP Etapa 2 — Report-Only întâi: site static, totul e self-hosted
+// (fonturi de sistem, zero CDN). 'unsafe-inline' e necesar pentru
+// <style>/<script is:inline> emise de Astro în fiecare pagină.
+// Încălcările ajung la /csp-report (log pm2) — se trece pe enforce
+// după o perioadă fără rapoarte.
+const CSP_REPORT_ONLY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+  'report-uri /csp-report',
+].join('; ');
+
 app.use((req, res, next) => {
   // Security baseline (securityheaders.com); CSP separat, per-app.
   // HSTS fără includeSubDomains: alte subdomenii madeinro.eu sunt alt origin.
@@ -22,6 +41,7 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  res.setHeader('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY);
   res.setHeader(
     'Link',
     '</.well-known/api-catalog>; rel="api-catalog", ' +
@@ -29,6 +49,17 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+// Colectorul de rapoarte CSP: loghează în stdout (pm2 logs) și răspunde 204.
+app.post(
+  '/csp-report',
+  express.json({ type: ['application/csp-report', 'application/json'], limit: '16kb' }),
+  (req, res) => {
+    const body = req.body?.['csp-report'] ?? req.body ?? {};
+    console.warn('[csp-report]', JSON.stringify(body).slice(0, 2000));
+    res.status(204).end();
+  }
+);
 
 // Negociere: paginile HTML au variantă .md generată la build (index.md,
 // playbook/<slug>.md, ghiduri/<slug>.md). Dacă clientul preferă markdown
