@@ -13,26 +13,55 @@ const LangInput = z
 // Câmpurile pe limbă din index: intrările fără `lang` sunt ro (istoric).
 const byLang = (items, lang) => items.filter((i) => (i.lang ?? 'ro') === lang);
 
+// Filtre ADITIVE peste taxonomia UX 2.0 (categorie + audienta din agents.json).
+// Audiența "ambele" satisface și individ și organizatie. Vocabularele de
+// categorie diferă între situații și ghiduri — enum-ul le acceptă pe toate.
+const CategorieInput = z
+  .enum([
+    // situații (playbooks)
+    'cumparaturi-bani', 'conturi-dispozitive', 'mesaje-apeluri', 'oameni-manipulare',
+    // ghiduri (prevenție)
+    'conturi-parole', 'cumparaturi-plati', 'dispozitive', 'email-mesaje', 'la-birou',
+  ])
+  .optional()
+  .describe(
+    'Optional use-case category filter. Playbook categories: cumparaturi-bani, conturi-dispozitive, mesaje-apeluri, oameni-manipulare. Guide categories: conturi-parole, cumparaturi-plati, dispozitive, email-mesaje, la-birou.'
+  );
+const AudientaInput = z
+  .enum(['individ', 'organizatie'])
+  .optional()
+  .describe('Optional audience filter: individ (private person) or organizatie (company/team). Content marked "ambele" matches both.');
+const byFilters = (items, { categorie, audienta }) =>
+  items.filter(
+    (i) =>
+      (!categorie || i.categorie === categorie) &&
+      (!audienta || i.audienta === audienta || i.audienta === 'ambele')
+  );
+
 // --- 1. compass_list_situations ---------------------------------------------
 const listTool = {
   name: 'compass_list_situations',
   config: {
     title: 'List covered situations',
     description:
-      'All digital-crisis situations (reactive playbooks: fake link, hacked account, online scam...) and prevention guides covered by Digital Compass, with slugs for compass_get_content. Public Romanian guide, plain language, content in 9 languages.',
-    inputSchema: { lang: LangInput },
+      'All digital-crisis situations (reactive playbooks: fake link, hacked account, online scam...) and prevention guides covered by Digital Compass, with slugs for compass_get_content. Public Romanian guide, plain language, content in 9 languages. Optional filters: categorie (use case) and audienta (individ/organizatie).',
+    inputSchema: { lang: LangInput, categorie: CategorieInput, audienta: AudientaInput },
   },
 };
 async function handleList(args) {
   const idx = getIndex();
-  const situatii = byLang(idx.situatii, args.lang);
-  const ghiduri = byLang(idx.ghiduri, args.lang);
+  const situatii = byFilters(byLang(idx.situatii, args.lang), args);
+  const ghiduri = byFilters(byLang(idx.ghiduri, args.lang), args);
   return {
     lang: args.lang,
-    situatii: situatii.map(({ slug, situatie, titlu, severitate, url }) => ({
-      slug, situatie, titlu, severitate, url,
+    ...(args.categorie ? { categorie: args.categorie } : {}),
+    ...(args.audienta ? { audienta: args.audienta } : {}),
+    situatii: situatii.map(({ slug, situatie, titlu, severitate, categorie, audienta, url }) => ({
+      slug, situatie, titlu, severitate, categorie, audienta, url,
     })),
-    ghiduri: ghiduri.map(({ slug, titlu, tema, url }) => ({ slug, titlu, tema, url })),
+    ghiduri: ghiduri.map(({ slug, titlu, tema, categorie, audienta, url }) => ({
+      slug, titlu, tema, categorie, audienta, url,
+    })),
     hint: 'Call compass_get_content with {type, slug} for the full content.',
   };
 }
@@ -80,6 +109,8 @@ const findTool = {
     inputSchema: {
       query: z.string().min(3).describe('The situation, in the user\'s own words'),
       lang: LangInput,
+      categorie: CategorieInput,
+      audienta: AudientaInput,
     },
   },
 };
@@ -93,8 +124,11 @@ async function handleFind(args) {
     return tokens.reduce((acc, t) => acc + (hay.includes(t) ? 1 : 0), 0);
   };
   const rank = (items, type) =>
-    byLang(items, args.lang)
-      .map((e) => ({ type, slug: e.slug, titlu: e.titlu, url: e.url, matched: score(e) }))
+    byFilters(byLang(items, args.lang), args)
+      .map((e) => ({
+        type, slug: e.slug, titlu: e.titlu, categorie: e.categorie, audienta: e.audienta,
+        url: e.url, matched: score(e),
+      }))
       .filter((e) => e.matched > 0);
 
   const results = [...rank(idx.situatii, 'playbook'), ...rank(idx.ghiduri, 'ghid')]
