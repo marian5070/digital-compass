@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Busola Digitală — pași de urmat</title>
+<style>
+  /* Self-contained (MCP Apps CSP): system fonts, calm palette — the reader
+     may be mid-crisis. Both themes. Checkboxes are local only (no storage). */
+  :root {
+    --bg: #f5f6f7; --card: #ffffff; --fg: #1d2529; --muted: #5c6970;
+    --line: #e1e5e7; --accent: #0f6a6a;
+    --urgent: #b3362c; --urgent-bg: #fbe9e7;
+    --important: #92600a; --important-bg: #fbf1dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181a; --card: #1a2225; --fg: #e6ebec; --muted: #94a3aa;
+      --line: #29363b; --accent: #5cc0c0;
+      --urgent: #ef8c80; --urgent-bg: #3a1a16;
+      --important: #e0b25a; --important-bg: #33280f;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         background: var(--bg); color: var(--fg); padding: 12px; }
+  .wrap { max-width: 660px; margin: 0 auto; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+          overflow: hidden; }
+  .band { padding: 4px 18px; font-size: 11px; font-weight: 700;
+          letter-spacing: .12em; text-transform: uppercase; }
+  .band.urgent    { background: var(--urgent-bg);    color: var(--urgent); }
+  .band.important { background: var(--important-bg); color: var(--important); }
+  .band.ghid      { background: var(--line); color: var(--muted); }
+  .inner { padding: 18px 20px; }
+  h1 { font-size: 20px; line-height: 1.25; margin-bottom: 6px; }
+  .intro { color: var(--muted); font-size: 14px; }
+  h2 { font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+       color: var(--accent); margin: 20px 0 8px; }
+  p { margin: 8px 0; }
+  a { color: var(--accent); }
+  ul { margin: 6px 0; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  .step { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0;
+          border-bottom: 1px solid var(--line); }
+  .step:last-child { border-bottom: 0; }
+  .step input[type=checkbox] { width: 18px; height: 18px; margin-top: 3px;
+                               accent-color: var(--accent); flex: 0 0 auto; cursor: pointer; }
+  .step label { cursor: pointer; }
+  .step input:checked + label { color: var(--muted); text-decoration: line-through; }
+  .foot { border-top: 1px solid var(--line); padding: 12px 20px; font-size: 12px;
+          color: var(--muted); display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .foot a { text-decoration: none; }
+  #state { color: var(--muted); padding: 24px 8px; text-align: center; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="state">Se încarcă pașii…</div>
+  <div class="card hidden" id="card">
+    <div class="band hidden" id="band"></div>
+    <div class="inner" id="content"></div>
+    <div class="foot">
+      <span>Bife locale, doar pentru orientare — nu se salvează nimic.</span>
+      <a id="full" href="https://compass.madeinro.eu" target="_blank" rel="noopener">pagina completă →</a>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+  var stepN = 0;
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  // Inline markdown AFTER escaping: [text](url), **bold**, *italic*,
+  // bare https:// links. Only http(s) URLs become anchors.
+  function inline(s) {
+    var out = esc(s);
+    out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
+    out = out.replace(/(^|[\s(])(https?:\/\/[^\s)<]+)/g,
+      '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+    return out;
+  }
+
+  // Minimal block parser matched to the playbooks' real structure:
+  // # title / ## sections / 1. ordered steps (-> checklist) / - bullets / paragraphs.
+  function renderMarkdown(md, mount) {
+    var lines = md.split(/\r?\n/);
+    var i = 0, ulBuf = null, firstH1 = null;
+    function flushUl() {
+      if (ulBuf) { mount.appendChild(ulBuf); ulBuf = null; }
+    }
+    while (i < lines.length) {
+      var line = lines[i];
+      if (/^#\s+/.test(line)) {
+        flushUl();
+        if (!firstH1) {
+          firstH1 = document.createElement('h1');
+          firstH1.innerHTML = inline(line.replace(/^#\s+/, ''));
+          mount.appendChild(firstH1);
+        }
+      } else if (/^##\s+/.test(line)) {
+        flushUl();
+        var h = document.createElement('h2');
+        h.innerHTML = inline(line.replace(/^##+\s+/, ''));
+        mount.appendChild(h);
+      } else if (/^\d+\.\s+/.test(line)) {
+        flushUl();
+        var stepText = line.replace(/^\d+\.\s+/, '');
+        var id = 'st' + (++stepN);
+        var div = document.createElement('div');
+        div.className = 'step';
+        div.innerHTML = '<input type="checkbox" id="' + id + '">' +
+          '<label for="' + id + '">' + inline(stepText) + '</label>';
+        mount.appendChild(div);
+      } else if (/^[-*]\s+/.test(line)) {
+        if (!ulBuf) ulBuf = document.createElement('ul');
+        var li = document.createElement('li');
+        li.innerHTML = inline(line.replace(/^[-*]\s+/, ''));
+        ulBuf.appendChild(li);
+      } else if (line.trim() === '') {
+        flushUl();
+      } else {
+        flushUl();
+        var p = document.createElement('p');
+        p.innerHTML = inline(line);
+        // The intro paragraphs before the first section read quieter.
+        if (!mount.querySelector('h2')) p.className = 'intro';
+        mount.appendChild(p);
+      }
+      i++;
+    }
+    flushUl();
+  }
+
+  var BAND = {
+    urgent: 'Situație urgentă — ia pașii în ordine',
+    important: 'Situație importantă — ia pașii în ordine',
+  };
+
+  function render(d) {
+    if (!d || !d.markdown) {
+      document.getElementById('state').textContent = 'Conținutul nu e disponibil.';
+      return;
+    }
+    var band = document.getElementById('band');
+    if (d.type === 'playbook' && d.severitate && BAND[d.severitate]) {
+      band.textContent = BAND[d.severitate];
+      band.className = 'band ' + d.severitate;
+    } else if (d.type === 'ghid') {
+      band.textContent = 'Ghid de prevenție';
+      band.className = 'band ghid';
+    }
+    renderMarkdown(d.markdown, document.getElementById('content'));
+    if (d.url) document.getElementById('full').href = d.url;
+    document.getElementById('state').classList.add('hidden');
+    document.getElementById('card').classList.remove('hidden');
+  }
+
+  function extractResult(params) {
+    if (params && params.structuredContent) return params.structuredContent;
+    return null; // for this tool the text content is raw markdown, not JSON
+  }
+
+  window.addEventListener('message', function (evt) {
+    var msg = evt.data;
+    if (!msg || msg.jsonrpc !== '2.0') return;
+    if (msg.method === 'ui/notifications/tool-result') render(extractResult(msg.params));
+  });
+
+  window.parent.postMessage({ jsonrpc: '2.0', id: 1, method: 'ui/initialize', params: {} }, '*');
+  window.parent.postMessage({ jsonrpc: '2.0', method: 'ui/notifications/initialized' }, '*');
+})();
+</script>
+</body>
+</html>

@@ -72,12 +72,18 @@ const getTool = {
   config: {
     title: 'Full content of one playbook or guide',
     description:
-      'The full markdown of a crisis playbook (steps to take now, what NOT to do, how to recognize it next time, where to report) or of a prevention guide. Suitable to relay to the user step by step, in document order.',
+      'The full markdown of a crisis playbook (steps to take now, what NOT to do, how to recognize it next time, where to report) or of a prevention guide. Suitable to relay to the user step by step, in document order. ' +
+      'In MCP Apps-capable hosts this renders as a calm step-by-step checklist card (ui://compass/playbook-card).',
     inputSchema: {
       type: z.enum(['playbook', 'ghid']).describe('playbook = crisis (reactive), ghid = prevention guide'),
       slug: z.string().describe('Slug from compass_list_situations, e.g. "link-sms-fals"'),
       lang: LangInput,
     },
+  },
+  // MCP Apps: hosts with the UI extension render the playbook as a
+  // checklist card; everyone else keeps the markdown payload unchanged.
+  _meta: {
+    ui: { resourceUri: 'ui://compass/playbook-card', visibility: ['model', 'app'] },
   },
 };
 async function handleGet(args) {
@@ -90,10 +96,17 @@ async function handleGet(args) {
   const GUIDE_SEGMENT = { ro: 'ghiduri', en: 'guides', hu: 'utmutatok', pl: 'poradniki', cs: 'navody', sk: 'navody', it: 'guide', fr: 'guides', de: 'ratgeber' };
   const base = args.type === 'ghid' ? GUIDE_SEGMENT[args.lang] : 'playbook';
   const prefix = args.lang === 'ro' ? '' : `/${args.lang}`;
+  // Additive metadata from the same index the list tool serves — the card
+  // uses titlu + severitate for its header band; JSON clients gain them too.
+  const idx = getIndex();
+  const pool = args.type === 'ghid' ? idx.ghiduri : idx.situatii;
+  const entry = byLang(pool, args.lang).find((i) => i.slug === args.slug) || {};
   return {
     type: args.type,
     slug: args.slug,
     lang: args.lang,
+    titlu: entry.titlu ?? null,
+    ...(args.type === 'playbook' ? { severitate: entry.severitate ?? null } : { tema: entry.tema ?? null }),
     url: `${SITE}${prefix}/${base}/${args.slug}`,
     markdown,
   };
@@ -251,7 +264,13 @@ export function registerTools(server) {
   for (const [def, handler] of TOOLS) {
     server.registerTool(
       def.name,
-      { ...def.config, annotations: { title: def.config.title, ...READ_ONLY_ANNOTATIONS } },
+      {
+        ...def.config,
+        annotations: { title: def.config.title, ...READ_ONLY_ANNOTATIONS },
+        // MCP Apps: tools may carry a UI template reference in _meta.ui;
+        // hosts without the extension ignore it (additive metadata).
+        ...(def._meta ? { _meta: def._meta } : {}),
+      },
       wrap(def.name, handler)
     );
   }

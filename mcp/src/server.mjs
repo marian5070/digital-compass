@@ -6,11 +6,12 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 
 import { getIndex, getIndexLoadedAt } from './data/loader.mjs';
 import { registerTools } from './tools/index.mjs';
+import { registerResources } from './resources/index.mjs';
 import { rateLimit } from './middleware/rate-limit.mjs';
 import { authOptional } from './middleware/auth.mjs';
 import { accessLog } from './middleware/log.mjs';
 
-const VERSION = '0.4.0';
+const VERSION = '0.5.0';
 
 getIndex(); // fail-fast dacă dist/ nu e construit
 
@@ -42,6 +43,7 @@ app.get('/mcp/health', (_req, res) => {
 app.post('/mcp', async (req, res) => {
   const server = new McpServer({ name: 'digital-compass-mcp', version: VERSION });
   registerTools(server);
+  registerResources(server);
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
     enableJsonResponse: true,
