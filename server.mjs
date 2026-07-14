@@ -15,17 +15,18 @@ const app = express();
 app.disable('x-powered-by');
 
 // CSP Etapa 2 — Report-Only întâi: site static, totul e self-hosted
-// (fonturi de sistem, zero CDN). 'unsafe-inline' e necesar pentru
-// <style>/<script is:inline> emise de Astro în fiecare pagină.
-// Încălcările ajung la /csp-report (log pm2) — se trece pe enforce
-// după o perioadă fără rapoarte.
+// (fonturi de sistem, zero CDN); singura externă e beacon-ul Cloudflare
+// Web Analytics injectat la edge pe zona madeinro.eu. 'unsafe-inline' e
+// necesar pentru <style>/<script is:inline> emise de Astro în fiecare
+// pagină. Încălcările ajung la /csp-report (log pm2) — se trece pe
+// enforce după o perioadă fără rapoarte.
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://cloudflareinsights.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
