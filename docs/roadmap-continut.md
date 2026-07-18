@@ -1,5 +1,14 @@
 # Foaie de parcurs — conținut
 
+## Publicate
+
+- **Seria „AI & asistenți"** (18 iul 2026, categorie nouă `ai-asistenti`, 4 playbook-uri
+  × 9 limbi): acces cerut de aplicații AI, conectarea asistentului la alte aplicații
+  (conectori/MCP), aprobarea acțiunilor unui agent, date sensibile puse într-un chat AI.
+  Declanșator: OpenAI tratează prompt injection și exfiltrarea prin agenți/conectori ca
+  risc de siguranță (Safety Bug Bounty, mar 2026). Ghidul „Ce să NU pui în AI" e legat
+  de playbook-ul de incident prin `relatedPlaybook` (prevenție ↔ reacție).
+
 Bazat pe cercetarea tiparelor de înșelătorii RO (iulie 2026). Surse: alerte DNSC,
 OLX oficial, comunicate Poliția Română/ARB/ASF, presă (HotNews, Digi24, Adevărul).
 

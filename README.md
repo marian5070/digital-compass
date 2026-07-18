@@ -3,7 +3,7 @@
 [![Cod: MIT](https://img.shields.io/badge/Cod-MIT-3b82f6.svg)](LICENSE)
 [![Conținut: CC BY 4.0](https://img.shields.io/badge/Con%C8%9Binut-CC_BY_4.0-9ca3af.svg)](LICENSE-CONTENT.md)
 [![Astro](https://img.shields.io/badge/Astro-static-ff5d01.svg?logo=astro&logoColor=white)](https://astro.build)
-![Limba: Română](https://img.shields.io/badge/Limba-Rom%C3%A2n%C4%83-16a34a.svg)
+![9 limbi](https://img.shields.io/badge/Limbi-9_(ro_en_hu_pl_cs_sk_it_fr_de)-16a34a.svg)
 [![Contribuții: bine ai venit](https://img.shields.io/badge/Contribu%C8%9Bii-bine_ai_venit-22c55e.svg)](CONTRIBUTING.md)
 
 > Cunoaștere publică, practică, în română, pentru momentele de criză digitală.
@@ -12,7 +12,8 @@
 ![Digital Compass — ghid public de siguranță digitală, în română](docs/screenshot.png)
 
 Un ghid public care ajută omul obișnuit când i se întâmplă ceva online: un link fals, un
-cont spart, o țeapă la cumpărare, un apel de înșelăciune. Fiecare situație are un
+cont spart, o țeapă la cumpărare, un apel de înșelăciune, o aplicație AI care cere acces
+la date. Fiecare situație are un
 **playbook „situație → ce faci"**: respiră, pașii de urmat acum, ce să NU faci, cum
 recunoști data viitoare și unde raportezi — cu **surse citate transparent**.
 
@@ -64,13 +65,21 @@ npm run preview   # servește build-ul local
 
 ```
 src/
-├── content/playbooks/*.md   # conținutul (situație → ce faci)
-├── content.config.ts        # schema unui playbook
-├── pages/                    # Home, De ce existăm, Surse, playbook/[slug], 404
-├── components/               # PlaybookCard, StepList, DontList, ReportBox, SourceList...
+├── content/playbooks/<lang>/*.md  # situațiile (reactiv), 9 limbi, slug comun
+├── content/ghiduri/<lang>/*.md    # ghidurile de prevenție, 9 limbi
+├── content.config.ts              # schemele (playbook + ghid, categorii, audiență)
+├── pages/                          # Home, De ce existăm, Surse, playbook/[slug],
+│                                   #   ghiduri, /pentru-firma, /aplicatie (PWA), 404
+├── templates/ + i18n/              # șabloanele comune + dicționar UI/rute pe limbi
+├── components/                     # PlaybookCard, StepList, DontList, ReportBox...
 ├── layouts/BaseLayout.astro
-└── styles/                   # tokens, typography, global
+└── styles/                         # tokens, typography, global
 ```
+
+Situațiile sunt grupate în cinci categorii de triaj: cumpărături & bani, conturi &
+dispozitive, mesaje & apeluri, oameni & manipulare, **AI & asistenți** (din iulie 2026 —
+acces cerut de aplicații AI, conectori/extensii, acțiuni făcute de asistent în locul tău,
+date sensibile puse într-un chat AI).
 
 ## Deploy
 

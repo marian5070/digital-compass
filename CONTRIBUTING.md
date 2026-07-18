@@ -74,6 +74,8 @@ situation: "Cum sună situația pe cardul din Home"
 icon: "📞"
 order: 5
 severity: urgent        # urgent | important
+category: mesaje-apeluri  # cumparaturi-bani | conturi-dispozitive | mesaje-apeluri | oameni-manipulare | ai-asistenti
+audience: individ         # individ | organizatie | ambele (apare și pe /pentru-firma dacă nu e 'individ')
 lastReviewed: "9 iulie 2026"
 steps:
   - "Primul pas, acționabil. Poți folosi <strong>accent</strong>."
