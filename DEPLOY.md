@@ -63,6 +63,12 @@ pm2 restart digital-compass  # necesar doar dacă s-a schimbat server.mjs
 Fișierele din `dist/` sunt statice — build-ul nou e servit imediat, fără restart,
 dacă doar conținutul s-a schimbat.
 
+> **Atenție — `public/demo-chatgpt.mp4` NU e în git** (gitignored: artefact al
+> submisiei OpenAI, 50MB, iar înregistrarea poate arăta detalii de cont). Trăiește
+> doar pe server + în backupul Jottacloud. La un clone proaspăt, copiază-l în
+> `public/` ÎNAINTE de `npm run build`, altfel dist-ul nou se publică fără el și
+> URL-ul cerut de review (`/demo-chatgpt.mp4`) cade.
+
 ---
 
 ## Agent-readiness (isitagentready.com)

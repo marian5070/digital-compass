@@ -9,6 +9,10 @@ npm-debug.log*
 # environment
 .env
 .env.production
+# OpenAI submission asset — lives ONLY on the server (public/) + Jottacloud backup,
+# never in git (50MB binary + the recording may show account details).
+# On a fresh clone, copy it into public/ before building.
+public/demo-chatgpt.mp4
 # macOS / editor
 .DS_Store
 # Claude Code local config
