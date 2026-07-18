@@ -1,6 +1,6 @@
 {
   "name": "digital-compass-mcp",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "Digital Compass MCP — digital-crisis playbooks as tools for AI agents in 9 languages (ro original; en/hu Romania-anchored; pl/cs/sk/it/fr/de country-anchored with local reporting channels): match a user's situation to a step-by-step playbook, fetch full guidance as markdown, list real reporting channels per country. Public-good content, CC BY 4.0, plain language.",
   "mcp_endpoint": "https://compass.madeinro.eu/mcp",
   "protocol": "mcp-streamable-http",
@@ -18,5 +18,8 @@
     "well_known": "https://compass.madeinro.eu/.well-known/mcp.json",
     "health": "https://compass.madeinro.eu/mcp/health"
   },
-  "docs": "https://compass.madeinro.eu/de-ce-existam"
+  "docs": "https://compass.madeinro.eu/de-ce-existam",
+  "privacyUrl": "https://compass.madeinro.eu/privacy",
+  "termsUrl": "https://compass.madeinro.eu/terms",
+  "contactUrl": "https://compass.madeinro.eu/contact"
 }

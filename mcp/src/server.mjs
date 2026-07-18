@@ -30,6 +30,16 @@ app.use(accessLog);
 app.use(rateLimit({ rpm: Number(process.env.RATE_LIMIT_RPM || 60) }));
 app.use(authOptional);
 
+// Domain verification pentru OpenAI Apps (ChatGPT plugin directory).
+// Portalul cere tokenul ca text simplu la /.well-known/openai-apps-challenge;
+// cloudflared rutează exact această cale către noi. Token setat prin env +
+// pm2 restart la momentul submisiei — fără rebuild de frontend.
+app.get('/.well-known/openai-apps-challenge', (_req, res) => {
+  const token = process.env.OPENAI_APPS_CHALLENGE;
+  if (!token) return res.status(404).type('text/plain').send('not configured');
+  res.type('text/plain').send(token);
+});
+
 app.get('/mcp/health', (_req, res) => {
   res.json({
     ok: true,

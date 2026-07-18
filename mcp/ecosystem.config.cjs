@@ -12,6 +12,7 @@ module.exports = {
       env: {
         PORT: 3050,
         RATE_LIMIT_RPM: 60,
+        OPENAI_APPS_CHALLENGE: 'KcMMZy60ZnI3uwKPTw8bdY_ILavY67n4DeSeCyG7GY4',
       },
       error_file: '/home/marian/.pm2/logs/digital-compass-mcp-error.log',
       out_file: '/home/marian/.pm2/logs/digital-compass-mcp-out.log',

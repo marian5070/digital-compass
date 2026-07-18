@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy policy for Digital Compass (compass.madeinro.eu) and its MCP endpoint. We collect as little as technically possible."
+>
+  <article class="section">
+    <div class="container prose">
+      <h1>Privacy Policy</h1>
+      <p><em>Operator: Marian Matinca · Effective date: 15 July 2026 · <a href="#ro">Versiunea în română mai jos</a></em></p>
+
+      <h2>What we collect: as little as technically possible</h2>
+      <p>
+        Digital Compass has no user accounts, no registration, no forms that collect personal data,
+        no advertising and no cross-site tracking. The guides are static, public-good content
+        (CC BY 4.0).
+      </p>
+
+      <h2>Data stored on your device</h2>
+      <p>
+        The site works offline as a PWA: your browser's service worker caches pages locally on your
+        device so the guides remain available without a connection. Nothing from that cache is sent
+        to us.
+      </p>
+
+      <h2>Server logs</h2>
+      <p>
+        The website and the MCP endpoint (<code>compass.madeinro.eu/mcp</code>) keep short technical
+        access logs (request path, status code, response time, truncated user-agent). IP addresses
+        are not stored in raw form: they are one-way hashed with a salt that changes daily, so
+        requests cannot be linked to a person or across days. Logs are used only to operate and
+        protect the service (e.g. rate limiting).
+      </p>
+
+      <h2>Analytics</h2>
+      <p>
+        We use Cloudflare Web Analytics — cookieless, aggregated statistics only (page views,
+        countries, browsers). No cookies, no fingerprinting, no cross-site tracking.
+      </p>
+
+      <h2>AI assistants (MCP)</h2>
+      <p>
+        When you use Digital Compass through an AI assistant (for example the ChatGPT app), your
+        conversation is processed by that assistant under its own privacy policy. Our MCP endpoint
+        receives only the tool call (e.g. "find the playbook for a phishing message") and returns
+        public guide content. We do not receive or store your conversation. Important: never share
+        passwords, card numbers or personal documents when asking for help — the guides never
+        require them.
+      </p>
+
+      <h2>Your rights &amp; contact</h2>
+      <p>
+        Since we hold no personal data about you, there is normally nothing to access, correct or
+        delete — but you can always reach us with any privacy question at
+        <a href="mailto:marian@mmatinca.eu">marian@mmatinca.eu</a>. You also have the right to lodge
+        a complaint with your data protection authority (in Romania: ANSPDCP).
+      </p>
+
+      <hr />
+
+      <h1 id="ro">Politica de confidențialitate</h1>
+      <p><em>Operator: Marian Matinca · În vigoare din: 15 iulie 2026</em></p>
+
+      <h2>Ce colectăm: cât mai puțin posibil tehnic</h2>
+      <p>
+        Digital Compass nu are conturi, nu cere înregistrare, nu are formulare care colectează date
+        personale, nu are publicitate și nu urmărește utilizatorii pe alte site-uri. Ghidurile sunt
+        conținut static, de interes public (CC BY 4.0).
+      </p>
+
+      <h2>Date stocate pe dispozitivul tău</h2>
+      <p>
+        Site-ul funcționează offline ca PWA: service worker-ul browserului păstrează paginile local,
+        pe dispozitivul tău. Nimic din acel cache nu ne este trimis.
+      </p>
+
+      <h2>Loguri de server</h2>
+      <p>
+        Site-ul și endpointul MCP păstrează loguri tehnice scurte (cale, cod de status, durată,
+        user-agent trunchiat). Adresele IP nu se stochează în clar: sunt hash-uite ireversibil cu un
+        salt care se schimbă zilnic, deci cererile nu pot fi legate de o persoană sau între zile.
+      </p>
+
+      <h2>Statistici</h2>
+      <p>Folosim Cloudflare Web Analytics — fără cookie-uri, doar statistici agregate.</p>
+
+      <h2>Asistenți AI (MCP)</h2>
+      <p>
+        Când folosești Digital Compass printr-un asistent AI, conversația ta e procesată de acel
+        asistent conform politicii lui. Endpointul nostru primește doar apelul de tool și întoarce
+        conținutul public al ghidurilor; nu primim și nu stocăm conversația ta. Important: nu
+        transmite niciodată parole, numere de card sau documente personale când ceri ajutor —
+        ghidurile nu le cer niciodată.
+      </p>
+
+      <h2>Drepturile tale &amp; contact</h2>
+      <p>
+        Nu deținem date personale despre tine, deci de regulă nu există nimic de accesat, corectat
+        sau șters — dar ne poți scrie oricând la
+        <a href="mailto:marian@mmatinca.eu">marian@mmatinca.eu</a>. Ai și dreptul de a depune o
+        plângere la ANSPDCP.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
