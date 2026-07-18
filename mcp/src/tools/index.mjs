@@ -19,13 +19,13 @@ const byLang = (items, lang) => items.filter((i) => (i.lang ?? 'ro') === lang);
 const CategorieInput = z
   .enum([
     // situații (playbooks)
-    'cumparaturi-bani', 'conturi-dispozitive', 'mesaje-apeluri', 'oameni-manipulare',
+    'cumparaturi-bani', 'conturi-dispozitive', 'mesaje-apeluri', 'oameni-manipulare', 'ai-asistenti',
     // ghiduri (prevenție)
     'conturi-parole', 'cumparaturi-plati', 'dispozitive', 'email-mesaje', 'la-birou',
   ])
   .optional()
   .describe(
-    'Optional use-case category filter. Playbook categories: cumparaturi-bani, conturi-dispozitive, mesaje-apeluri, oameni-manipulare. Guide categories: conturi-parole, cumparaturi-plati, dispozitive, email-mesaje, la-birou.'
+    'Optional use-case category filter. Playbook categories: cumparaturi-bani, conturi-dispozitive, mesaje-apeluri, oameni-manipulare, ai-asistenti. Guide categories: conturi-parole, cumparaturi-plati, dispozitive, email-mesaje, la-birou.'
   );
 const AudientaInput = z
   .enum(['individ', 'organizatie'])

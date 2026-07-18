@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 July 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "Remember, in short"
 rules:
   - "<strong>If you wouldn't write it on a public notice board, don't paste it into an AI tool.</strong>"

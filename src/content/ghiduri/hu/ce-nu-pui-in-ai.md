@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "2026. július 10."
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "Röviden, hogy megjegyezd"
 rules:
   - "<strong>Ha nem írnád ki egy nyilvános hirdetőtáblára, ne másold be egy AI-eszközbe.</strong>"

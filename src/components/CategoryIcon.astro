@@ -2,7 +2,7 @@
 // Iconițe SVG inline pentru categoriile de situații (stroke, moștenesc culoarea).
 // SVG, nu emoji — headerele de categorie sunt UI, nu conținut editorial.
 interface Props {
-  name: 'cumparaturi-bani' | 'conturi-dispozitive' | 'mesaje-apeluri' | 'oameni-manipulare';
+  name: 'cumparaturi-bani' | 'conturi-dispozitive' | 'mesaje-apeluri' | 'oameni-manipulare' | 'ai-asistenti';
   size?: number;
 }
 const { name, size = 22 } = Astro.props;
@@ -45,5 +45,11 @@ const common = {
     <path d="M3.5 20c.6-3.4 2.8-5.2 5.5-5.2s4.9 1.8 5.5 5.2" />
     <path d="M16.5 4.6a3.2 3.2 0 0 1 0 6.8" />
     <path d="M18.4 14.9c1.5.8 2.5 2.2 2.9 4.3" />
+  </svg>
+)}
+{name === 'ai-asistenti' && (
+  <svg {...common}>
+    <path d="M12 3.5l1.6 4.4 4.4 1.6-4.4 1.6L12 15.5l-1.6-4.4-4.4-1.6 4.4-1.6z" />
+    <path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
   </svg>
 )}

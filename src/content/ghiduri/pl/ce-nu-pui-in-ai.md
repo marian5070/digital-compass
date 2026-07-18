@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 lipca 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "Zapamiętaj w skrócie"
 rules:
   - "<strong>Co nie nadaje się na tablicę ogłoszeń, nie nadaje się też do narzędzia AI.</strong>"

@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 juillet 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "À retenir en bref"
 rules:
   - "<strong>Si vous ne l'écririez pas sur un panneau d'affichage public, ne le collez pas dans un outil d'IA.</strong>"

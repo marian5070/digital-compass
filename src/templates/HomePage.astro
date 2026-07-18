@@ -25,6 +25,7 @@ const CATEGORY_ORDER = [
   'conturi-dispozitive',
   'mesaje-apeluri',
   'oameni-manipulare',
+  'ai-asistenti',
 ] as const;
 
 const catLabel = (c: (typeof CATEGORY_ORDER)[number]) => T(`cat.${c}` as UiKey);
@@ -43,6 +44,7 @@ const chips: Array<{ key: UiKey; slug: string }> = [
   { key: 'home.chip.hacked', slug: 'cont-spart' },
   { key: 'home.chip.parcel', slug: 'teapa-cumparare-online' },
   { key: 'home.chip.call', slug: 'inselatorie-telefon' },
+  { key: 'home.chip.ai', slug: 'aplicatie-ai-cere-acces' },
 ];
 
 // Structured data WebSite — identitatea site-ului în knowledge graph,

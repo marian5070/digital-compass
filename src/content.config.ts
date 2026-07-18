@@ -20,6 +20,7 @@ const playbooks = defineCollection({
       'conturi-dispozitive',
       'mesaje-apeluri',
       'oameni-manipulare',
+      'ai-asistenti',
     ]),
     // Cui i se adresează: individ (default), organizație, sau ambele.
     audience: z.enum(['individ', 'organizatie', 'ambele']).default('individ'),

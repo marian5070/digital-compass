@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10. července 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "Ve zkratce"
 rules:
   - "<strong>Co bys nenapsal na veřejnou nástěnku, nevkládej do AI nástroje.</strong>"

@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10. Juli 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "Das Wichtigste in Kürze"
 rules:
   - "<strong>Was Sie nicht an eine öffentliche Anschlagtafel schreiben würden, fügen Sie auch nicht in ein KI-Tool ein.</strong>"

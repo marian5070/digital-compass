@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 luglio 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "In breve"
 rules:
   - "<strong>Se non la scriveresti su un cartellone in pubblico, non incollarla in uno strumento AI.</strong>"

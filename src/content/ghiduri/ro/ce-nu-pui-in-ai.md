@@ -7,6 +7,7 @@ audience: organizatie
 icon: "🤖"
 order: 4
 lastReviewed: "10 iulie 2026"
+relatedPlaybook: date-sensibile-chat-ai
 rulesTitle: "Reține pe scurt"
 rules:
   - "<strong>Dacă n-ai scrie-o pe un panou public, n-o lipi într-un instrument AI.</strong>"
