@@ -20,7 +20,7 @@ app.disable('x-powered-by');
 // necesar pentru <style>/<script is:inline> emise de Astro în fiecare
 // pagină. Încălcările ajung la /csp-report (log pm2) — se trece pe
 // enforce după o perioadă fără rapoarte.
-const CSP_REPORT_ONLY = [
+const CSP_POLICY = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-  res.setHeader('Content-Security-Policy-Report-Only', CSP_REPORT_ONLY);
+  res.setHeader('Content-Security-Policy', CSP_POLICY);
   res.setHeader(
     'Link',
     '</.well-known/api-catalog>; rel="api-catalog", ' +
@@ -57,7 +57,7 @@ app.post(
   express.json({ type: ['application/csp-report', 'application/json'], limit: '16kb' }),
   (req, res) => {
     const body = req.body?.['csp-report'] ?? req.body ?? {};
-    console.warn('[csp-report]', JSON.stringify(body).slice(0, 2000));
+    console.warn('[csp-report]', new Date().toISOString(), JSON.stringify(body).slice(0, 2000));
     res.status(204).end();
   }
 );
