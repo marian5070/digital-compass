@@ -1,0 +1,80 @@
+---
+import { pageAlternates } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Cum funcționează Digital Compass"
+  description="Aceleași cunoștințe verificate — pe site, în aplicație și în asistenții AI. Cum e organizat conținutul și de ce asistentul nu inventează nimic."
+  alternates={pageAlternates('howItWorks')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparență</span>
+      <h1>Cum funcționează Digital Compass</h1>
+
+      <div class="content">
+        <p class="lead">Fiecare răspuns — pe site, în aplicația instalabilă sau printr-un asistent AI — vine din același conținut: playbook-uri și ghiduri scrise și verificate editorial, publicate în 9 limbi. Nimic generat automat, nimic improvizat.</p>
+
+        <img
+          src="/cum-functioneaza-arhitectura-ro.svg"
+          alt="Arhitectura Digital Compass: utilizatorul întreabă un asistent AI, serverul MCP găsește playbook-ul potrivit în conținutul publicat — 270 de documente în 9 limbi"
+          class="diagram"
+          loading="lazy"
+        />
+
+        <h2>Cunoștințe organizate pentru regăsire</h2>
+        <p>Fiecare situație de criză e un playbook cu aceeași structură: pașii de urmat <strong>acum</strong>, ce să <strong>NU</strong> faci, unde raportezi în țara ta și sursele citate. 19 playbook-uri și 11 ghiduri de prevenție, în 9 limbi — 270 de documente sincronizate. Structura comună e ceea ce permite unui asistent AI să găsească playbook-ul potrivit din descrierea ta, oricât de vagă.</p>
+
+        <h2>Aceleași cunoștințe, trei forme</h2>
+        <ul>
+          <li><strong>Site-ul</strong> — cauți sau navighezi pe categorii și audiențe.</li>
+          <li><strong>Aplicația instalabilă (PWA)</strong> — cu ghidurile salvabile offline, utile exact când accesul e problema.</li>
+          <li><strong>Asistenți AI (MCP)</strong> — 5 tool-uri publice prin care orice asistent compatibil găsește playbook-ul potrivit și canalele de raportare din țara ta. Aplicația e trimisă la review-ul OpenAI pentru catalogul ChatGPT (în evaluare).</li>
+        </ul>
+        <p>Serverul MCP citește exact conținutul publicat al site-ului. Nu există versiuni diferite ale adevărului.</p>
+
+        <h2>De ce poți avea încredere</h2>
+        <p>Conținutul e scris de om și verificat editorial, cu sursele citate la vedere — mașina doar îl servește. În siguranța digitală, o procedură inventată e mai rea decât niciuna; de aceea asistentul AI nu improvizează nimic: livrează playbook-ul, așa cum a fost scris.</p>
+
+        <p class="cta-row">
+          <a class="cta" href="https://mmatinca.eu/blog/studiu-de-caz-digital-compass" rel="noopener">Citește studiul de caz pe mmatinca.eu →</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .diagram {
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .cta-row {
+    margin-top: var(--space-5);
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .cta:hover {
+    filter: brightness(1.08);
+  }
+</style>

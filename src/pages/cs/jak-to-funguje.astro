@@ -1,0 +1,80 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Jak Digital Compass funguje"
+  description="Stejné ověřené znalosti — na webu, v aplikaci i v AI asistentech. Jak je obsah uspořádán a proč si asistent nic nevymýšlí."
+  alternates={pageAlternates('howItWorks')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparentnost</span>
+      <h1>Jak Digital Compass funguje</h1>
+
+      <div class="content">
+        <p class="lead">Každá odpověď — na webu, v instalovatelné aplikaci nebo přes AI asistenta — pochází ze stejného obsahu: playbooků a návodů napsaných a redakčně ověřených, publikovaných v 9 jazycích. Nic není generováno automaticky, nic není improvizováno.</p>
+
+        <img
+          src="/cum-functioneaza-arhitectura-en.svg"
+          alt="Architektura Digital Compass: uživatel se ptá AI asistenta, MCP server najde správný playbook v publikovaném obsahu — 270 dokumentů v 9 jazycích"
+          class="diagram"
+          loading="lazy"
+        />
+
+        <h2>Znalosti uspořádané pro vyhledávání</h2>
+        <p>Každá krizová situace je playbook se stejnou strukturou: kroky, které udělat <strong>teď</strong>, co <strong>NE</strong>dělat, kde to nahlásit ve tvé zemi, a citované zdroje. 19 playbooků a 11 preventivních návodů v 9 jazycích — 270 synchronizovaných dokumentů. Společná struktura je to, co umožňuje AI asistentovi najít správný playbook z tvého popisu, jakkoli vágního.</p>
+
+        <h2>Stejné znalosti, tři podoby</h2>
+        <ul>
+          <li><strong>Web</strong> — hledej nebo procházej podle kategorií a publika.</li>
+          <li><strong>Instalovatelná aplikace (PWA)</strong> — s návody uložitelnými offline, užitečnými přesně tehdy, když je problémem přístup.</li>
+          <li><strong>AI asistenti (MCP)</strong> — 5 veřejných nástrojů, díky nimž kterýkoli kompatibilní asistent najde správný playbook a kanály pro nahlášení ve tvé zemi. Aplikace byla odeslána k posouzení OpenAI pro katalog ChatGPT (v hodnocení).</li>
+        </ul>
+        <p>MCP server čte přesně publikovaný obsah webu. Neexistují různé verze pravdy.</p>
+
+        <h2>Proč mu můžeš věřit</h2>
+        <p>Obsah píší lidé a je redakčně ověřen, se zdroji citovanými otevřeně — stroj ho jen servíruje. V digitální bezpečnosti je vymyšlený postup horší než žádný; proto AI asistent nic neimprovizuje: doručí playbook tak, jak byl napsán.</p>
+
+        <p class="cta-row">
+          <a class="cta" href="https://mmatinca.eu/blog/studiu-de-caz-digital-compass?lang=en" rel="noopener">Přečti si případovou studii na mmatinca.eu →</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .diagram {
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .cta-row {
+    margin-top: var(--space-5);
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .cta:hover {
+    filter: brightness(1.08);
+  }
+</style>

@@ -13,6 +13,7 @@ export const routes = {
     sources: '/surse',
     pwa: '/aplicatie',
     org: '/pentru-firma',
+    howItWorks: '/cum-functioneaza',
     playbook: (slug: string) => `/playbook/${slug}`,
     guide: (slug: string) => `/ghiduri/${slug}`,
   },
@@ -24,6 +25,7 @@ export const routes = {
     sources: '/en/sources',
     pwa: '/en/app',
     org: '/en/for-your-team',
+    howItWorks: '/en/how-it-works',
     playbook: (slug: string) => `/en/playbook/${slug}`,
     guide: (slug: string) => `/en/guides/${slug}`,
   },
@@ -36,6 +38,7 @@ export const routes = {
     sources: '/hu/forrasok',
     pwa: '/hu/alkalmazas',
     org: '/hu/a-cegednek',
+    howItWorks: '/hu/hogyan-mukodik',
     playbook: (slug: string) => `/hu/playbook/${slug}`,
     guide: (slug: string) => `/hu/utmutatok/${slug}`,
   },
@@ -49,6 +52,7 @@ export const routes = {
     sources: '/pl/zrodla',
     pwa: '/pl/aplikacja',
     org: '/pl/dla-twojej-firmy',
+    howItWorks: '/pl/jak-to-dziala',
     playbook: (slug: string) => `/pl/playbook/${slug}`,
     guide: (slug: string) => `/pl/poradniki/${slug}`,
   },
@@ -61,6 +65,7 @@ export const routes = {
     sources: '/cs/zdroje',
     pwa: '/cs/aplikace',
     org: '/cs/pro-vasi-firmu',
+    howItWorks: '/cs/jak-to-funguje',
     playbook: (slug: string) => `/cs/playbook/${slug}`,
     guide: (slug: string) => `/cs/navody/${slug}`,
   },
@@ -72,6 +77,7 @@ export const routes = {
     sources: '/sk/zdroje',
     pwa: '/sk/aplikacia',
     org: '/sk/pre-vasu-firmu',
+    howItWorks: '/sk/ako-to-funguje',
     playbook: (slug: string) => `/sk/playbook/${slug}`,
     guide: (slug: string) => `/sk/navody/${slug}`,
   },
@@ -83,6 +89,7 @@ export const routes = {
     sources: '/it/fonti',
     pwa: '/it/app',
     org: '/it/per-la-tua-azienda',
+    howItWorks: '/it/come-funziona',
     playbook: (slug: string) => `/it/playbook/${slug}`,
     guide: (slug: string) => `/it/guide/${slug}`,
   },
@@ -94,6 +101,7 @@ export const routes = {
     sources: '/fr/sources',
     pwa: '/fr/application',
     org: '/fr/pour-votre-entreprise',
+    howItWorks: '/fr/comment-ca-marche',
     playbook: (slug: string) => `/fr/playbook/${slug}`,
     guide: (slug: string) => `/fr/guides/${slug}`,
   },
@@ -105,6 +113,7 @@ export const routes = {
     sources: '/de/quellen',
     pwa: '/de/app',
     org: '/de/fuer-ihre-firma',
+    howItWorks: '/de/wie-es-funktioniert',
     playbook: (slug: string) => `/de/playbook/${slug}`,
     guide: (slug: string) => `/de/ratgeber/${slug}`,
   },
@@ -116,7 +125,7 @@ export function r(lang: Lang) {
 
 /** Alternates (hreflang + comutator) pentru paginile statice, peste toate limbile. */
 export function pageAlternates(
-  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources' | 'pwa' | 'org'
+  key: 'home' | 'start' | 'guidesIndex' | 'why' | 'sources' | 'pwa' | 'org' | 'howItWorks'
 ): Record<Lang, string> {
   return Object.fromEntries(LANGS.map((l) => [l, routes[l][key]])) as Record<Lang, string>;
 }

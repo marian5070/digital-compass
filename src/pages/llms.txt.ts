@@ -108,7 +108,8 @@ export const GET: APIRoute = async () => {
     '',
     `- [De ce existăm](${SITE}/de-ce-existam): misiunea și principiile proiectului`,
     `- [Începe aici](${SITE}/incepe-aici): primul pas pentru cititorii noi`,
-    `- [Surse](${SITE}/surse): sursele oficiale pe care le cităm`
+    `- [Surse](${SITE}/surse): sursele oficiale pe care le cităm`,
+    `- [Cum funcționează](${SITE}/cum-functioneaza): aceleași cunoștințe pe site, în PWA și pentru agenții AI (MCP) + link către studiul de caz complet`
   );
 
   for (const lang of LANGS) {

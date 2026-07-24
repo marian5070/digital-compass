@@ -1,0 +1,80 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Come funziona Digital Compass"
+  description="La stessa conoscenza verificata — sul sito, nell'app e negli assistenti AI. Come è organizzato il contenuto e perché l'assistente non inventa nulla."
+  alternates={pageAlternates('howItWorks')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Trasparenza</span>
+      <h1>Come funziona Digital Compass</h1>
+
+      <div class="content">
+        <p class="lead">Ogni risposta — sul sito, nell'app installabile o tramite un assistente AI — proviene dallo stesso contenuto: playbook e guide scritti e verificati editorialmente, pubblicati in 9 lingue. Niente di generato automaticamente, niente di improvvisato.</p>
+
+        <img
+          src="/cum-functioneaza-arhitectura-en.svg"
+          alt="Architettura di Digital Compass: l'utente chiede a un assistente AI, il server MCP trova il playbook giusto nel contenuto pubblicato — 270 documenti in 9 lingue"
+          class="diagram"
+          loading="lazy"
+        />
+
+        <h2>Conoscenza organizzata per il recupero</h2>
+        <p>Ogni situazione di crisi è un playbook con la stessa struttura: i passi da fare <strong>ora</strong>, cosa <strong>NON</strong> fare, dove segnalare nel tuo paese e le fonti citate. 19 playbook e 11 guide di prevenzione, in 9 lingue — 270 documenti sincronizzati. La struttura comune è ciò che permette a un assistente AI di trovare il playbook giusto dalla tua descrizione, per quanto vaga.</p>
+
+        <h2>La stessa conoscenza, tre forme</h2>
+        <ul>
+          <li><strong>Il sito</strong> — cerca o naviga per categorie e destinatari.</li>
+          <li><strong>L'app installabile (PWA)</strong> — con le guide salvabili offline, utili proprio quando l'accesso è il problema.</li>
+          <li><strong>Assistenti AI (MCP)</strong> — 5 strumenti pubblici con cui qualsiasi assistente compatibile trova il playbook giusto e i canali di segnalazione del tuo paese. L'app è stata inviata alla revisione OpenAI per il catalogo ChatGPT (in valutazione).</li>
+        </ul>
+        <p>Il server MCP legge esattamente il contenuto pubblicato del sito. Non esistono versioni diverse della verità.</p>
+
+        <h2>Perché puoi fidarti</h2>
+        <p>Il contenuto è scritto da persone e verificato editorialmente, con le fonti citate apertamente — la macchina si limita a servirlo. Nella sicurezza digitale, una procedura inventata è peggio di nessuna; per questo l'assistente AI non improvvisa nulla: consegna il playbook così come è stato scritto.</p>
+
+        <p class="cta-row">
+          <a class="cta" href="https://mmatinca.eu/blog/studiu-de-caz-digital-compass?lang=en" rel="noopener">Leggi il case study su mmatinca.eu →</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .diagram {
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .cta-row {
+    margin-top: var(--space-5);
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .cta:hover {
+    filter: brightness(1.08);
+  }
+</style>

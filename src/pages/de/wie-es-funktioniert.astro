@@ -1,0 +1,80 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Wie Digital Compass funktioniert"
+  description="Dasselbe geprüfte Wissen — auf der Website, in der App und in KI-Assistenten. Wie die Inhalte organisiert sind und warum der Assistent nichts erfindet."
+  alternates={pageAlternates('howItWorks')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparenz</span>
+      <h1>Wie Digital Compass funktioniert</h1>
+
+      <div class="content">
+        <p class="lead">Jede Antwort — auf der Website, in der installierbaren App oder über einen KI-Assistenten — stammt aus demselben Inhalt: von Menschen geschriebene und redaktionell geprüfte Playbooks und Ratgeber, veröffentlicht in 9 Sprachen. Nichts ist automatisch generiert, nichts improvisiert.</p>
+
+        <img
+          src="/cum-functioneaza-arhitectura-en.svg"
+          alt="Architektur von Digital Compass: Nutzer fragen einen KI-Assistenten, der MCP-Server findet das passende Playbook im veröffentlichten Inhalt — 270 Dokumente in 9 Sprachen"
+          class="diagram"
+          loading="lazy"
+        />
+
+        <h2>Wissen, organisiert für die Suche</h2>
+        <p>Jede Krisensituation ist ein Playbook mit derselben Struktur: die Schritte für <strong>jetzt</strong>, was du <strong>NICHT</strong> tun solltest, wo du in deinem Land meldest und die zitierten Quellen. 19 Playbooks und 11 Präventionsratgeber in 9 Sprachen — 270 synchronisierte Dokumente. Die gemeinsame Struktur ist es, die einem KI-Assistenten erlaubt, aus deiner Beschreibung das passende Playbook zu finden — so vage sie auch sein mag.</p>
+
+        <h2>Dasselbe Wissen, drei Formen</h2>
+        <ul>
+          <li><strong>Die Website</strong> — suche oder stöbere nach Kategorien und Zielgruppen.</li>
+          <li><strong>Die installierbare App (PWA)</strong> — mit offline speicherbaren Ratgebern, nützlich genau dann, wenn der Zugang das Problem ist.</li>
+          <li><strong>KI-Assistenten (MCP)</strong> — 5 öffentliche Tools, mit denen jeder kompatible Assistent das passende Playbook und die Meldewege deines Landes findet. Die App wurde zur OpenAI-Prüfung für den ChatGPT-Katalog eingereicht (in Bewertung).</li>
+        </ul>
+        <p>Der MCP-Server liest exakt den veröffentlichten Inhalt der Website. Es gibt keine unterschiedlichen Versionen der Wahrheit.</p>
+
+        <h2>Warum du ihm vertrauen kannst</h2>
+        <p>Der Inhalt wird von Menschen geschrieben und redaktionell geprüft, mit offen zitierten Quellen — die Maschine serviert ihn nur. In der digitalen Sicherheit ist ein erfundenes Verfahren schlimmer als keines; deshalb improvisiert der KI-Assistent nichts: Er liefert das Playbook so, wie es geschrieben wurde.</p>
+
+        <p class="cta-row">
+          <a class="cta" href="https://mmatinca.eu/blog/studiu-de-caz-digital-compass?lang=en" rel="noopener">Fallstudie auf mmatinca.eu lesen →</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .diagram {
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .cta-row {
+    margin-top: var(--space-5);
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .cta:hover {
+    filter: brightness(1.08);
+  }
+</style>

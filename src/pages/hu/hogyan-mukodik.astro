@@ -1,0 +1,80 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Hogyan működik a Digital Compass"
+  description="Ugyanaz az ellenőrzött tudás — a weboldalon, az alkalmazásban és az AI-asszisztensekben. Hogyan van rendszerezve a tartalom, és miért nem talál ki semmit az asszisztens."
+  alternates={pageAlternates('howItWorks')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Átláthatóság</span>
+      <h1>Hogyan működik a Digital Compass</h1>
+
+      <div class="content">
+        <p class="lead">Minden válasz — a weboldalon, a telepíthető alkalmazásban vagy egy AI-asszisztensen keresztül — ugyanabból a tartalomból származik: emberek által írt és szerkesztőileg ellenőrzött playbookokból és útmutatókból, 9 nyelven. Semmi sem automatikusan generált, semmi sem rögtönzött.</p>
+
+        <img
+          src="/cum-functioneaza-arhitectura-en.svg"
+          alt="A Digital Compass architektúrája: a felhasználó egy AI-asszisztenst kérdez, az MCP-szerver megtalálja a megfelelő playbookot a közzétett tartalomban — 270 dokumentum 9 nyelven"
+          class="diagram"
+          loading="lazy"
+        />
+
+        <h2>Visszakereshetőségre rendszerezett tudás</h2>
+        <p>Minden krízishelyzet egy azonos szerkezetű playbook: a <strong>most</strong> megteendő lépések, mit <strong>NE</strong> tegyél, hol jelentheted az esetet az országodban, és az idézett források. 19 playbook és 11 megelőzési útmutató, 9 nyelven — 270 szinkronizált dokumentum. A közös szerkezet teszi lehetővé, hogy egy AI-asszisztens megtalálja a megfelelő playbookot a leírásodból, bármilyen homályos is.</p>
+
+        <h2>Ugyanaz a tudás, három forma</h2>
+        <ul>
+          <li><strong>A weboldal</strong> — keresés vagy böngészés kategóriák és célközönség szerint.</li>
+          <li><strong>A telepíthető alkalmazás (PWA)</strong> — offline is menthető útmutatókkal, amelyek pont akkor hasznosak, amikor a hozzáférés a probléma.</li>
+          <li><strong>AI-asszisztensek (MCP)</strong> — 5 nyilvános eszköz, amelyekkel bármely kompatibilis asszisztens megtalálja a megfelelő playbookot és az országod bejelentési csatornáit. Az alkalmazást beküldtük az OpenAI ChatGPT-katalógusának felülvizsgálatára (elbírálás alatt).</li>
+        </ul>
+        <p>Az MCP-szerver pontosan a weboldal közzétett tartalmát olvassa. Az igazságnak nincsenek különböző verziói.</p>
+
+        <h2>Miért bízhatsz benne</h2>
+        <p>A tartalmat emberek írják és szerkesztőileg ellenőrzik, nyíltan idézett forrásokkal — a gép csak kiszolgálja. A digitális biztonságban egy kitalált eljárás rosszabb, mint a semmi; ezért az AI-asszisztens semmit sem rögtönöz: a playbookot úgy adja át, ahogyan megírták.</p>
+
+        <p class="cta-row">
+          <a class="cta" href="https://mmatinca.eu/blog/studiu-de-caz-digital-compass?lang=en" rel="noopener">Olvasd el az esettanulmányt a mmatinca.eu oldalon →</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .diagram {
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .cta-row {
+    margin-top: var(--space-5);
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .cta:hover {
+    filter: brightness(1.08);
+  }
+</style>

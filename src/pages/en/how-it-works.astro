@@ -1,0 +1,80 @@
+---
+import { pageAlternates } from '../../i18n/routes';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="How Digital Compass works"
+  description="The same verified knowledge — on the website, in the app and in AI assistants. How the content is organized and why the assistant never makes anything up."
+  alternates={pageAlternates('howItWorks')}
+>
+  <article class="section">
+    <div class="container prose">
+      <span class="eyebrow">Transparency</span>
+      <h1>How Digital Compass works</h1>
+
+      <div class="content">
+        <p class="lead">Every answer — on the website, in the installable app or through an AI assistant — comes from the same content: playbooks and guides written and editorially verified, published in 9 languages. Nothing auto-generated, nothing improvised.</p>
+
+        <img
+          src="/cum-functioneaza-arhitectura-en.svg"
+          alt="Digital Compass architecture: the user asks an AI assistant, the MCP server finds the right playbook in the published content — 270 documents in 9 languages"
+          class="diagram"
+          loading="lazy"
+        />
+
+        <h2>Knowledge organized for retrieval</h2>
+        <p>Every crisis situation is a playbook with the same structure: the steps to take <strong>now</strong>, what <strong>NOT</strong> to do, where to report in your country, and cited sources. 19 playbooks and 11 prevention guides, in 9 languages — 270 synchronized documents. The common structure is what lets an AI assistant find the right playbook from your description, however vague.</p>
+
+        <h2>The same knowledge, three forms</h2>
+        <ul>
+          <li><strong>The website</strong> — search or browse by category and audience.</li>
+          <li><strong>The installable app (PWA)</strong> — with guides savable offline, useful exactly when access is the problem.</li>
+          <li><strong>AI assistants (MCP)</strong> — 5 public tools through which any compatible assistant finds the right playbook and the reporting channels in your country. The app has been submitted to the OpenAI review for the ChatGPT catalog (in evaluation).</li>
+        </ul>
+        <p>The MCP server reads exactly the published content of the website. There are no different versions of the truth.</p>
+
+        <h2>Why you can trust it</h2>
+        <p>The content is written by humans and editorially verified, with sources cited in the open — the machine only serves it. In digital safety, an invented procedure is worse than none; that is why the AI assistant improvises nothing: it delivers the playbook as written.</p>
+
+        <p class="cta-row">
+          <a class="cta" href="https://mmatinca.eu/blog/studiu-de-caz-digital-compass?lang=en" rel="noopener">Read the case study on mmatinca.eu →</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose h1 {
+    margin-top: var(--space-2);
+  }
+  .content {
+    margin-top: var(--space-4);
+  }
+  .content h2 {
+    margin-top: var(--space-5);
+  }
+  .diagram {
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .cta-row {
+    margin-top: var(--space-5);
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: var(--weight-bold);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .cta:hover {
+    filter: brightness(1.08);
+  }
+</style>
