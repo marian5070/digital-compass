@@ -109,7 +109,17 @@ export const GET: APIRoute = async () => {
     `- [De ce existăm](${SITE}/de-ce-existam): misiunea și principiile proiectului`,
     `- [Începe aici](${SITE}/incepe-aici): primul pas pentru cititorii noi`,
     `- [Surse](${SITE}/surse): sursele oficiale pe care le cităm`,
-    `- [Cum funcționează](${SITE}/cum-functioneaza): aceleași cunoștințe pe site, în PWA și pentru agenții AI (MCP) + link către studiul de caz complet`
+    `- [Cum funcționează](${SITE}/cum-functioneaza): aceleași cunoștințe pe site, în PWA și pentru agenții AI (MCP) + link către studiul de caz complet`,
+    '',
+    '## Same ecosystem',
+    '',
+    'Sites by the same author (Marian Matinca):',
+    '- https://mmatinca.eu — portfolio, case studies and blog',
+    '- https://avizo.ro — compliance alerts for Romanian firms',
+    '- https://euaicomply.eu — EU AI Act compliance platform',
+    '- https://tv.madeinro.eu — Romanian TV & entertainment guide (soon in ChatGPT)',
+    '- https://travel-trends.mmatinca.eu — European travel-intelligence radar (soon in ChatGPT)',
+    '- https://cand-reciclam.madeinro.eu — Bucharest waste-collection schedules (now in ChatGPT: https://chatgpt.com/plugins/plugin_asdk_app_6a5a1e1c646881919ea3a47685739b06)'
   );
 
   for (const lang of LANGS) {

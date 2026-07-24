@@ -11,13 +11,15 @@ const year = 2026;
 
 // Proiectele autorului (instanța oficială e a lui Marian Matinca; fork-urile
 // pot elimina secțiunea — e o listă simplă, nu logică).
-const PROJECTS = [
-  { href: 'https://mmatinca.eu', label: 'mmatinca.eu' },
-  { href: 'https://tv.madeinro.eu', label: 'tv.madeinro.eu' },
-  { href: 'https://avizo.ro', label: 'avizo.ro' },
-  { href: 'https://euaicomply.eu', label: 'euaicomply.eu' },
-  { href: 'https://travel-trends.mmatinca.eu', label: 'travel-trends.mmatinca.eu' },
-  { href: 'https://cand-reciclam.madeinro.eu', label: 'cand-reciclam.madeinro.eu' },
+// chatgpt: 'live' | 'soon' | null — la aprobările OpenAI, schimbă câmpul aici.
+const CHATGPT_APP_URL = 'https://chatgpt.com/plugins/plugin_asdk_app_6a5a1e1c646881919ea3a47685739b06';
+const PROJECTS: { href: string; label: string; chatgpt: 'live' | 'soon' | null }[] = [
+  { href: 'https://mmatinca.eu', label: 'mmatinca.eu', chatgpt: null },
+  { href: 'https://tv.madeinro.eu', label: 'tv.madeinro.eu', chatgpt: 'soon' },
+  { href: 'https://avizo.ro', label: 'avizo.ro', chatgpt: null },
+  { href: 'https://euaicomply.eu', label: 'euaicomply.eu', chatgpt: null },
+  { href: 'https://travel-trends.mmatinca.eu', label: 'travel-trends.mmatinca.eu', chatgpt: 'soon' },
+  { href: 'https://cand-reciclam.madeinro.eu', label: 'cand-reciclam.madeinro.eu', chatgpt: 'live' },
 ];
 
 // Contactul pentru incidente cibernetice diferă pe țară (ro/en/hu = România).
@@ -58,6 +60,12 @@ const CYBER: Record<Lang, { href: string; text: string }> = {
           PROJECTS.map((p) => (
             <li>
               <a href={p.href} rel="noopener">{p.label}</a>
+              {p.chatgpt === 'live' && (
+                <a class="footer-chatgpt live" href={CHATGPT_APP_URL} rel="noopener nofollow">
+                  · {T('footer.chatgptNow')}
+                </a>
+              )}
+              {p.chatgpt === 'soon' && <span class="footer-chatgpt">· {T('footer.chatgptSoon')}</span>}
             </li>
           ))
         }
@@ -95,6 +103,19 @@ const CYBER: Record<Lang, { href: string; text: string }> = {
       grid-template-columns: 1.5fr 0.9fr 1.1fr 1fr;
       align-items: start;
     }
+  }
+  .footer-chatgpt {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--color-text-muted);
+    margin-left: 0.35rem;
+    white-space: nowrap;
+  }
+  .footer-chatgpt.live {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .footer-chatgpt.live:hover {
+    text-decoration: underline;
   }
   .footer-projects-title {
     font-weight: var(--weight-bold);
